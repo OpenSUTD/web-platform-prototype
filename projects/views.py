@@ -20,9 +20,9 @@ class LoginPageView(generic.ListView):
     def get_queryset(self):
         return models.User.objects
 
-class HomepageView(generic.ListView):
-    template_name = 'projects/home.html'
-    context_object_name = 'homepage'
+class ProjectListView(generic.ListView):
+    template_name = 'projects/list.html'
+    context_object_name = 'projects_list'
 
     def get_queryset(self):
     # TODO: Filter by "Approved" Projects

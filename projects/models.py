@@ -8,56 +8,50 @@ from django.db import models
 
 # Create your models here.
 class Category (models.Model):
-    pass
-
-class Links(models.Model):
-    pass
-
-class AdminGroup(models.Model):
-    pass
+    name = models.CharField(max_length=30, default="None")
 
 class Pillar(models.Model):
-    pillar = models.CharField(max_length=10)
+    name = models.CharField(max_length=4, default="None")
 
 class Status(models.Model):
     # Approved, Rejected or Pending
-    status = models.CharField(max_length=20)
+    status = models.CharField(max_length=20, default="Not Approved")
 
 class Tag(models.Model):
-    pass
+    name = models.CharField(max_length=30, default="None")
 
 class User(models.Model):
-    displayname = models.CharField(max_length=20)
+    displayname = models.CharField(max_length=20, default="Tom")
     
     # probably a URL
     # (Use ImageField?)
-    displaypicture = models.CharField(max_length=200)
+    display_picture = models.CharField(max_length=200, default="https://via.placeholder.com/150")
 
     userid = models.CharField(max_length=200)
 
-    issutd = models.BooleanField()
+    isSUTD = models.BooleanField()
 
     graduationyear = models.IntegerField()
 
     pillar = models.ManyToManyField(Pillar)
 
-    admingroup = models.ManyToManyField(AdminGroup)
+    admin_groups = models.ManyToManyField(Category)
 
-    contactemail = models.CharField(max_length=200)
+    contact_email = models.CharField(max_length=200, default="none@example.com")
 
-    personallinks = models.ManyToManyField(Links)
+    personal_links = models.CharField(max_length=200, default="")
 
-    bio = models.CharField(max_length=300)
+    bio = models.CharField(max_length=300, default="")
 
 class Project(models.Model):
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, default="")
 
     # prefix + UID
-    projectuid = models.CharField(max_length=20)
+    projectuid = models.CharField(max_length=20, default="NONE9999")
 
     # probably a URL
     # (Use ImageField?)
-    featuredimage = models.CharField(max_length=200)
+    featured_image = models.CharField(max_length=200, default="https://via.placeholder.com/150")
 
     owner = models.ManyToManyField(User)
 
@@ -72,5 +66,4 @@ class Project(models.Model):
 
     status = models.ManyToManyField(Status)
 
-class Tester(models.Model):
-    projectuid = models.CharField(max_length=20)
+    published_date = models.DateTimeField(auto_now=True)

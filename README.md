@@ -8,10 +8,25 @@ Database will not be pushed to github (will be local on your computer). Run migr
 ```
 python3 manage.py makemigrations
 python3 manage.py migrate
+
+# create dashboard admin user
+python3 manage.py createsuperuser
 ```
 
 ## Running the test server
 
 ```
 python3 manage.py runserver
+```
+
+## Synchronizing your fork to upstream (OpenSUTD repo)
+
+```
+# one time setup
+git remote add upstream https://github.com/OpenSUTD/web-platform-prototype
+
+# pull upstream changes
+git fetch upstream
+git merge upstream/master
+git push
 ```

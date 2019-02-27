@@ -1,0 +1,7 @@
+pip
+setuptools
+wheel
+django
+gunicorn
+uwsgi
+psycopg2

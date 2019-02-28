@@ -28,12 +28,11 @@ class ProjectListView(generic.ListView):
     # TODO: Filter by "Approved" Projects
         return models.Project.objects
 
-class ProjectView(generic.ListView):
-    template_name = 'projects/project.html'
-    context_object_name = 'project'
-    def get_queryset(self):
-        # TODO: Replace with specific project object (or use DetailView)
-        return models.Project.objects
+def project_view(request, project_uid):
+    current_project = models.Project.objects.get(project_uid=project_uid)
+    print(current_project)
+    context = {'current_project': current_project}
+    return render(request, 'projects/showcase.html', context)
 
 class ApprovalView(generic.ListView):
     template_name = 'projects/toapprove.html'

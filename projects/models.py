@@ -1,12 +1,8 @@
 from django.db import models
 
-# Mark out which fields cannot be empty
-# (should raise an error if it's empty)
-
-# Test that each model can be instantated, and updated to the database
-# Test that models cannot be instantated without required fields
-
-# Create your models here.
+# FIXED CHOICES DEFINITIONS
+# The first element in each tuple is the value that will be stored in the database.
+# The second element is displayed by the field’s form widget.
 
 PILLAR_CHOICES = (
     ("FRSH", "Freshmore"),
@@ -25,12 +21,26 @@ CATEGORY_CHOICES = (
     ("NONE", "Unknown, or doesn't fall into any category")
 )
 
+STATUS_CHOICES = (
+    ("ACCEPT", "Accepted Project, will display"),
+    ("REJECT", "Rejected Project, will not display"),
+    ("PENDING", "Pending Project, will not display")
+)
+
+# Mark out which fields cannot be empty
+# (should raise an error if it's empty)
+
+# Test that each model can be instantated, and updated to the database
+# Test that models cannot be instantated without required fields
+
+# Create your models here.
+
 class Tag(models.Model):
-    name = models.CharField(max_length=30, default="None", primary_key=True)
+    name = models.CharField(max_length=40, default="")
 
 class User(models.Model):
 
-    userid = models.CharField(max_length=200, primary_key=True)
+    user_id = models.CharField(max_length=200, primary_key=True)
 
     display_name = models.CharField(max_length=20, default="Tom")
 
@@ -38,7 +48,7 @@ class User(models.Model):
     # Eventually Move to ImageField instead of providing URL?
     display_picture = models.CharField(max_length=200, default="https://via.placeholder.com/150")
 
-    isSUTD = models.BooleanField(default="False")
+    is_sutd = models.BooleanField(default="False")
 
     graduation_year = models.IntegerField()
 
@@ -55,14 +65,14 @@ class User(models.Model):
 class Project(models.Model):
     title = models.CharField(max_length=200, default="")
 
-    # this shall follow the format of CATEGORY_UID
-    project_uid = models.CharField(max_length=20, default="NONE_9999", primary_key=True)
+    # CATEGORY_PROJECTUID
+    project_uid = models.CharField(max_length=20, default="NONE_99999", primary_key=True)
 
     # TODO :
     # Eventually Move to ImageField instead of providing URL?
     featured_image = models.CharField(max_length=200, default="https://via.placeholder.com/150")
 
-    owner = models.ManyToManyField(User)
+    users = models.ManyToManyField(User)
 
     tags = models.ManyToManyField(Tag)
 
@@ -72,12 +82,6 @@ class Project(models.Model):
 
     # needs to be github url
     url = models.CharField(max_length=200)
-
-    STATUS_CHOICES = (
-        ("ACCEPT", "Accepted Project, will display"),
-        ("REJECT", "Rejected Project, will not display"),
-        ("PENDING", "Pending Project, will not display")
-    )
 
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default="PENDING")
 

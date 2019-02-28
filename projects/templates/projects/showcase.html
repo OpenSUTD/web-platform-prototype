@@ -1,0 +1,15 @@
+<h1>{{ current_project.title }}</h1>
+<img src={{ current_project.featured_image }}>
+<p>Date Published: {{ current_project.published_date }}
+<p>Contributors:</p>
+<ul>
+    {% for user in current_project.users.all %}
+        <li>{{ user.display_name}}, {{ user.pillar}}</li>
+    {% endfor %}
+    </ul>
+<br />
+<p>Project UID is {{ current_project.project_uid }}.</p>
+
+<p>View more about the project at: <a href={{ current_project.url }}>{{ current_project.url }}</a></p>
+
+<a href="../../../">Home</a>

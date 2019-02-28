@@ -26,7 +26,7 @@ def project_view(request, project_uid):
     context = {'current_project': current_project}
     return render(request, 'projects/showcase.html', context)
 
-def projects_list_view(request, project_uid):
+def projects_list_view(request):
     projects_list = models.Project.objects.order_by('-published_date')[:50]
     context = {'projects_list': projects_list}
     return render(request, 'projects/list.html', context)
@@ -41,12 +41,4 @@ class ApprovalView(generic.ListView):
 
     def get_queryset(self):
     # TODO: Filter by "Pending Projects
-        return models.Project.objects
-
-class ProjectListView(generic.ListView):
-    template_name = 'projects/list.html'
-    context_object_name = 'projects_list'
-
-    def get_queryset(self):
-    # TODO: Filter by "Approved" Projects
         return models.Project.objects

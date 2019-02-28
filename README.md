@@ -16,8 +16,10 @@ python3 manage.py createsuperuser
 ## Running the application server for development
 
 ```
-# for development without docker
+# to reset the database back to sample values
 scripts/refresh_db.sh
+
+# for development without docker
 python3 manage.py runserver
 
 # running with docker

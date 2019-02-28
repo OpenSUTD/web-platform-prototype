@@ -59,6 +59,8 @@ user_benghaun = User(user_id="benghaun",
                 graduation_year=2019,
                 pillar="ISTD")
 
+user_benghaun.save()
+
 # retrieve those users from database
 
 user_tom = User.objects.get(user_id="tom")
@@ -68,6 +70,7 @@ user_shungit = User.objects.get(user_id="shungit")
 user_timothy = User.objects.get(user_id="tlkh")
 user_bob = User.objects.get(user_id="bob")
 user_sikai = User.objects.get(user_id="sikai")
+user_benghaun = User.objects.get(user_id="benghaun")
 
 project_1 = Project(title="OpenSUTD Web Platform",
                     project_uid="ACAD_00001",
@@ -144,6 +147,8 @@ project_6 = Project(title="Project With Missing Info",
                     url="https://github.com/OpenSUTD/web-platform-prototype",
                     status="PENDING")
 
+project_6.save()
+
 project_6.users.add(user_bob)
 project_6.users.add(user_jane)
 
@@ -156,7 +161,11 @@ project_7 = Project(title="ColourRun",
                     url="https://github.com/DoubleCapitals/CompStruct1D",
                     status="ACCEPT")
 
+project_7.save()
+
 project_7.users.add(user_sikai)
+
+project_7.save()
 
 project_8 = Project(title="SUTDtoSimei_bot",
                     project_uid="SELF_00002",
@@ -165,7 +174,11 @@ project_8 = Project(title="SUTDtoSimei_bot",
                     url="https://github.com/benghaun/SUTDtoSimei_bot",
                     status="ACCEPT")
 
+project_8.save()
+
 project_8.users.add(user_benghaun)
+
+project_8.save()
 
 print(User.objects.all())
 print(Project.objects.all())

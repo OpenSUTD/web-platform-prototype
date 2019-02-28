@@ -69,7 +69,7 @@
                     <img src='{% static "images/usericon.png" %}' alt="Card image">
                 </div>
                 <div class="col-sm-8" style="margin: auto">
-                    <p class="card-text project-member-name">{{ user.display_name}}, {{ user.pillar}}</p>
+                    <a href="../../users/{{ user.user_id}}/" class="card-text project-member-name">{{ user.display_name}}, {{ user.pillar}}</a>
                 </div>
             </div>
         </div>

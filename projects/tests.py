@@ -4,6 +4,8 @@ from django.test.utils import setup_test_environment
 
 from projects.models import *
 
+import time
+
 client = Client()
 
 # Create your tests here.
@@ -42,6 +44,17 @@ class UserTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertGreater(len(response.content), 10)
 
+    def test_user_page_performance(self):
+        start = time.time()
+        
+        for i in range(10):
+            url = reverse('projects:user', args=("tom",))
+            response = self.client.get(url)
+            url = reverse('projects:user', args=("jane",))
+            response = self.client.get(url)
+        
+        duration = time.time() - start
+        self.assertLess(duration, 0.1)
 
 class ProjectShowcaseTestCase(TestCase):
     def setUp(self):
@@ -89,6 +102,16 @@ class ProjectShowcaseTestCase(TestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
         self.assertGreater(len(response.content), 10)
+
+    def test_project_page_performance(self):
+        start = time.time()
+        
+        for i in range(20):
+            url = reverse('projects:showcase', args=("ACAD_00001",))
+        response = self.client.get(url)
+        
+        duration = time.time() - start
+        self.assertLess(duration, 0.1)
 
     
 

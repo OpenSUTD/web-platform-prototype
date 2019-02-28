@@ -6,3 +6,5 @@ gunicorn
 uwsgi
 psycopg2
 django-extensions
+pygraphviz
+pydotplus

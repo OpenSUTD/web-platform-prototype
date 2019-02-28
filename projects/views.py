@@ -20,9 +20,13 @@ def index(request):
                'recent_projects_list': recent_projects_list}
     return render(request, 'opensutd/home.html', context)
 
+def user_view(request, user_id):
+    current_user = models.User.objects.get(user_id=user_id)
+    context = {'current_user': current_user}
+    return render(request, 'opensutd/user.html', context)
+
 def project_view(request, project_uid):
     current_project = models.Project.objects.get(project_uid=project_uid)
-    print(current_project)
     context = {'current_project': current_project}
     return render(request, 'projects/showcase.html', context)
 

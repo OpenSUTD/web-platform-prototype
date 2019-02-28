@@ -93,6 +93,61 @@
     width: 200px;
 }
 
+.profile-cover-image img {
+    width: 100%;
+    height: 280px;
+}
+
+.profile-picture {
+    padding: 1rem;
+    width: 180px;
+}
+
+.profile-description {
+    margin-top: 1.5rem;
+}
+
+.profile-name {
+    margin: 0;
+}
+
+.profile-faculty {
+    margin-bottom: 50px;
+}
+
+.edit-profile {
+    margin-top: 2rem;
+    position: relative;
+    float: right;
+}
+
+a.edit-button {
+    padding: 0.5rem;
+    color: black;
+}
+
+a.edit-button:hover{
+    color: black;
+    text-decoration: underline;
+}
+
+.project-card {
+    box-shadow: 0px 0px 12px -3px rgba(199,199,199,1);;
+}
+
+.project-card img {
+    margin-top: 1rem;
+    display: block;
+    width: 100%;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.project-card p {
+    padding: 1rem;
+}
+
+
 .poster-enlarge {
     padding: 0.5rem;
 }

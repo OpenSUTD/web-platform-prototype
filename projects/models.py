@@ -46,7 +46,7 @@ class User(models.Model):
 
     # TODO :
     # Eventually Move to ImageField instead of providing URL?
-    display_picture = models.CharField(max_length=200, default="https://via.placeholder.com/150")
+    display_picture = models.CharField(max_length=200, default="https://via.placeholder.com/150x150?text=user_display_picture")
 
     is_sutd = models.BooleanField(default="False")
 

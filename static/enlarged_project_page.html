@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <title>Dashboard</title>
+  <link href="bootstrap.css" rel="stylesheet">
+  <link href="enlarged_project_page.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+    crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">OPENSUTD</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+            <a class="nav-link" href="homepage.html">Home</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#">Projects</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#">Community</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+            </li>
+        </ul>
+        <span class="navbar-text">
+            <i class="far fa-user-circle"></i> Not Logged In (<a href="login_page.html">Login</a>)
+        </span>
+        </div>
+    </nav>
+
+
+    <main role="main" class="container">
+
+        <div class="card mb-3" style="margin: 0 auto; text-align: center; margin-top: 150px;">
+            <div class="project-card-header">
+                <h1>Project Name</h1> 
+                <button type="button" class="btn btn-outline-primary project-button-header">Share</button>
+                <button type="button" class="btn btn-outline-primary project-button-header">Upvote</button>
+            </div>
+            <div class="project-image-crop">
+                <img style="display: block;" src="archi.jpeg" alt="Card image">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm" style="flex-grow: 5">
+                <div class="card readme">
+                    <h2>README</h2>
+                    <div class="readme-card-body">
+                        <p class="card-text text-primary">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est eopksio laborum. Sed ut perspiciatis unde omnis istpoe natus error sit voluptatem accusantium doloremque eopsloi laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunot explicabo. Nemo ernim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sedopk quia consequuntur 
+                            magni dolores eos qui rationesopl voluptatem sequi nesciunt. Neque porro quisquameo est, qui dolorem ipsum quia dolor sit amet, eopsmiep consectetur, adipisci velit, seisud quia non numquam eius modi tempora incidunt ut labore et dolore wopeir magnam aliquam quaerat voluptatem eoplmuriquisqu</p>
+                    </div>
+                </div>
+                <br>
+                <div class="card poster">
+                    <h3>Poster</h3>
+                    <div class="poster-thumbnail">
+                        <a href="posterExample.jpg">
+                            <img src="posterExample.jpg" alt="Poster">
+                        </a>
+                        <br>
+                        <a href="posterExample.jpg" class="btn btn-sm poster-enlarge">Enlarge Poster <i class="fas fa-chevron-circle-right"></i></a>
+                    </div>
+                </div>
+                <br>
+                <div class="card">
+                    <h3>Comments</h3>
+                    <div class="form-group">
+                        <form action="/action_page.php" id="comment-form">
+                            <input type="text" class="form-control" placeholder="Write a comment" id="inputDefault">   
+                            <input type="submit" class="btn btn-sm btn-primary" style="margin-top: 5px; float: right">
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm" style="padding-top: 20px">
+                <div class="project-created-by">
+                    <h3 style="color:white; font-size:1rem">Created by</h3>
+                </div>
+                <br>
+                <div class="card project-member">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <img src="usericon.png" alt="Card image">
+                        </div>
+                        <div class="col-sm-8" style="margin: auto">
+                            <p class="card-text project-member-name">Member 1</p>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="card project-member">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <img src="usericon.png" alt="Card image">
+                        </div>
+                        <div class="col-sm-8" style="margin: auto">
+                            <p class="card-text project-member-name">Member 2</p>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="card project-member">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <img src="usericon.png" alt="Card image">
+                        </div>
+                        <div class="col-sm-8" style="margin: auto">
+                            <p class="card-text project-member-name">Member 3</p>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="card project-tags">
+                    <p class="text-primary" style="margin:0; margin-top: 20px">Related Tags:</p>
+                    <span class="badge badge-pill badge-secondary project-badge-tags">50.003</span>
+                    <span class="badge badge-pill badge-secondary project-badge-tags">Hello</span>
+                    <span class="badge badge-pill badge-secondary project-badge-tags">World</span>
+                    <span class="badge badge-pill badge-secondary project-badge-tags">OpenSUTD</span>
+                    <span class="badge badge-pill badge-secondary project-badge-tags">extremely long tag</span>
+                    
+                </div>
+            </div>
+        </div>
+
+    </main>
+  
+  <script src="js/jquery-slim.min.js"></script>
+  <script>
+    window.jQuery || document.write('<script src="js/jquery-slim.min.js"><\/script>')
+  </script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+</body>
+
+</html>

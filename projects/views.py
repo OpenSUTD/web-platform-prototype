@@ -26,6 +26,11 @@ def project_view(request, project_uid):
     context = {'current_project': current_project}
     return render(request, 'projects/showcase.html', context)
 
+def projects_list_view(request, project_uid):
+    projects_list = models.Project.objects.order_by('-published_date')[:50]
+    context = {'projects_list': projects_list}
+    return render(request, 'projects/list.html', context)
+
 def login_view(request):
     context = {}
     return render(request, 'opensutd/login.html', context)

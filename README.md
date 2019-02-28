@@ -1,4 +1,7 @@
 # web-platform-prototype
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8b8aa4074fe34ca5b8331b2a64f81de0)](https://app.codacy.com/app/tlkh/web-platform-prototype?utm_source=github.com&utm_medium=referral&utm_content=OpenSUTD/web-platform-prototype&utm_campaign=Badge_Grade_Settings)
+
 Prototype for the Eventual OpenSUTD Web Platform
 
 ## Database setup

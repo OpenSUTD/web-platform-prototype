@@ -42,11 +42,11 @@ class User(models.Model):
 
     user_id = models.CharField(max_length=200, primary_key=True)
 
-    display_name = models.CharField(max_length=20, default="Tom")
+    display_name = models.CharField(max_length=20, default="")
 
     # TODO :
     # Eventually Move to ImageField instead of providing URL?
-    display_picture = models.CharField(max_length=200, default="https://via.placeholder.com/150")
+    display_picture = models.CharField(max_length=200, default="https://via.placeholder.com/150x150?text=user_display_picture")
 
     is_sutd = models.BooleanField(default="False")
 
@@ -66,11 +66,11 @@ class Project(models.Model):
     title = models.CharField(max_length=200, default="")
 
     # CATEGORY_PROJECTUID
-    project_uid = models.CharField(max_length=20, default="NONE_99999", primary_key=True)
+    project_uid = models.CharField(max_length=20, default="", primary_key=True)
 
     # TODO :
     # Eventually Move to ImageField instead of providing URL?
-    featured_image = models.CharField(max_length=200, default="https://via.placeholder.com/150")
+    featured_image = models.CharField(max_length=200, default="https://via.placeholder.com/500x250?text=project_featured_image")
 
     users = models.ManyToManyField(User)
 

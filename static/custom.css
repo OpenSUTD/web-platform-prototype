@@ -23,19 +23,66 @@ body {
   background: rgba(0, 0, 0, 0.5)
 }
 
-.full-width-header {
-  margin-top: 0em;
-  padding-top: 9em;
+.homepage-header {
+  margin-top: 7em;
+  padding-top: 5em;
   padding-left: 3em;
   padding-right: 3em;
-  padding-bottom: 3em;
-  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("../images/sutd-landscape-header.jpg");
+  padding-bottom: 7em;
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("SUTD_background.jpg");
   color: white;
+  text-align: center;
 }
 
-.full-width-header h1 {
+.homepage-header h1 {
   color: white;
+  font-style: italic;
 }
+
+.call-for-action { 
+  display: inline-flex;
+  margin-top: 3rem;
+}
+
+.homepage-action {
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
+.homepage-action h4 {
+  float: left;
+  color: white;
+  vertical-align: baseline; 
+}
+
+.action-title {
+  color: white;
+  font-style: bold;
+}
+
+
+.action-details-container {
+  border-bottom: 2px solid white;
+  background-color: black;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+.action-details {
+  float: left;
+  padding-left: 10px;
+  color: white;
+  margin-top: 1rem;
+}
+
+.action-details:hover {
+  color: white;
+  text-decoration: underline;
+  text-shadow: 7px 2px 6px rgba(28,110,164,0.31);
+}
+
 
 .form-signin {
   width: 100%;

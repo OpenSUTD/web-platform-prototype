@@ -52,3 +52,26 @@ a.edit-button:hover{
     padding: 1rem;
 }
 
+.project-card-sm {
+    box-shadow: 0px 0px 12px -3px rgba(199,199,199,1);
+    
+}
+
+.project-card-sm img {
+    margin-top: 1rem;
+    display: block;
+    width: 100%;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.project-card-sm p {
+    padding-top: 1px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+}
+
+.project-card-sm h4 {
+    margin: 10px;
+}

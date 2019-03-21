@@ -1,76 +1,65 @@
+import django
 import os
 import sys
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'opensutd.settings')
 sys.path.append('./')
 
-import django
-
 django.setup()
 
 from projects.models import *
 
+# create superuser
+
+um = OpenSUTDUserManager()
+
+um.create_superuser("superadmin", password="asdf1234", display_name="",
+                    graduation_year=0, pillar="", personal_links="", admin_groups=[])
+
 # create users
 
-user_tom = User(user_id="tom",
-                display_name="Tom Magnanti",
-                graduation_year=2020,
-                pillar="ISTD")
-user_tom.save()
+um.create_user("tom", display_name="Tom Magnanti",
+               display_picture="https://via.placeholder.com/150",
+               graduation_year=2019, pillar="EPD")
 
-user_jane = User(user_id="jane",
-                display_name="Jane Tan",
-                graduation_year=2020,
-                pillar="ESD")
-user_jane.save()
+um.create_user("jane", display_name="Jane Tan",
+               display_picture="https://via.placeholder.com/150",
+               graduation_year=2020, pillar="ESD")
 
-user_harry = User(user_id="harry",
-                display_name="Harry Potter",
-                graduation_year=2021,
-                pillar="EPD")
-user_harry.save()
+um.create_user("harry", display_name="Harry Potter",
+               display_picture="https://via.placeholder.com/150",
+               graduation_year=2021, pillar="EPD")
 
-user_shungit = User(user_id="shungit",
-                display_name="Shun Git",
-                graduation_year=2018,
-                pillar="ISTD")
-user_shungit.save()
+um.create_user("shungit", display_name="Shun Git",
+               display_picture="https://via.placeholder.com/150",
+               graduation_year=2018, pillar="ISTD")
 
-user_timothy = User(user_id="tlkh",
-                display_name="Timothy Liu",
-                graduation_year=2020,
-                pillar="ISTD")
-user_timothy.save()
+um.create_user("tlkh", display_name="Timothy Liu",
+               display_picture="https://via.placeholder.com/150",
+               graduation_year=2020, pillar="ISTD")
 
-user_bob = User(user_id="bob",
-                display_name="Bob Ross",
-                graduation_year=2019,
-                pillar="ASD")
-user_bob.save()
+um.create_user("bob", display_name="Bob David",
+               display_picture="https://via.placeholder.com/150",
+               graduation_year=2019, pillar="ASD")
 
-user_sikai = User(user_id="sikai",
-                display_name="Ning Si Kai",
-                graduation_year=2020,
-                pillar="ISTD")
-user_sikai.save()
+um.create_user("sikai", display_name="Ning Si Kai",
+               display_picture="https://via.placeholder.com/150",
+               graduation_year=2020, pillar="ISTD")
 
-user_benghaun = User(user_id="benghaun",
-                display_name="Ang Beng Haun",
-                graduation_year=2019,
-                pillar="ISTD")
-
-user_benghaun.save()
+um.create_user("benghaun", display_name="Ang Beng Haun",
+               display_picture="https://via.placeholder.com/150",
+               graduation_year=2019, pillar="ISTD")
 
 # retrieve those users from database
 
-user_tom = User.objects.get(user_id="tom")
-user_jane = User.objects.get(user_id="jane")
-user_harry = User.objects.get(user_id="harry")
-user_shungit = User.objects.get(user_id="shungit")
-user_timothy = User.objects.get(user_id="tlkh")
-user_bob = User.objects.get(user_id="bob")
-user_sikai = User.objects.get(user_id="sikai")
-user_benghaun = User.objects.get(user_id="benghaun")
+user_tom = User.objects.get(username="tom")
+user_jane = User.objects.get(username="jane")
+user_harry = User.objects.get(username="harry")
+user_shungit = User.objects.get(username="shungit")
+user_timothy = User.objects.get(username="tlkh")
+user_bob = User.objects.get(username="bob")
+user_sikai = User.objects.get(username="sikai")
+user_benghaun = User.objects.get(username="benghaun")
 
 project_1 = Project(title="OpenSUTD Web Platform",
                     project_uid="ACAD_00001",

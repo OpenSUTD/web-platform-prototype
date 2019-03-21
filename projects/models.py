@@ -1,3 +1,4 @@
+from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 
 # FIXED CHOICES DEFINITIONS
@@ -35,20 +36,19 @@ STATUS_CHOICES = (
 
 # Create your models here.
 
+
 class Tag(models.Model):
     name = models.CharField(max_length=40, default="")
 
-from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
-
-    user_id = models.CharField(max_length=200, primary_key=True)
 
     display_name = models.CharField(max_length=20, default="")
 
     # TODO :
     # Eventually Move to ImageField instead of providing URL?
-    display_picture = models.CharField(max_length=200, default="https://via.placeholder.com/150x150?text=user_display_picture")
+    display_picture = models.CharField(
+        max_length=200, default="https://via.placeholder.com/150x150?text=user_display_picture")
 
     is_sutd = models.BooleanField(default="False")
 
@@ -56,13 +56,16 @@ class User(AbstractUser):
 
     pillar = models.CharField(max_length=4, choices=PILLAR_CHOICES, default="")
 
-    admin_groups = models.CharField(max_length=4, choices=CATEGORY_CHOICES, default="")
+    admin_groups = models.CharField(
+        max_length=4, choices=CATEGORY_CHOICES, default="")
 
-    contact_email = models.CharField(max_length=200, default="none@example.com")
+    contact_email = models.CharField(
+        max_length=200, default="none@example.com")
 
     personal_links = models.CharField(max_length=200, default="")
 
     bio = models.CharField(max_length=300, default="")
+
 
 class Project(models.Model):
     title = models.CharField(max_length=200, default="")
@@ -72,7 +75,8 @@ class Project(models.Model):
 
     # TODO :
     # Eventually Move to ImageField instead of providing URL?
-    featured_image = models.CharField(max_length=200, default="https://via.placeholder.com/500x250?text=project_featured_image")
+    featured_image = models.CharField(
+        max_length=200, default="https://via.placeholder.com/500x250?text=project_featured_image")
 
     users = models.ManyToManyField(User)
 
@@ -80,11 +84,51 @@ class Project(models.Model):
 
     caption = models.CharField(max_length=200)
 
-    category = models.CharField(max_length=4, choices=CATEGORY_CHOICES, default="NONE")
+    category = models.CharField(
+        max_length=4, choices=CATEGORY_CHOICES, default="NONE")
 
     # needs to be github url
     url = models.CharField(max_length=200)
 
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default="PENDING")
+    status = models.CharField(
+        max_length=10, choices=STATUS_CHOICES, default="PENDING")
 
     published_date = models.DateTimeField(auto_now=True)
+
+
+class OpenSUTDUserManager(BaseUserManager):
+
+    def create_user(self, user_id, display_name="",
+                    display_picture="https://via.placeholder.com/150",
+                    graduation_year=0, pillar="",
+                    personal_links="", admin_groups=[], password="password1"):
+
+        if display_name == "":
+            display_name = user_id
+
+        user = User(username=user_id,
+                    display_name=display_name,
+                    graduation_year=graduation_year,
+                    pillar=pillar,
+                    personal_links=personal_links,
+                    admin_groups=admin_groups,
+                    password=password)
+
+        user.save()
+
+    def create_superuser(self, user_id, password, display_name="", graduation_year=0, pillar="", personal_links="", admin_groups=[]):
+
+        if display_name == "":
+            display_name = user_id
+
+        superuser = User(username=user_id,
+                         display_name=display_name,
+                         graduation_year=graduation_year,
+                         pillar=pillar,
+                         personal_links=personal_links,
+                         admin_groups=admin_groups,
+                         password=password,
+                         is_staff=True,
+                         is_superuser=True)
+
+        superuser.save()

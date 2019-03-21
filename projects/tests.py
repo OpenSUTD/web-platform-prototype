@@ -113,5 +113,4 @@ class ProjectShowcaseTestCase(TestCase):
         duration = time.time() - start
         self.assertLess(duration, 0.1)
 
-    
-
+        

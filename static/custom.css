@@ -346,3 +346,9 @@ a.edit-button:hover{
 .project-card-sm h4 {
   margin: 10px;
 }
+
+/* Admin Page */
+.admin-tab {
+  margin-top: 3em;
+
+}

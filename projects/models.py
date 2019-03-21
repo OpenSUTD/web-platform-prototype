@@ -99,6 +99,16 @@ class Project(models.Model):
 
     published_date = models.DateTimeField(auto_now=True)
 
+class OpenSUTDProjectManager(object):
+
+    def create_project(self):
+        # TODO use this as an interface to create projects
+        pass
+
+    def add_user_to_project(self):
+        # TODO
+        pass
+
 
 class OpenSUTDUserManager(BaseUserManager):
 

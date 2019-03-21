@@ -329,3 +329,9 @@ body {
     font-size: .75rem;
     text-transform: uppercase;
 }
+
+/* Admin Page */
+.admin-tab {
+    margin-top: 3em;
+  
+  }

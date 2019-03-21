@@ -28,7 +28,7 @@ python3 manage.py runserver
 # running with docker
 # - map port 8000 to port 80
 # - mount local folder
-TAG=0.1-dev
+TAG=0.2-dev
 docker run --rm \
  -p 80:8000 \
  -v /home/$USER/web-platform-prototype:/app \
@@ -42,7 +42,7 @@ docker run --rm -it -p 80:8000 opensutd/web-platform:$TAG python3 manage.py runs
 ## Running the built-in tests
 
 ```
-TAG=0.1-dev
+TAG=0.2-dev
 docker run --rm opensutd/web-platform:$TAG python3 manage.py test
 ```
 

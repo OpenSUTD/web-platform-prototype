@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
+from django.contrib.auth import hashers
 
 # FIXED CHOICES DEFINITIONS
 # The first element in each tuple is the value that will be stored in the database.
@@ -106,6 +107,9 @@ class OpenSUTDUserManager(BaseUserManager):
         if display_name == "":
             display_name = user_id
 
+        # https://docs.djangoproject.com/en/2.1/topics/auth/passwords/#module-django.contrib.auth.hashers
+        password = hashers.make_password(password)
+
         user = User(username=user_id,
                     display_name=display_name,
                     graduation_year=graduation_year,
@@ -120,6 +124,8 @@ class OpenSUTDUserManager(BaseUserManager):
 
         if display_name == "":
             display_name = user_id
+
+        password = hashers.make_password(password)
 
         superuser = User(username=user_id,
                          display_name=display_name,

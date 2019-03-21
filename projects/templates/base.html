@@ -23,21 +23,27 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="{% url 'projects:home'%}">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Projects</a>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'projects:projects_list'%}">Projects</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="#">Community</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
+                <li class="nav-item active">
+                    <a class="nav-link" href="https://github.com/OpenSUTD">About</a>
                 </li>
             </ul>
+            {% if user.is_authenticated %}
             <span class="navbar-text">
-                <i class="far fa-user-circle"></i> Not Logged In (<a href="#">Login</a>)
+                <i class="far fa-user-circle"></i> Welcome, <a href="{% url 'projects:user' user.username%}">{{ user.display_name }}</a> (<a href="{% url 'logout' %}">SIGN OUT</a>)
             </span>
+            {% else %}
+            <span class="navbar-text">
+                <i class="far fa-user-circle"></i> Not Logged In (<a href="{% url 'login' %}">SIGN IN</a>)
+            </span>
+            {% endif %}
         </div>
     </nav>
 

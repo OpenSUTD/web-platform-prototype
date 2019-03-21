@@ -91,6 +91,9 @@ class Project(models.Model):
     # needs to be github url
     url = models.CharField(max_length=200)
 
+    poster_url = models.CharField(
+        max_length=200, default="https://via.placeholder.com/900x400?text=project_poster_image")
+
     status = models.CharField(
         max_length=10, choices=STATUS_CHOICES, default="PENDING")
 

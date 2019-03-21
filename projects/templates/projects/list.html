@@ -12,7 +12,7 @@
 {% if projects_list %}
 <!-- start iteration -->
 <div style="text-align: center;">
-{% for project_item in projects_list.all %}
+    {% for project_item in projects_list.all %}
     <div class="card" style="display:inline-table;width:20em;height:20em;margin:1em;padding-bottom:0px;">
         <img src="{{ project_item.featured_image }}" class="card-img-top">
         <div class="card-body">
@@ -22,7 +22,7 @@
                     class="fas fa-chevron-circle-right"></i></a>
         </div>
     </div>
-{% endfor %}
+    {% endfor %}
 </div>
 {% else %}
 <p>Error! No projects are available.</p>

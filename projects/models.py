@@ -38,7 +38,9 @@ STATUS_CHOICES = (
 class Tag(models.Model):
     name = models.CharField(max_length=40, default="")
 
-class User(models.Model):
+from django.contrib.auth.models import AbstractUser
+
+class User(AbstractUser):
 
     user_id = models.CharField(max_length=200, primary_key=True)
 

@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS=['*']
 
+AUTH_USER_MODEL = 'projects.User'
+
 # Application definition
 
 INSTALLED_APPS = [

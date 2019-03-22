@@ -2,6 +2,9 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.views import generic
+from django.views.generic import FormView
+from django.http import JsonResponse
+from .forms import RegistrationForm
 
 from . import models
 
@@ -46,3 +49,24 @@ class ApprovalView(generic.ListView):
     def get_queryset(self):
     # TODO: Filter by "Pending Projects
         return models.Project.objects
+    
+
+class UserRegistrationView(FormView):
+  form_class = RegistrationForm
+
+  def form_valid(self, form):
+    username = form.cleaned_data.get('username')
+    password = form.cleaned_data.get('password')
+    models.UserRegister.objects.create_user(username=username, password=password)
+    res_data = {
+      'error': False,
+      'message': 'Success, Please login'
+    }
+    return JsonResponse(res_data)
+
+  def form_invalid(self, form):
+    res_data = {
+      'error': True,
+      'errors': "error"
+    }
+    return JsonResponse(res_data)

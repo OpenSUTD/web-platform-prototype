@@ -1,4 +1,7 @@
 from django.db import models
+from django.core.exceptions import ValidationError
+from django.core.validators import EmailValidator
+
 
 # FIXED CHOICES DEFINITIONS
 # The first element in each tuple is the value that will be stored in the database.
@@ -38,9 +41,15 @@ STATUS_CHOICES = (
 class Tag(models.Model):
     name = models.CharField(max_length=40, default="")
 
+class UserRegister(models.Model):
+    username = models.CharField(max_length=200, primary_key=True)
+    password = models.CharField(max_length=200)
+
 class User(models.Model):
 
     user_id = models.CharField(max_length=200, primary_key=True)
+    
+    #password = models.CharField(max_length=200)
 
     display_name = models.CharField(max_length=20, default="")
 
@@ -61,6 +70,21 @@ class User(models.Model):
     personal_links = models.CharField(max_length=200, default="")
 
     bio = models.CharField(max_length=300, default="")
+
+    def valid_email(self):
+        # x = str(self.contact_email)
+        # email = x.lower().strip()
+
+        # validator = EmailValidator()
+        # try:
+        #     validator(self.email)
+        # except ValidationError:
+        #     return False
+        return True 
+
+    def valid_links(self):
+        return True
+
 
 class Project(models.Model):
     title = models.CharField(max_length=200, default="")

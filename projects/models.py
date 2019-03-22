@@ -41,7 +41,6 @@ STATUS_CHOICES = (
 class Tag(models.Model):
     name = models.CharField(max_length=40, default="")
 
-
 class User(AbstractUser):
 
     display_name = models.CharField(max_length=20, default="")
@@ -67,6 +66,19 @@ class User(AbstractUser):
 
     bio = models.CharField(max_length=300, default="")
 
+    def valid_email(self):
+        # x = str(self.contact_email)
+        # email = x.lower().strip()
+
+        # validator = EmailValidator()
+        # try:
+        #     validator(self.email)
+        # except ValidationError:
+        #     return False
+        return True 
+
+    def valid_links(self):
+        return True
 
 class Project(models.Model):
     title = models.CharField(max_length=200, default="")

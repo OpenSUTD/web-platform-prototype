@@ -134,8 +134,7 @@ class ProjectShowcaseTestCase(TestCase):
         
         duration = time.time() - start
         self.assertLess(duration, 1.0)
-
-
+        
 
 class TestRegistrationForm(TestCase):
 
@@ -219,5 +218,3 @@ class TestUserRegistrationView(TestCase):
     }
     self.asssertEqual(exp_data, response.json())
     self.assertEqual(User.objects.count(), 1)
-
-

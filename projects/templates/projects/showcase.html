@@ -30,18 +30,18 @@
                     tempora incidunt ut labore et dolore wopeir magnam aliquam quaerat voluptatem eoplmuriquisqu</p>
                 <p>Date Published: {{ current_project.published_date }}</p>
                 <p>View more about the project on GitHub at: <a
-                        href={{ current_project.url }}>{{ current_project.url }}</a></p>
+                        href="{{ current_project.url }}">{{ current_project.url }}</a></p>
             </div>
         </div>
         <br>
         <div class="card poster card-no-border">
             <h3>Poster</h3>
             <div class="poster-thumbnail">
-                <a href='{% static "images/poster_example.jpg" %}'>
-                    <img src='{% static "images/poster_example.jpg" %}' alt="Poster">
+                <a href='{{ current_project.poster_url }}'>
+                    <img src='{{ current_project.poster_url }}' alt="Poster">
                 </a>
                 <br>
-                <a href='{% static "images/poster_example.jpg" %}' class="btn btn-sm poster-enlarge">Enlarge Poster <i
+                <a href='{{ current_project.poster_url }}' class="btn btn-sm poster-enlarge">Enlarge Poster <i
                         class="fas fa-chevron-circle-right"></i></a>
             </div>
         </div>
@@ -69,7 +69,8 @@
                     <img src='{% static "images/usericon.png" %}' alt="Card image">
                 </div>
                 <div class="col-sm-8" style="margin: auto">
-                    <a href="../../users/{{ user.user_id}}/" class="card-text project-member-name">{{ user.display_name}}, {{ user.pillar}}</a>
+                    <a href="../../users/{{ user.user_id}}/"
+                        class="card-text project-member-name">{{ user.display_name}}, {{ user.pillar}}</a>
                 </div>
             </div>
         </div>

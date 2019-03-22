@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <title>Dashboard</title>
   <link href="bootstrap.css" rel="stylesheet">
-  <link href="admin.css" rel="stylesheet">
+  <link href="custom.css" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
     crossorigin="anonymous">
 </head>
@@ -15,7 +15,7 @@
 <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
         <div class="navbar-brand" href="#">
-            <a href="https://google.com">
+            <a href="homepage.html">
                 <img src="https://mymobile.sutd.edu.sg/images/branding/SUTD-Logo-MIT-Inverse-Full_2x(2).png"
                     alt="SUTD SUTD-Logo-MIT-Inverse-Full_2x" height="40px">
             </a>
@@ -33,65 +33,179 @@
                     <a class="nav-link" href="#">About</a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
+            <form class="form-inline my-2 my-lg-0" style="margin: auto 10px;">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                <button class="btn btn-secondary btn-sm my-2 my-sm-0" type="submit">Search</button>
             </form>
+            <span class="navbar-text">
+                <i class="far fa-user-circle"></i> Not Logged In (<a href="login_page.html">Login</a>)
+            </span>
         </div>
     </nav>
 
 
     <main role="main" class="container" style="margin-top: 120px">
-        <ul class="nav nav-tabs">
-            <li class="nav-item active">
-                <a class="nav-link active" data-toggle="tab" href="#home">Pending (8)</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#profile">Ongoing (10)</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#">Recents</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Sort by</a>
-                <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 39px, 0px); float: left;">
-                    <a class="dropdown-item" href="#">Date</a>
-                    <a class="dropdown-item" href="#">Name</a>
-                    <a class="dropdown-item" href="#">Course</a>
-                </div>
-            </li>
-        </ul>
-        <div id="myTabContent" class="tab-content">
-            <div class="tab-pane fade active show" id="home">
+        <div class="col-sm">
+    
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-primary tablink">
+                    <input type="radio" name="options" id="option1" autocomplete="off" checked="" onclick="openPage('Home', this, 'red')"> Pending Approval
+                </label>
+                <label class="btn btn-primary tablink">
+                    <input type="radio" name="options" id="option2" autocomplete="off" onclick="openPage('News', this, 'red')"> Under Review
+                </label>
+                <label class="btn btn-primary tablink">
+                    <input type="radio" name="options" id="option3" autocomplete="off" onclick="openPage('Contact', this, 'red')"> Recents
+                </label>
+
+                
+            </div>
+
+            <div id="Home" class="tabcontent admin-tab">
+                <h3>Pending Approval (10)</h3>
                 <div class="row">
-                    <div class="col-lg-4">
-                        <img src="posterExample.jpg" style="width:100%">
+                    <div class="col-sm-4">
+                        <div class="project-card-sm">
+                            <img src="static_images/archi.jpeg" alt="Card image" href="#">
+                            <h4>ISTD Project 1</h4>
+                            <p class="text-primary">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est eopksio laborum. </p>
+                            <a href="#" class="btn btn-md edit-button" style="float: right">View Project <i class="far fa-angle-right" style="color:black"></i></a>
+                        </div>
                     </div>
-                    <div class="col-lg-4" >
-                        <img src="posterExample.jpg" style="width: 100%">
+                    <div class="col-sm-4">
+                        <div class="project-card-sm">
+                            <img src="static_images/archi.jpeg" alt="Card image" href="#">
+                            <h4>ISTD Project 1</h4>
+                            <p class="text-primary">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est eopksio laborum. </p>
+                            <a href="#" class="btn btn-md edit-button" style="float: right">View Project <i class="far fa-angle-right" style="color:black"></i></a>
+                        </div>
                     </div>
-                    <div class="col-lg-4">
-                        <img src="posterExample.jpg" style="width: 100%">
+                    <div class="col-sm-4">
+                        <div class="project-card-sm">
+                            <img src="static_images/archi.jpeg" alt="Card image" href="#">
+                            <h4>ISTD Project 1</h4>
+                            <p class="text-primary">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est eopksio laborum. </p>
+                            <a href="#" class="btn btn-md edit-button" style="float: right">View Project <i class="far fa-angle-right" style="color:black"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="project-card-sm">
+                            <img src="static_images/archi.jpeg" alt="Card image" href="#">
+                            <h4>ISTD Project 1</h4>
+                            <p class="text-primary">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est eopksio laborum. </p>
+                            <a href="#" class="btn btn-md edit-button" style="float: right">View Project <i class="far fa-angle-right" style="color:black"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="project-card-sm">
+                            <img src="static_images/archi.jpeg" alt="Card image" href="#">
+                            <h4>ISTD Project 1</h4>
+                            <p class="text-primary">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est eopksio laborum. </p>
+                            <a href="#" class="btn btn-md edit-button" style="float: right">View Project <i class="far fa-angle-right" style="color:black"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="project-card-sm">
+                            <img src="static_images/archi.jpeg" alt="Card image" href="#">
+                            <h4>ISTD Project 1</h4>
+                            <p class="text-primary">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est eopksio laborum. </p>
+                            <a href="#" class="btn btn-md edit-button" style="float: right">View Project <i class="far fa-angle-right" style="color:black"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="tab-pane" id="profile">
-                <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
+    
+            <div id="News" class="tabcontent admin-tab">
+                <h3>Under Review (8)</h3>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="project-card-sm">
+                            <img src="static_images/archi.jpeg" alt="Card image" href="#">
+                            <h4>ISTD Project 1</h4>
+                            <p class="text-primary">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est eopksio laborum. </p>
+                            <a href="#" class="btn btn-md edit-button" style="float: right">View Project <i class="far fa-angle-right" style="color:black"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="project-card-sm">
+                            <img src="static_images/archi.jpeg" alt="Card image" href="#">
+                            <h4>ISTD Project 1</h4>
+                            <p class="text-primary">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est eopksio laborum. </p>
+                            <a href="#" class="btn btn-md edit-button" style="float: right">View Project <i class="far fa-angle-right" style="color:black"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="project-card-sm">
+                            <img src="static_images/archi.jpeg" alt="Card image" href="#">
+                            <h4>ISTD Project 1</h4>
+                            <p class="text-primary">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est eopksio laborum. </p>
+                            <a href="#" class="btn btn-md edit-button" style="float: right">View Project <i class="far fa-angle-right" style="color:black"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="tab-pane fade" id="dropdown1">
-                <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork.</p>
+    
+            <div id="Contact" class="tabcontent admin-tab">
+                <h3>Recents</h3>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="project-card-sm">
+                            <img src="static_images/archi.jpeg" alt="Card image" href="#">
+                            <h4>ISTD Project 1</h4>
+                            <p class="text-primary">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est eopksio laborum. </p>
+                            <a href="#" class="btn btn-md edit-button" style="float: right">View Project <i class="far fa-angle-right" style="color:black"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="project-card-sm">
+                            <img src="static_images/archi.jpeg" alt="Card image" href="#">
+                            <h4>ISTD Project 1</h4>
+                            <p class="text-primary">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est eopksio laborum. </p>
+                            <a href="#" class="btn btn-md edit-button" style="float: right">View Project <i class="far fa-angle-right" style="color:black"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="project-card-sm">
+                            <img src="static_images/archi.jpeg" alt="Card image" href="#">
+                            <h4>ISTD Project 1</h4>
+                            <p class="text-primary">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est eopksio laborum. </p>
+                            <a href="#" class="btn btn-md edit-button" style="float: right">View Project <i class="far fa-angle-right" style="color:black"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="tab-pane fade" id="dropdown2">
-                <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater.</p>
-            </div>
+
         </div>
 
+        
+
+
     </main>
-  
+<script>
+function openPage(pageName,elmnt,color) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablink");
+    for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].style.backgroundColor = "";
+    }
+    document.getElementById(pageName).style.display = "block";
+    elmnt.style.backgroundColor = color;
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
   <script src="js/jquery-slim.min.js"></script>
   <script>
     window.jQuery || document.write('<script src="js/jquery-slim.min.js"><\/script>')
   </script>
+
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>

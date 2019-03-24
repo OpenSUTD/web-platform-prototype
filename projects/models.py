@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 from django.contrib.auth import hashers
+from taggit.managers import TaggableManager
 
 # FIXED CHOICES DEFINITIONS
 # The first element in each tuple is the value that will be stored in the database.
@@ -38,9 +39,6 @@ STATUS_CHOICES = (
 # Create your models here.
 
 
-class Tag(models.Model):
-    name = models.CharField(max_length=40, default="")
-
 class User(AbstractUser):
 
     display_name = models.CharField(max_length=20, default="")
@@ -66,19 +64,6 @@ class User(AbstractUser):
 
     bio = models.CharField(max_length=300, default="")
 
-    def valid_email(self):
-        # x = str(self.contact_email)
-        # email = x.lower().strip()
-
-        # validator = EmailValidator()
-        # try:
-        #     validator(self.email)
-        # except ValidationError:
-        #     return False
-        return True 
-
-    def valid_links(self):
-        return True
 
 class Project(models.Model):
     title = models.CharField(max_length=200, default="")
@@ -92,8 +77,6 @@ class Project(models.Model):
         max_length=200, default="https://via.placeholder.com/500x250?text=project_featured_image")
 
     users = models.ManyToManyField(User)
-
-    tags = models.ManyToManyField(Tag)
 
     caption = models.CharField(max_length=200)
 
@@ -110,6 +93,8 @@ class Project(models.Model):
         max_length=10, choices=STATUS_CHOICES, default="PENDING")
 
     published_date = models.DateTimeField(auto_now=True)
+
+    tags = TaggableManager()
 
 class OpenSUTDProjectManager(object):
 

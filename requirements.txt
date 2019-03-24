@@ -8,3 +8,6 @@ psycopg2
 django-extensions
 pygraphviz
 pydotplus
+django-trackstats
+django-taggit
+django-allauth

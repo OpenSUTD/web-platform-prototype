@@ -9,5 +9,3 @@ admin.site.register(User, UserAdmin)
 
 admin.site.register(Project)
 #admin.site.register(User)
-
-admin.site.register(Tag)

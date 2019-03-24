@@ -2,6 +2,8 @@ from django.test import TestCase, Client
 from django.urls import reverse
 from django.test.utils import setup_test_environment
 
+from .forms import RegistrationForm
+
 from projects.models import *
 
 import time
@@ -58,24 +60,25 @@ class UserTestCase(TestCase):
 
     def test_user_page_performance(self):
         start = time.time()
-        
+
         for i in range(10):
             url = reverse('projects:user', args=("tom",))
             response = self.client.get(url)
             url = reverse('projects:user', args=("jane",))
             response = self.client.get(url)
-        
+
         duration = time.time() - start
         self.assertLess(duration, 1.0)
+
 
 class ProjectShowcaseTestCase(TestCase):
     def setUp(self):
         Project.objects.create(title="OpenSUTD Web Platform",
-                                project_uid="ACAD_00001",
-                                caption="Sample project 1",
-                                category="ACAD",
-                                url="https://github.com/OpenSUTD/web-platform-prototype",
-                                status="ACCEPT")
+                               project_uid="ACAD_00001",
+                               caption="Sample project 1",
+                               category="ACAD",
+                               url="https://github.com/OpenSUTD/web-platform-prototype",
+                               status="ACCEPT")
 
         User.objects.create(username="tom",
                             display_name="Tom Magnanti",
@@ -86,7 +89,7 @@ class ProjectShowcaseTestCase(TestCase):
                             display_name="Jane Tan",
                             graduation_year=2021,
                             pillar="ESD")
-        
+
     def test_add_user_project(self):
         tom = User.objects.get(username="tom")
         jane = User.objects.get(username="jane")
@@ -117,12 +120,94 @@ class ProjectShowcaseTestCase(TestCase):
 
     def test_project_page_performance(self):
         start = time.time()
-        
+
         for i in range(10):
             url = reverse('projects:showcase', args=("ACAD_00001",))
         response = self.client.get(url)
-        
+
         duration = time.time() - start
         self.assertLess(duration, 1.0)
 
-        
+
+class TestRegistrationForm(TestCase):
+
+    # https://www.agiliq.com/blog/2018/05/django-unit-testing/#writing-tests-for-forms
+
+    def test_registration_form(self):
+        # test invalid data
+        invalid_data = {
+            "username": "user@test.com",
+            "password": "secret",
+            "confirm": "not secret"
+        }
+        form = RegistrationForm(data=invalid_data)
+        form.is_valid()
+        self.assertTrue(form.errors)
+
+        # test valid data
+        valid_data = {
+            "username": "user@test.com",
+            "password": "secret",
+            "confirm": "secret"
+        }
+
+        form = RegistrationForm(data=valid_data)
+        form.is_valid()
+        self.assertFalse(form.errors)
+
+
+class TestUserRegistrationView(TestCase):
+
+    def setUp(self):
+        self.client = Client()
+
+    def test_registration(self):
+        url = reverse('register')
+
+        # test req method GET
+        response = self.client.get(url)
+        self.assertEqual(response.status, 200)
+
+        # test req method POST with empty data
+        response = self.client.post(url, {})
+        self.assertEqual(response.status, 200)
+        exp_data = {
+            'error': True,
+            'errors': {
+                'username': 'This field is required',
+                'password': 'This field is required',
+                'confirm': 'This field is required',
+            }
+        }
+        self.asssertEqual(exp_data, response.json())
+
+        # test req method POST with invalid data
+        req_data = {
+            'username': 'user@test.com',
+            'password': 'secret',
+            'confirm': 'secret1',
+        }
+        response = self.client.post(url, req_data)
+        self.assertEqual(response.status, 200)
+        exp_data = {
+            'error': True,
+            'errors': {
+                'confirm': 'Passwords mismatched'
+            }
+        }
+        self.asssertEqual(exp_data, response.json())
+
+        # test req method POST with valid data
+        req_data = {
+            'username': 'user@test.com',
+            'password': 'secret',
+            'confirm': 'secret',
+        }
+        response = self.client.post(url, req_data)
+        self.assertEqual(response.status, 200)
+        exp_data = {
+            'error': False,
+            'message': 'Success, Please login'
+        }
+        self.asssertEqual(exp_data, response.json())
+        self.assertEqual(User.objects.count(), 1)

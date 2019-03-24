@@ -8,6 +8,9 @@ import time
 
 client = Client()
 
+# length of base template, used to test for empty pages
+LEN_BASE = 2760
+
 # Create your tests here.
 
 class UserTestCase(TestCase):
@@ -37,12 +40,21 @@ class UserTestCase(TestCase):
         url = reverse('projects:user', args=("tom",))
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-        self.assertGreater(len(response.content), 10)
+        self.assertGreater(len(response.content), LEN_BASE)
 
         url = reverse('projects:user', args=("jane",))
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-        self.assertGreater(len(response.content), 10)
+        self.assertGreater(len(response.content), LEN_BASE)
+
+    def test_user_page_contents(self):
+        url = reverse('projects:user', args=("tom",))
+        response = str(self.client.get(url).content)
+        self.assertEqual("Tom Magnanti" in response, True)
+
+        url = reverse('projects:user', args=("jane",))
+        response = str(self.client.get(url).content)
+        self.assertEqual("Jane Tan" in response, True)
 
     def test_user_page_performance(self):
         start = time.time()
@@ -54,7 +66,7 @@ class UserTestCase(TestCase):
             response = self.client.get(url)
         
         duration = time.time() - start
-        self.assertLess(duration, 0.1)
+        self.assertLess(duration, 1.0)
 
 class ProjectShowcaseTestCase(TestCase):
     def setUp(self):
@@ -101,16 +113,16 @@ class ProjectShowcaseTestCase(TestCase):
         url = reverse('projects:showcase', args=("ACAD_00001",))
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-        self.assertGreater(len(response.content), 10)
+        self.assertGreater(len(response.content), LEN_BASE)
 
     def test_project_page_performance(self):
         start = time.time()
         
-        for i in range(20):
+        for i in range(10):
             url = reverse('projects:showcase', args=("ACAD_00001",))
         response = self.client.get(url)
         
         duration = time.time() - start
-        self.assertLess(duration, 0.1)
+        self.assertLess(duration, 1.0)
 
         

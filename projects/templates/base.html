@@ -37,11 +37,11 @@
             </ul>
             {% if user.is_authenticated %}
             <span class="navbar-text">
-                <i class="far fa-user-circle"></i> Welcome, <a href="{% url 'projects:user' user.username%}">{{ user.display_name }}</a> (<a href="{% url 'logout' %}">SIGN OUT</a>)
+                <i class="far fa-user-circle"></i> Welcome, <a href="{% url 'projects:user' user.username%}">{{ user.display_name }}</a> (<a href="{% url 'account_logout' %}">SIGN OUT</a>)
             </span>
             {% else %}
             <span class="navbar-text">
-                <i class="far fa-user-circle"></i> Not Logged In (<a href="{% url 'login' %}">SIGN IN</a>)
+                <i class="far fa-user-circle"></i> Not Logged In (<a href="{% url 'account_login' %}">SIGN IN</a>)
             </span>
             {% endif %}
         </div>

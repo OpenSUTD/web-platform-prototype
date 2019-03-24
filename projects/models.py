@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 from django.contrib.auth import hashers
+from taggit.managers import TaggableManager
 
 # FIXED CHOICES DEFINITIONS
 # The first element in each tuple is the value that will be stored in the database.
@@ -36,10 +37,6 @@ STATUS_CHOICES = (
 # Test that models cannot be instantated without required fields
 
 # Create your models here.
-
-
-class Tag(models.Model):
-    name = models.CharField(max_length=40, default="")
 
 
 class User(AbstractUser):
@@ -81,8 +78,6 @@ class Project(models.Model):
 
     users = models.ManyToManyField(User)
 
-    tags = models.ManyToManyField(Tag)
-
     caption = models.CharField(max_length=200)
 
     category = models.CharField(
@@ -98,6 +93,8 @@ class Project(models.Model):
         max_length=10, choices=STATUS_CHOICES, default="PENDING")
 
     published_date = models.DateTimeField(auto_now=True)
+
+    tags = TaggableManager()
 
 class OpenSUTDProjectManager(object):
 

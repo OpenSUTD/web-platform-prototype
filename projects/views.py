@@ -3,6 +3,7 @@ from django.views import generic
 
 from django.views.generic import FormView
 from django.http import JsonResponse
+from django.http import HttpResponseNotFound
 from .forms import RegistrationForm
 
 from django.contrib.auth.decorators import login_required
@@ -32,8 +33,12 @@ def user_view(request, user_id):
 
 def project_view(request, project_uid):
     current_project = models.Project.objects.get(project_uid=project_uid)
-    context = {'current_project': current_project}
-    return render(request, 'projects/showcase.html', context)
+    if current_project.is_accepted():
+      context = {'current_project': current_project}
+      return render(request, 'projects/showcase.html', context)
+    else:
+      # TODO: replace with OpenSUTD 404 page
+      return HttpResponseNotFound("Project not approved!")
 
 
 def projects_list_view(request):

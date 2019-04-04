@@ -96,6 +96,9 @@ class Project(models.Model):
 
     tags = TaggableManager()
 
+    def is_accepted(self):
+        return self.status == "ACCEPT"
+
 class OpenSUTDProjectManager(object):
 
     def create_project(self):

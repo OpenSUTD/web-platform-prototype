@@ -19,7 +19,7 @@ from . import models
 def index(request):
     top_projects_list = models.Project.objects.order_by('-published_date')[:2]
     recent_projects_list = models.Project.objects.order_by(
-        '-published_date')[:9]
+        '-published_date').filter(status="ACCEPT")[:9]
     context = {'top_projects_list': top_projects_list,
                'recent_projects_list': recent_projects_list}
     return render(request, 'opensutd/home.html', context)

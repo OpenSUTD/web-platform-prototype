@@ -118,6 +118,8 @@ class ProjectShowcaseTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertGreater(len(response.content), LEN_BASE)
 
+    # TODO: test project page contents
+
     def test_project_page_performance(self):
         start = time.time()
 

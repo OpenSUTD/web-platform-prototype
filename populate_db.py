@@ -85,7 +85,7 @@ project_2 = Project(title="Random Project 1",
                     caption="A random project to better the world by design",
                     category="ACAD",
                     url="https://github.com/OpenSUTD/web-platform-prototype",
-                    status="ACCEPT")
+                    status="PENDING")
 
 project_2.save()
 
@@ -178,6 +178,19 @@ project_8.save()
 project_8.users.add(user_benghaun)
 
 project_8.save()
+
+project_9 = Project(title="SUTDtoTamp_bot",
+                    project_uid="SELF_00003",
+                    caption="Simple Telegram bot that checks bus timings to go to Tampines from SUTD",
+                    category="SELF",
+                    url="https://github.com/benghaun/SUTDtoSimei_bot",
+                    status="PENDING")
+
+project_9.save()
+
+project_9.users.add(user_benghaun)
+
+project_9.save()
 
 print(User.objects.all())
 print(Project.objects.all())

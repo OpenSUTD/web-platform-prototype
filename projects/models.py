@@ -5,6 +5,9 @@ from django.utils.translation import ugettext_lazy as _
 from taggit.managers import TaggableManager
 from taggit.models import CommonGenericTaggedItemBase, TaggedItemBase
 
+import datetime
+CURRENT_YEAR = datetime.datetime.now().year
+
 # FIXED CHOICES DEFINITIONS
 # The first element in each tuple is the value that will be stored in the database.
 # The second element is displayed by the field’s form widget.
@@ -52,7 +55,7 @@ class User(AbstractUser):
 
     is_sutd = models.BooleanField(default="False")
 
-    graduation_year = models.IntegerField()
+    graduation_year = models.IntegerField(default=CURRENT_YEAR+3)
 
     pillar = models.CharField(max_length=4, choices=PILLAR_CHOICES, default="")
 

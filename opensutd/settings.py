@@ -87,6 +87,7 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
+SOCIALACCOUNT_ADAPTER  = 'opensutd.users.adapter.CustomGithubAdapter'
 
 WSGI_APPLICATION = 'opensutd.wsgi.application'
 

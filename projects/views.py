@@ -4,6 +4,7 @@ from django.views import generic
 from django.views.generic import FormView
 from django.http import *
 from .forms import RegistrationForm
+from .filters import ProjectFilter
 
 from django.contrib.auth.decorators import login_required
 
@@ -39,6 +40,9 @@ def project_view(request, project_uid):
         # TODO: replace with OpenSUTD 404 page
         return HttpResponseNotFound("Project not approved!")
 
+def project_listfilter(request):
+    f = ProjectFilter(request.GET, queryset=models.Project.objects.all().filter(status="ACCEPT"))
+    return render(request, 'projects/listfilter.html', {'filter': f})
 
 def projects_list_view(request):
     projects_list = models.Project.objects.order_by(

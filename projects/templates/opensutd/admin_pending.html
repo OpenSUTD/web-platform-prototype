@@ -5,6 +5,7 @@
 
 <div class="col-sm">
 
+    <!--
     <div class="btn-group btn-group-toggle" data-toggle="buttons">
         <label class="btn btn-primary tablink">
             <input type="radio" name="options" id="option1" autocomplete="off" checked=""
@@ -18,74 +19,38 @@
             <input type="radio" name="options" id="option3" autocomplete="off"
                 onclick="openPage('Contact', this, 'red')"> Recents
         </label>
-
     </div>
+    -->
 
     <div id="Home" class="tabcontent admin-tab">
-        <h3>Pending Approval (10)</h3>
+        <h3>Pending Approval</h3>
         <div class="row">
+            {% if projects_list %}
+            <!-- start iteration -->
+            {% for project_item in projects_list %}
             <div class="col-sm-4">
                 <div class="project-card-sm">
-                    <img src="https://via.placeholder.com/300x200.png?text=thumbnail" alt="Card image" href="#">
-                    <h4>ISTD Project 1</h4>
-                    <p class="text-primary">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                        deserunt mollit anim id est eopksio laborum. </p>
-                    <a href="#" class="btn btn-md edit-button" style="float: right">View Project <i
-                            class="fa fa-angle-right" style="color:black"></i></a>
+                    <img src="{{ project_item.featured_image }}" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ project_item.title }}</h5>
+                        <p class="card-text">{{ project_item.caption }}</p>
+                        <hr>
+                        <form action='/actions/approve/{{ project_item.project_uid }}/' method='GET'>
+                            <button type="submit" class="btn btn-success">Approve</button>
+                        </form>
+                        <form action='/actions/reject/{{ project_item.project_uid }}/' method='GET'>
+                            <button type="submit" class="btn btn-danger">Reject</button>
+                        </form>
+                        <hr>
+                        <a href="/projects/{{ project_item.project_uid }}/" class="btn btn-md edit-button"
+                            style="float: right">View Project <i class="fa fa-angle-right" style="color:black"></i></a>
+                    </div>
                 </div>
             </div>
-            <div class="col-sm-4">
-                <div class="project-card-sm">
-                    <img src="https://via.placeholder.com/300x200.png?text=thumbnail" alt="Card image" href="#">
-                    <h4>ISTD Project 1</h4>
-                    <p class="text-primary">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                        deserunt mollit anim id est eopksio laborum. </p>
-                    <a href="#" class="btn btn-md edit-button" style="float: right">View Project <i
-                            class="fa fa-angle-right" style="color:black"></i></a>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="project-card-sm">
-                    <img src="https://via.placeholder.com/300x200.png?text=thumbnail" alt="Card image" href="#">
-                    <h4>ISTD Project 1</h4>
-                    <p class="text-primary">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                        deserunt mollit anim id est eopksio laborum. </p>
-                    <a href="#" class="btn btn-md edit-button" style="float: right">View Project <i
-                            class="fa fa-angle-right" style="color:black"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="project-card-sm">
-                    <img src="https://via.placeholder.com/300x200.png?text=thumbnail" alt="Card image" href="#">
-                    <h4>ISTD Project 1</h4>
-                    <p class="text-primary">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                        deserunt mollit anim id est eopksio laborum. </p>
-                    <a href="#" class="btn btn-md edit-button" style="float: right">View Project <i
-                            class="fa fa-angle-right" style="color:black"></i></a>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="project-card-sm">
-                    <img src="https://via.placeholder.com/300x200.png?text=thumbnail" alt="Card image" href="#">
-                    <h4>ISTD Project 1</h4>
-                    <p class="text-primary">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                        deserunt mollit anim id est eopksio laborum. </p>
-                    <a href="#" class="btn btn-md edit-button" style="float: right">View Project <i
-                            class="fa fa-angle-right" style="color:black"></i></a>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="project-card-sm">
-                    <img src="https://via.placeholder.com/300x200.png?text=thumbnail" alt="Card image" href="#">
-                    <h4>ISTD Project 1</h4>
-                    <p class="text-primary">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                        deserunt mollit anim id est eopksio laborum. </p>
-                    <a href="#" class="btn btn-md edit-button" style="float: right">View Project <i
-                            class="fa fa-angle-right" style="color:black"></i></a>
-                </div>
-            </div>
+            {% endfor %}
+            {% else %}
+            <p>Yay! No more pending projects to review.</p>
+            {% endif %}
         </div>
     </div>
 

@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django_extensions',
+    'django_filters',
+    'bootstrapform',
     'trackstats',
     'taggit',
     'allauth',
@@ -87,6 +89,7 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
+SOCIALACCOUNT_ADAPTER  = 'opensutd.users.adapter.CustomGithubAdapter'
 
 WSGI_APPLICATION = 'opensutd.wsgi.application'
 

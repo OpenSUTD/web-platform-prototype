@@ -20,7 +20,7 @@ python3 manage.py createsuperuser
 
 ```
 # to reset the database back to sample values
-scripts/refresh_db.sh
+./refresh_db.sh
 
 # for development without docker
 python3 manage.py runserver

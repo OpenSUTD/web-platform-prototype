@@ -74,6 +74,8 @@ project_1.users.add(user_tom)
 project_1.users.add(user_jane)
 project_1.users.add(user_timothy)
 
+project_1.tags.add("50.003", "Hello", "World", "OpenSUTD", "extremely long tag")
+
 project_1.save()
 
 project_2 = Project(title="Random Project 1",
@@ -86,6 +88,8 @@ project_2 = Project(title="Random Project 1",
 project_2.save()
 
 project_2.users.add(user_jane)
+
+project_2.tags.add("Random", "World", "C")
 
 project_2.save()
 
@@ -100,6 +104,8 @@ project_3.save()
 
 project_3.users.add(user_tom)
 project_3.users.add(user_harry)
+
+project_3.tags.add("Random", "Java", "IoT")
 
 project_3.save()
 

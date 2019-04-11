@@ -1,7 +1,9 @@
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 from django.contrib.auth import hashers
+from django.utils.translation import ugettext_lazy as _
 from taggit.managers import TaggableManager
+from taggit.models import CommonGenericTaggedItemBase, TaggedItemBase
 
 # FIXED CHOICES DEFINITIONS
 # The first element in each tuple is the value that will be stored in the database.
@@ -64,6 +66,9 @@ class User(AbstractUser):
 
     bio = models.CharField(max_length=300, default="")
 
+class GenericStringTaggedProject(CommonGenericTaggedItemBase, TaggedItemBase):
+    object_id = models.CharField(max_length=50, verbose_name=_('Object id'), db_index=True)
+
 
 class Project(models.Model):
     title = models.CharField(max_length=200, default="")
@@ -94,7 +99,7 @@ class Project(models.Model):
 
     published_date = models.DateTimeField(auto_now=True)
 
-    tags = TaggableManager()
+    tags = TaggableManager(through=GenericStringTaggedProject)
 
     def is_accepted(self):
         return self.status == "ACCEPT"

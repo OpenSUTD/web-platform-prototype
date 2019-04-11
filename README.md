@@ -40,6 +40,16 @@ TAG=0.3-dev
 docker run --rm -it -p 80:8000 opensutd/web-platform:$TAG python3 manage.py runserver 0:8000
 ```
 
+## Getting GitHub login working
+
+1. Create a GitHub Oauth App (https://github.com/settings/developers)
+2. Take note of your client ID and secret keys
+3. Go to your running Django instance (e.g. http://localhost:8000)
+4. Go to http://localhost:8000/admin and log in with default admin credentials (`superadmin` / `asdf1234`)
+5. Add a new **Social Application** and fill in the details from step 2
+6. Click save and log out from `superadmin`
+7. GitHub Login now works
+
 ## Running the built-in tests
 
 ```

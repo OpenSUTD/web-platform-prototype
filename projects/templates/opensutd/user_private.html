@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% load static %}
+
+<div class="profile-cover-image">
+    <img src='{% static "images/cover_image_example.jpg" %}'' alt="Cover Image">
+</div>
+
+<div class="row">
+    <div class="col-sm-2">
+        <img class="profile-picture" src="{{ current_user.display_picture }}" alt="Card image">
+    </div>
+    <div class="col-sm-7 profile-description">
+        <h1 class="profile-name">{{ current_user.display_name }}</h1>
+        <p>{{ current_user.user_id }}</p>
+        <br>
+        <h5 class="profile-faculty text-primary">{{ current_user.pillar }} - Class of {{ current_user.graduation_year }}</h5>
+        <p class="profile-bio text-primary">{{ current_user.bio }}</p>
+    </div>
+    <div class="col-sm-3">
+        <div class="edit-profile">
+            <button type="button" class="btn btn-outline-primary">Submit New Project    <i class="fas fa-plus"></i></button>
+        </div>
+        <div>
+            <a class="action-details" href="#" role="button" style="color:black; float:right">Edit Profile</a>
+            <!-- <button type="button" class="btn btn-outline-primary btn-sm" style="margin-top: 1em; float: right;">Edit Profile</button> -->
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -2,8 +2,7 @@ from django.shortcuts import render
 from django.views import generic
 
 from django.views.generic import FormView
-from django.http import JsonResponse
-from django.http import HttpResponseNotFound
+from django.http import *
 from .forms import RegistrationForm
 
 from django.contrib.auth.decorators import login_required
@@ -52,9 +51,22 @@ def projects_list_view(request):
 def approval_view(request):
     projects_list = models.Project.objects.order_by(
         '-published_date').filter(status="PENDING")[:50]
-    context = {}
+    context = {'projects_list': projects_list}
     return render(request, 'opensutd/admin_pending.html', context)
 
+@login_required
+def approve(request, project_uid):
+    project = models.Project.objects.get(project_uid=project_uid)
+    project.status = "ACCEPT"
+    project.save()
+    return HttpResponseRedirect('/admin/approval')
+
+@login_required
+def reject(request, project_uid):
+    project = models.Project.objects.get(project_uid=project_uid)
+    project.status = "REJECT"
+    project.save()
+    return HttpResponseRedirect('/admin/approval')
 
 class UserRegistrationView(FormView):
     form_class = RegistrationForm

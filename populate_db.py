@@ -34,9 +34,11 @@ um.create_user("shungit", display_name="Shun Git",
                display_picture="https://via.placeholder.com/150",
                graduation_year=2018, pillar="ISTD")
 
+"""
 um.create_user("tlkh", display_name="Timothy Liu",
                display_picture="https://via.placeholder.com/150",
                graduation_year=2020, pillar="ISTD")
+"""
 
 um.create_user("bob", display_name="Bob David",
                display_picture="https://via.placeholder.com/150",
@@ -56,7 +58,7 @@ user_tom = User.objects.get(username="tom")
 user_jane = User.objects.get(username="jane")
 user_harry = User.objects.get(username="harry")
 user_shungit = User.objects.get(username="shungit")
-user_timothy = User.objects.get(username="tlkh")
+#user_timothy = User.objects.get(username="tlkh")
 user_bob = User.objects.get(username="bob")
 user_sikai = User.objects.get(username="sikai")
 user_benghaun = User.objects.get(username="benghaun")
@@ -72,7 +74,7 @@ project_1.save()
 
 project_1.users.add(user_tom)
 project_1.users.add(user_jane)
-project_1.users.add(user_timothy)
+#project_1.users.add(user_timothy)
 
 project_1.tags.add("50.003", "Hello", "World", "OpenSUTD", "extremely long tag")
 
@@ -122,6 +124,7 @@ project_4.users.add(user_shungit)
 
 project_4.save()
 
+"""
 project_5 = Project(title="SmartBin",
                     project_uid="ACAD_00004",
                     caption="1D Project: Spring 2018 10.009 Digital World",
@@ -134,6 +137,7 @@ project_5.save()
 project_5.users.add(user_timothy)
 
 project_5.save()
+"""
 
 project_6 = Project(title="Project With Missing Info",
                     project_uid="UROP_00001",

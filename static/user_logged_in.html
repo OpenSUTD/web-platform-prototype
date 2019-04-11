@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <title>Dashboard</title>
+  <link href="bootstrap.css" rel="stylesheet">
+  <link href="custom.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+    crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
+        <div class="navbar-brand" href="#">
+            <a href="homepage.html">
+                <img src="https://mymobile.sutd.edu.sg/images/branding/SUTD-Logo-MIT-Inverse-Full_2x(2).png"
+                    alt="SUTD SUTD-Logo-MIT-Inverse-Full_2x" height="40px">
+            </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Projects <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Community</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" style="margin: auto 10px;">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                <button class="btn btn-secondary btn-sm my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            <span class="navbar-text">
+                <i class="far fa-user-circle"></i> Not Logged In (<a href="login_page.html">Login</a>)
+            </span>
+        </div>
+    </nav>
+
+
+    <main role="main" class="container">
+        <div class="profile-cover-image">
+            <img src="static_images/coverImageExample.jpg" alt="Cover Image">
+        </div>
+        
+        <div class="row">
+            <div class="col-sm-2">
+                <img class="profile-picture" src="static_images/usericon.png" alt="Card image">
+            </div>
+            <div class="col-sm-7 profile-description">
+                <h1 class="profile-name">Jane Ng</h1>
+                <br>
+                <h5 class="profile-faculty text-primary">ISTD - Class of 2020</h5>
+                <p class="profile-bio text-primary">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est eopksio laborum. Sed ut perspiciatis unde omnis istpoe natus error sit voluptatem accusantium</p>
+            </div>
+            <div class="col-sm-3">
+                <div class="edit-profile">
+                    <!-- <a href="#" class="btn btn-md edit-button">Edit Profile <i class="far fa-edit" style="color:black"></i></a>
+                    <br> -->
+                    <button type="button" class="btn btn-outline-primary">Submit New Project    <i class="fas fa-plus"></i></button>
+                </div>
+                <div>
+                    <a class="action-details" href="#" role="button" style="color:black; float:right">Edit Profile</a>
+                    <!-- <button type="button" class="btn btn-outline-primary btn-sm" style="margin-top: 1em; float: right;">Edit Profile</button> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="display: inline">
+            <div style="margin-top: 5rem">
+                <h2>Project Name</h2> 
+                <button type="button" class="btn btn-primary btn-sm" style="float: right">View All</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="project-card">
+                    <img src="static_images/archi.jpeg" alt="Card image">
+                    <p class="card-text text-primary">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est eopksio laborum. Sed ut perspiciatis unde omnis istpoe natus error sit voluptatem accusantium doloremque eopsloi laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi sequi nesciunt. Neque porro quisquameo est, qui dolorem ipsum quia dolor sit amet, eopsmiep consectetur, adipisci velit, seisud quia non numquam eius modi tempora incidunt ut labore et dolore wopeir magnam aliquam quaerat voluptatem eoplmuriquisqu</p>
+                    <a href="#" class="btn btn-md edit-button" style="float: right">View Project <i class="far fa-angle-right" style="color:black"></i></a>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="project-card">
+                    <img src="static_images/archi.jpeg" alt="Card image">
+                    <p class="card-text text-primary">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est eopksio laborum. Sed ut perspiciatis unde omnis istpoe natus error sit voluptatem accusantium doloremque eopsloi laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi sequi nesciunt. Neque porro quisquameo est, qui dolorem ipsum quia dolor sit amet, eopsmiep consectetur, adipisci velit, seisud quia non numquam eius modi tempora</p>
+                    <a href="#" class="btn btn-md edit-button" style="float: right">View Project <i class="far fa-angle-right" style="color:black"></i></a>
+                </div>
+            </div>
+        </div>
+
+    </main>
+  
+  <script src="js/jquery-slim.min.js"></script>
+  <script>
+    window.jQuery || document.write('<script src="js/jquery-slim.min.js"><\/script>')
+  </script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+</body>
+
+</html>

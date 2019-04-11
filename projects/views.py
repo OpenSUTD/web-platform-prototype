@@ -3,11 +3,10 @@ from django.views import generic
 
 from django.views.generic import FormView
 from django.http import *
-from .forms import RegistrationForm
+from .forms import *
 from .filters import ProjectFilter
 
 from django.contrib.auth.decorators import login_required
-
 
 from . import models
 
@@ -40,15 +39,42 @@ def project_view(request, project_uid):
         # TODO: replace with OpenSUTD 404 page
         return HttpResponseNotFound("Project not approved!")
 
+
 def project_listfilter(request):
-    f = ProjectFilter(request.GET, queryset=models.Project.objects.all().filter(status="ACCEPT"))
+    f = ProjectFilter(
+        request.GET, queryset=models.Project.objects.all().filter(status="ACCEPT"))
     return render(request, 'projects/listfilter.html', {'filter': f})
+
 
 def projects_list_view(request):
     projects_list = models.Project.objects.order_by(
         '-published_date').filter(status="ACCEPT")[:50]
     context = {'projects_list': projects_list}
     return render(request, 'projects/list.html', context)
+
+
+def submit_new_project(request):
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = SubmissionForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            
+            data = form.cleaned_data
+            pm = models.OpenSUTDProjectManager()
+
+            # TODO
+            # do logic here after implementing OpenSUTDProjectManager
+
+            # redirect to a new URL:
+            return HttpResponseRedirect('opensutd/admin_pending.html')
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = SubmissionForm()
+
+    return render(request, 'opensutd/submit_new.html', {'form': form})
 
 
 @login_required
@@ -58,6 +84,7 @@ def approval_view(request):
     context = {'projects_list': projects_list}
     return render(request, 'opensutd/admin_pending.html', context)
 
+
 @login_required
 def approve(request, project_uid):
     project = models.Project.objects.get(project_uid=project_uid)
@@ -65,12 +92,14 @@ def approve(request, project_uid):
     project.save()
     return HttpResponseRedirect('/admin/approval')
 
+
 @login_required
 def reject(request, project_uid):
     project = models.Project.objects.get(project_uid=project_uid)
     project.status = "REJECT"
     project.save()
     return HttpResponseRedirect('/admin/approval')
+
 
 class UserRegistrationView(FormView):
     form_class = RegistrationForm

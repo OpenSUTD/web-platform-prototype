@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django_extensions',
+    'django_filters',
+    'bootstrapform',
     'trackstats',
     'taggit',
     'allauth',

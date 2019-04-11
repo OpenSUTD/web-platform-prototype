@@ -100,7 +100,7 @@ project_3 = Project(title="Random Project 2",
                     caption="Another random project to better the world by design",
                     category="ACAD",
                     url="https://github.com/OpenSUTD/web-platform-prototype",
-                    status="ACCEPT")
+                    status="PENDING")
 
 project_3.save()
 

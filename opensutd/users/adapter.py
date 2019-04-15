@@ -17,3 +17,4 @@ class CustomGithubAdapter(DefaultSocialAccountAdapter):
     def populate_user(self, request, sociallogin, data):
         user = sociallogin.user
         user.display_name = data["name"]
+        user.username = data["name"].replace(" ", "-").lower()

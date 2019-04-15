@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% load static %}
+
+<h1>Submit new Project</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="/admin/submit/" method="POST">
+
+    {% csrf_token %}
+
+    <div class="form-group">
+        <label for="inputProjectName">Project Name</label>
+        <input type="text" class="form-control" id="inputProjectName" placeholder="Project Name">
+    </div>
+
+    <div class="form-group">
+        <label for="inputFeaturedImage">Featured Image</label>
+        <input type="text" class="form-control" id="inputFeaturedImage" placeholder="Featured Image">
+    </div>
+
+    <div class="form-group">
+        <label for="inputCaption">Caption</label>
+        <input type="text" class="form-control" id="inputCaption" placeholder="Caption">
+    </div>
+
+    <div class="form-group">
+        <label for="inputGitHubURL">GitHub URL</label>
+        <input type="text" class="form-control" id="inputGitHubURL" placeholder="GitHub URL">
+    </div>
+
+    <div class="form-group">
+        <label for="inputPosterURL">Poster URL</label>
+        <input type="text" class="form-control" id="inputPosterURL" placeholder="Poster URL">
+    </div>
+
+    <input type="submit" value="Submit for Approval">
+
+</form>
+
+{% endblock %}

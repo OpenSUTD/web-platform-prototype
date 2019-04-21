@@ -50,6 +50,7 @@ def projects_list_view(request):
     projects_list = models.Project.objects.order_by(
         '-published_date').filter(status="ACCEPT")[:50]
     context = {'projects_list': projects_list}
+    context['tags'] = models.Project.tags.all()
     return render(request, 'projects/list.html', context)
 
 

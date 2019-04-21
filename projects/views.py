@@ -64,8 +64,13 @@ def submit_new_project(request):
             data = form.cleaned_data
             pm = models.OpenSUTDProjectManager()
 
-            # TODO
-            # do logic here after implementing OpenSUTDProjectManager
+            project_uid = data["inputProjectName"].upper().replace(" ", "_")
+
+            pm.create_project(project_uid=project_uid,
+                              title=data["inputProjectName"],
+                              caption=data["inputCaption"],
+                              category=data["inputCategory"],
+                              url=data["inputGitHubURL"])
 
             # redirect to a new URL:
             return HttpResponseRedirect('opensutd/admin_pending.html')

@@ -128,14 +128,30 @@ class OpenSUTDProjectManager(object):
                           url=url,
                           poster_url=poster_url,
                           featured_image=featured_image,
-                          users=users,
                           status=status)
 
         project.save()
 
-    def add_user_to_project(self):
-        # TODO
-        pass
+    def add_user_to_project(self, project_uid, user_id):
+        project = Project.objects.get(project_uid=project_uid)
+        user = User.objects.get(username=user_id)
+        project.users.set([user])
+        project.save()
+
+    def add_tag_to_project(self, project_uid, tags):
+        tags = tags.split(",")
+        project = Project.objects.get(project_uid=project_uid)
+        for tag in tags:
+            tag = tag.lower().strip()
+            project.tags.add(tag)
+
+        project.save()
+
+    def set_project_status(self, project_uid, status):
+        project = Project.objects.get(project_uid=project_uid)
+        project.status = status
+
+        project.save()
 
 
 class OpenSUTDUserManager(BaseUserManager):

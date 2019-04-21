@@ -69,8 +69,10 @@ class User(AbstractUser):
 
     bio = models.CharField(max_length=300, default="")
 
+
 class GenericStringTaggedProject(CommonGenericTaggedItemBase, TaggedItemBase):
-    object_id = models.CharField(max_length=50, verbose_name=_('Object id'), db_index=True)
+    object_id = models.CharField(
+        max_length=50, verbose_name=_('Object id'), db_index=True)
 
 
 class Project(models.Model):
@@ -107,11 +109,29 @@ class Project(models.Model):
     def is_accepted(self):
         return self.status == "ACCEPT"
 
+
 class OpenSUTDProjectManager(object):
 
-    def create_project(self):
-        # TODO use this as an interface to create projects
-        pass
+    def create_project(self, project_uid, title, caption, category, url,
+                       poster_url="", featured_image="",
+                       users=None, status="PENDING"):
+
+        # validation
+
+        # TODO:
+        # - validate github url
+
+        project = Project(project_uid=project_uid,
+                          title=title,
+                          caption=caption,
+                          category=category,
+                          url=url,
+                          poster_url=poster_url,
+                          featured_image=featured_image,
+                          users=users,
+                          status=status)
+
+        project.save()
 
     def add_user_to_project(self):
         # TODO

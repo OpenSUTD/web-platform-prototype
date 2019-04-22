@@ -65,6 +65,14 @@ docker run --rm \
  bash -c './refresh_db.sh &&  python3 manage.py test'
 ```
 
+### CI Tests
+
+After every commit to the master branch (eg. made via pull request) the following automatic tests will run:
+
+* Travis CI (runs the Django unit test)
+* Snyk vulnerability analysis
+* Codacy code quality check
+
 ## Synchronizing your fork to upstream (OpenSUTD repo)
 
 ```

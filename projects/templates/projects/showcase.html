@@ -79,7 +79,9 @@
         <div class="card project-tags card-no-border">
             <p class="text-primary" style="margin:0; margin-top: 20px">Related Tags:</p>
             {% for tag in current_project.tags.all %}
-            <span class="badge badge-pill badge-secondary project-badge-tags">{{ tag}}</span>
+            <div class="tag">
+                <a href="../../projects/search?title=&category=&tags__name={{ tag}}"><span class="badge badge-pill badge-secondary project-badge-tags">{{ tag}}</span></a>
+            </div>
             {% endfor %}
         </div>
     </div>

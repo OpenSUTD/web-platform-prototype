@@ -14,9 +14,10 @@ from . import models
 
 from github import Github
 
-ACCESS_TOKEN = lines = [line.rstrip("\n") for line in open("gh_token")][0]
-gh = Github(ACCESS_TOKEN)
+import os
 
+ACCESS_TOKEN = os.environ["GH_ACCESS_TOKEN"]
+gh = Github(ACCESS_TOKEN)
 
 def index(request):
     top_projects_list = models.Project.objects.order_by("-published_date").filter(status="ACCEPT")[:2]

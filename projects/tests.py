@@ -2,8 +2,6 @@ from django.test import TestCase, Client
 from django.urls import reverse
 from django.test.utils import setup_test_environment
 
-from .forms import RegistrationForm
-
 from projects.models import *
 
 import time
@@ -11,10 +9,31 @@ import time
 client = Client()
 
 # length of base template, used to test for empty pages
-LEN_BASE = 2800
+LEN_BASE = 2600
 
 # Create your tests here.
 
+class BaseWebsiteTestCase(TestCase):
+    def setUp(self):
+        super()
+    
+    def test_homepage_load(self):
+        url = reverse('projects:home')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertGreater(len(response.content), LEN_BASE)
+
+    def test_project_list_load(self):
+        url = reverse('projects:projects_list')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertGreater(len(response.content), LEN_BASE)
+
+    def test_project_search_load(self):
+        url = reverse('projects:projects_list_filter')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertGreater(len(response.content), LEN_BASE)
 
 class UserTestCase(TestCase):
     def setUp(self):

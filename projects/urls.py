@@ -14,5 +14,4 @@ urlpatterns = [
     path('admin/submit', views.submit_new_project, name='submit_new'),
     path('actions/reject/<project_uid>/', views.reject, name='reject'),
     path('actions/approve/<project_uid>/', views.approve, name='approve'),
-    path('registration/', views.UserRegistrationView.as_view(), name='register')
 ]

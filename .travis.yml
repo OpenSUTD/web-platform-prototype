@@ -5,4 +5,4 @@ before_install:
   - docker pull opensutd/web-platform:0.4-dev
 
 script:
-  - ls && docker run --rm --env GH_ACCESS_TOKEN=${GH_ACCESS_TOKEN} -v ${PWD}:/app opensutd/web-platform:0.4-dev python3 manage.py test
+  - ./refresh_db.sh && docker run --rm --env GH_ACCESS_TOKEN=${GH_ACCESS_TOKEN} -v ${PWD}:/app opensutd/web-platform:0.4-dev python3 manage.py test

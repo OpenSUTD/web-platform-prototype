@@ -1,9 +1,8 @@
-language: python
-python:
-  - "3.7"
-env:
-  -DJANGO=2.2 DB=sqlite
-install:
-  - pip install -r requirements.txt
+services:
+  - docker
+
+before_install:
+- docker pull opensutd/web-platform:0.4-dev
+
 script:
-  - python manage.py test
+  - docker run --rm opensutd/web-platform:0.4-dev python3 manage.py test

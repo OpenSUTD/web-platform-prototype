@@ -27,4 +27,20 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-sm-2">
+    <h3>Projects</h3>
+    </div>
+    <div class="col-sm-10">
+        <ul class="list-group">
+        {% for project in user_projects %}
+            <li class="list-group-item">
+                <h5>{{ project.title }}</h5>
+                <p>{{ project.caption }}</p>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+</div>
+
 {% endblock %}

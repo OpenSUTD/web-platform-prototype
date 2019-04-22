@@ -19,7 +19,7 @@ gh = Github(ACCESS_TOKEN)
 
 
 def index(request):
-    top_projects_list = models.Project.objects.order_by("-published_date")[:2]
+    top_projects_list = models.Project.objects.order_by("-published_date").filter(status="ACCEPT")[:2]
     recent_projects_list = models.Project.objects.order_by(
         "-published_date").filter(status="ACCEPT")[:9]
     context = {"top_projects_list": top_projects_list,
@@ -29,7 +29,9 @@ def index(request):
 
 def user_view(request, user_id):
     current_user = models.User.objects.get(username=user_id)
-    context = {"current_user": current_user}
+    user_projects = models.Project.objects.filter(users=current_user)
+    context = {"current_user": current_user,
+               "user_projects": user_projects}
     return render(request, "opensutd/user.html", context)
 
 

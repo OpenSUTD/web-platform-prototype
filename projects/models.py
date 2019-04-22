@@ -69,8 +69,10 @@ class User(AbstractUser):
 
     bio = models.CharField(max_length=300, default="")
 
+
 class GenericStringTaggedProject(CommonGenericTaggedItemBase, TaggedItemBase):
-    object_id = models.CharField(max_length=50, verbose_name=_('Object id'), db_index=True)
+    object_id = models.CharField(
+        max_length=50, verbose_name=_('Object id'), db_index=True)
 
 
 class Project(models.Model):
@@ -107,15 +109,49 @@ class Project(models.Model):
     def is_accepted(self):
         return self.status == "ACCEPT"
 
+
 class OpenSUTDProjectManager(object):
 
-    def create_project(self):
-        # TODO use this as an interface to create projects
-        pass
+    def create_project(self, project_uid, title, caption, category, url,
+                       poster_url="", featured_image="",
+                       users=None, status="PENDING"):
 
-    def add_user_to_project(self):
-        # TODO
-        pass
+        # validation
+
+        # TODO:
+        # - validate github url
+
+        project = Project(project_uid=project_uid,
+                          title=title,
+                          caption=caption,
+                          category=category,
+                          url=url,
+                          poster_url=poster_url,
+                          featured_image=featured_image,
+                          status=status)
+
+        project.save()
+
+    def add_user_to_project(self, project_uid, user_id):
+        project = Project.objects.get(project_uid=project_uid)
+        user = User.objects.get(username=user_id)
+        project.users.set([user])
+        project.save()
+
+    def add_tag_to_project(self, project_uid, tags):
+        tags = tags.split(",")
+        project = Project.objects.get(project_uid=project_uid)
+        for tag in tags:
+            tag = tag.lower().strip()
+            project.tags.add(tag)
+
+        project.save()
+
+    def set_project_status(self, project_uid, status):
+        project = Project.objects.get(project_uid=project_uid)
+        project.status = status
+
+        project.save()
 
 
 class OpenSUTDUserManager(BaseUserManager):

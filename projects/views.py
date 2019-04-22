@@ -59,17 +59,26 @@ def submit_new_project(request):
         # create a form instance and populate it with data from the request:
         form = SubmissionForm(request.POST)
         # check whether it's valid:
+        print(form)
+        print(form.is_valid())
         if form.is_valid():
             # process the data in form.cleaned_data as required
             
             data = form.cleaned_data
             pm = models.OpenSUTDProjectManager()
 
-            # TODO
-            # do logic here after implementing OpenSUTDProjectManager
+            print(data)
+
+            project_uid = data["project_name"].upper().replace(" ", "_")
+
+            pm.create_project(project_uid=project_uid,
+                              title=data["project_name"],
+                              caption=data["caption"],
+                              category=data["category"],
+                              url=data["github_url"])
 
             # redirect to a new URL:
-            return HttpResponseRedirect('opensutd/admin_pending.html')
+            return HttpResponseRedirect('/admin/approval')
 
     # if a GET (or any other method) we'll create a blank form
     else:

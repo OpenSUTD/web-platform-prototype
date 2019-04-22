@@ -35,11 +35,9 @@ um.create_user("shungit", display_name="Shun Git",
                display_picture="https://via.placeholder.com/150",
                graduation_year=2018, pillar="ISTD")
 
-"""
 um.create_user("tlkh", display_name="Timothy Liu",
                display_picture="https://via.placeholder.com/150",
                graduation_year=2020, pillar="ISTD")
-"""
 
 um.create_user("bob", display_name="Bob David",
                display_picture="https://via.placeholder.com/150",
@@ -53,16 +51,33 @@ um.create_user("benghaun", display_name="Ang Beng Haun",
                display_picture="https://via.placeholder.com/150",
                graduation_year=2019, pillar="ISTD")
 
-# retrieve those users from database
+um.create_user("brandon", display_name="Brandon Ong",
+               display_picture="https://via.placeholder.com/150",
+               graduation_year=2021, pillar="EPD")
 
-user_tom = User.objects.get(username="tom")
-user_jane = User.objects.get(username="jane")
-user_harry = User.objects.get(username="harry")
-user_shungit = User.objects.get(username="shungit")
-#user_timothy = User.objects.get(username="tlkh")
-user_bob = User.objects.get(username="bob")
-user_sikai = User.objects.get(username="sikai")
-user_benghaun = User.objects.get(username="benghaun")
+um.create_user("pengfei", display_name="Hong Peng Fei",
+               display_picture="https://via.placeholder.com/150",
+               graduation_year=2020, pillar="ISTD")
+
+um.create_user("yustynn", display_name="Yustynn",
+               display_picture="https://via.placeholder.com/150",
+               graduation_year=2019, pillar="ESD")
+
+um.create_user("guian", display_name="Lee Gui An",
+               display_picture="https://via.placeholder.com/150",
+               graduation_year=2020, pillar="ISTD")
+
+um.create_user("qingze", display_name="Hum Qing Ze",
+               display_picture="https://via.placeholder.com/150",
+               graduation_year=2020, pillar="ESD")
+
+um.create_user("joel-huang", display_name="Joel Huang",
+               display_picture="https://via.placeholder.com/150",
+               graduation_year=2019, pillar="ISTD")
+
+um.create_user("chester", display_name="Chester",
+               display_picture="https://via.placeholder.com/150",
+               graduation_year=2020, pillar="ISTD")
 
 pm = OpenSUTDProjectManager()
 

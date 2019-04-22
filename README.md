@@ -91,5 +91,6 @@ git push
 
 ## Acknowledgements
 
-![GitHub](https://img.shields.io/github/license/opensutd/web-platform-prototype.svg) 
+![GitHub](https://img.shields.io/github/license/opensutd/web-platform-prototype.svg) [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
+ 
 

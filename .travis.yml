@@ -2,7 +2,7 @@ services:
   - docker
 
 before_install:
-- docker pull opensutd/web-platform:0.4-dev
+  - docker pull opensutd/web-platform:0.4-dev
 
 script:
-  - docker run --rm --env GH_ACCESS_TOKEN=${GH_ACCESS_TOKEN} opensutd/web-platform:0.4-dev python3 manage.py test
+  - docker run --rm --env GH_ACCESS_TOKEN=${GH_ACCESS_TOKEN} -v {$PWD}/web-platform-prototype:/app \ opensutd/web-platform:0.4-dev python3 manage.py test

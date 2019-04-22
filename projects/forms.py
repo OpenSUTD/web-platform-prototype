@@ -1,6 +1,5 @@
 from django import forms
 
-
 class RegistrationForm(forms.Form):
 
     username = forms.EmailField()
@@ -20,6 +19,7 @@ class RegistrationForm(forms.Form):
 
 class SubmissionForm(forms.Form):
     project_name = forms.CharField(label="Project Name", max_length=100)
+    category = forms.CharField(label="Category", max_length=100)
     featured_image = forms.CharField(label="Featured Image", max_length=200)
     caption = forms.CharField(label="Caption", max_length=200)
     github_url = forms.CharField(label="GitHub URL", max_length=200)

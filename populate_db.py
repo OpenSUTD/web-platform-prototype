@@ -1,3 +1,4 @@
+import csv
 import django
 import os
 import sys
@@ -34,11 +35,9 @@ um.create_user("shungit", display_name="Shun Git",
                display_picture="https://via.placeholder.com/150",
                graduation_year=2018, pillar="ISTD")
 
-"""
 um.create_user("tlkh", display_name="Timothy Liu",
                display_picture="https://via.placeholder.com/150",
                graduation_year=2020, pillar="ISTD")
-"""
 
 um.create_user("bob", display_name="Bob David",
                display_picture="https://via.placeholder.com/150",
@@ -52,145 +51,57 @@ um.create_user("benghaun", display_name="Ang Beng Haun",
                display_picture="https://via.placeholder.com/150",
                graduation_year=2019, pillar="ISTD")
 
-# retrieve those users from database
+um.create_user("brandon", display_name="Brandon Ong",
+               display_picture="https://via.placeholder.com/150",
+               graduation_year=2021, pillar="EPD")
 
-user_tom = User.objects.get(username="tom")
-user_jane = User.objects.get(username="jane")
-user_harry = User.objects.get(username="harry")
-user_shungit = User.objects.get(username="shungit")
-#user_timothy = User.objects.get(username="tlkh")
-user_bob = User.objects.get(username="bob")
-user_sikai = User.objects.get(username="sikai")
-user_benghaun = User.objects.get(username="benghaun")
+um.create_user("pengfei", display_name="Hong Peng Fei",
+               display_picture="https://via.placeholder.com/150",
+               graduation_year=2020, pillar="ISTD")
 
-project_1 = Project(title="OpenSUTD Web Platform",
-                    project_uid="ACAD_00001",
-                    caption="Sample project 1",
-                    category="ACAD",
-                    url="https://github.com/OpenSUTD/web-platform-prototype",
-                    status="ACCEPT")
+um.create_user("yustynn", display_name="Yustynn",
+               display_picture="https://via.placeholder.com/150",
+               graduation_year=2019, pillar="ESD")
 
-project_1.save()
+um.create_user("guian", display_name="Lee Gui An",
+               display_picture="https://via.placeholder.com/150",
+               graduation_year=2020, pillar="ISTD")
 
-project_1.users.add(user_tom)
-project_1.users.add(user_jane)
-#project_1.users.add(user_timothy)
+um.create_user("qingze", display_name="Hum Qing Ze",
+               display_picture="https://via.placeholder.com/150",
+               graduation_year=2020, pillar="ESD")
 
-project_1.tags.add("50.003", "Hello", "World", "OpenSUTD", "extremely long tag")
+um.create_user("joel-huang", display_name="Joel Huang",
+               display_picture="https://via.placeholder.com/150",
+               graduation_year=2019, pillar="ISTD")
 
-project_1.save()
+um.create_user("chester", display_name="Chester",
+               display_picture="https://via.placeholder.com/150",
+               graduation_year=2020, pillar="ISTD")
 
-project_2 = Project(title="Random Project 1",
-                    project_uid="ACAD_00002",
-                    caption="A random project to better the world by design",
-                    category="ACAD",
-                    url="https://github.com/OpenSUTD/web-platform-prototype",
-                    status="PENDING")
+pm = OpenSUTDProjectManager()
 
-project_2.save()
+with open("demo_data.csv") as csvfile:
+    reader = csv.reader(csvfile)
+    next(reader, None)
+    for row in reader:
+        [project_uid, title, caption, category, url, status, users, tags] = row
+        print(row)
 
-project_2.users.add(user_jane)
+        pm.create_project(project_uid=project_uid,
+                          title=title,
+                          caption=caption,
+                          category=category,
+                          url=url)
 
-project_2.tags.add("Random", "World", "C")
+        for user in users.split(","):
+            print(user)
+            pm.add_user_to_project(project_uid, user)
 
-project_2.save()
+        pm.add_tag_to_project(project_uid, tags)
 
-project_3 = Project(title="Random Project 2",
-                    project_uid="ACAD_00003",
-                    caption="Another random project to better the world by design",
-                    category="ACAD",
-                    url="https://github.com/OpenSUTD/web-platform-prototype",
-                    status="PENDING")
+        pm.set_project_status(project_uid, status)
 
-project_3.save()
-
-project_3.users.add(user_tom)
-project_3.users.add(user_harry)
-
-project_3.tags.add("Random", "Java", "IoT")
-
-project_3.save()
-
-project_4 = Project(title="SUTD Timetable",
-                    project_uid="SELF_00001",
-                    caption=".ics generator for SUTD Timetable",
-                    category="SELF",
-                    url="https://github.com/OpenSUTD/sutd-timetable",
-                    status="ACCEPT")
-
-project_4.save()
-
-project_4.users.add(user_shungit)
-
-project_4.save()
-
-"""
-project_5 = Project(title="SmartBin",
-                    project_uid="ACAD_00004",
-                    caption="1D Project: Spring 2018 10.009 Digital World",
-                    category="ACAD",
-                    url="https://github.com/OpenSUTD/SmartBin",
-                    status="ACCEPT")
-
-project_5.save()
-
-project_5.users.add(user_timothy)
-
-project_5.save()
-"""
-
-project_6 = Project(title="Project With Missing Info",
-                    project_uid="UROP_00001",
-                    caption="A third project to better the world by design; missing info; do not display!",
-                    category="UROP",
-                    url="https://github.com/OpenSUTD/web-platform-prototype",
-                    status="PENDING")
-
-project_6.save()
-
-project_6.users.add(user_bob)
-project_6.users.add(user_jane)
-
-project_6.save()
-
-project_7 = Project(title="ColourRun",
-                    project_uid="ACAD_00005",
-                    caption="50.002 Computational Structures Group 1-6 : Colour Run",
-                    category="ACAD",
-                    url="https://github.com/DoubleCapitals/CompStruct1D",
-                    status="ACCEPT")
-
-project_7.save()
-
-project_7.users.add(user_sikai)
-
-project_7.save()
-
-project_8 = Project(title="SUTDtoSimei_bot",
-                    project_uid="SELF_00002",
-                    caption="Simple Telegram bot that checks bus timings to go to Simei from SUTD",
-                    category="SELF",
-                    url="https://github.com/benghaun/SUTDtoSimei_bot",
-                    status="ACCEPT")
-
-project_8.save()
-
-project_8.users.add(user_benghaun)
-
-project_8.save()
-
-project_9 = Project(title="SUTDtoTamp_bot",
-                    project_uid="SELF_00003",
-                    caption="Simple Telegram bot that checks bus timings to go to Tampines from SUTD",
-                    category="SELF",
-                    url="https://github.com/benghaun/SUTDtoSimei_bot",
-                    status="PENDING")
-
-project_9.save()
-
-project_9.users.add(user_benghaun)
-
-project_9.save()
 
 print(User.objects.all())
 print(Project.objects.all())

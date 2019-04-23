@@ -135,7 +135,7 @@ class OpenSUTDProjectManager(object):
     def add_user_to_project(self, project_uid, user_id):
         project = Project.objects.get(project_uid=project_uid)
         user = User.objects.get(username=user_id)
-        project.users.set([user])
+        project.users.add(user)
         project.save()
 
     def add_tag_to_project(self, project_uid, tags):

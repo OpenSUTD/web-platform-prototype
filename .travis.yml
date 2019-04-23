@@ -1,0 +1,9 @@
+services:
+  - docker
+
+before_install:
+  - docker pull opensutd/web-platform:0.4-dev
+
+script:
+  - docker run --rm --env GH_ACCESS_TOKEN=${GH_ACCESS_TOKEN} -v ${PWD}:/app opensutd/web-platform:0.4-dev bash -c './refresh_db.sh &&  python3 manage.py test'
+

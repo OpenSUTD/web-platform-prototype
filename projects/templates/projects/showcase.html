@@ -67,7 +67,7 @@
                     <img src='{% static "images/usericon.png" %}' alt="Card image">
                 </div>
                 <div class="col-sm-8" style="margin: auto">
-                    <a href="../../users/{{ user.user_id}}/"
+                    <a href="../../users/{{ user.username }}/"
                         class="card-text project-member-name">{{ user.display_name}}, {{ user.pillar}}</a>
                 </div>
             </div>
@@ -77,7 +77,9 @@
         <div class="card project-tags card-no-border">
             <p class="text-primary" style="margin:0; margin-top: 20px">Related Tags:</p>
             {% for tag in current_project.tags.all %}
-            <span class="badge badge-pill badge-secondary project-badge-tags">{{ tag}}</span>
+            <div class="tag">
+                <a href="../../projects/search?title=&category=&tags__name={{ tag}}"><span class="badge badge-pill badge-secondary project-badge-tags">{{ tag}}</span></a>
+            </div>
             {% endfor %}
         </div>
     </div>

@@ -4,21 +4,25 @@
 {% load static %}
 
 <div class="card mb-3 card-no-border" style="margin: 0 auto; text-align: center; margin-top: 150px;">
-    <div class="project-card-header">
-        <h1>{{ current_project.title }}</h1>
-        <button type="button" class="btn btn-outline-primary project-button-header">Share</button>
-        <button type="button" class="btn btn-outline-primary project-button-header">Upvote</button>
+    <div class="project-card-header row">
+        <div class="col-sm-8">
+            <h1 style="vertical-align: middle">{{ current_project.title }}</h1>
+        </div>
+        <div class="col-sm-4">
+            <button type="button" class="btn btn-outline-primary project-button-header">Share</button>
+            <button type="button" class="btn btn-outline-primary project-button-header">Upvote</button>
+        </div>
     </div>
-    <div class="project-image-crop">
+    <!-- <div class="project-image-crop">
         <img style="display: block;" src={{ current_project.featured_image }} alt="Card image">
-    </div>
+    </div> -->
 </div>
 
 <div class="row">
     <div class="col-sm" style="flex-grow: 5">
         <div class="card project-readme card-no-border">
             <div class="readme-card-body">
-                <p class="lead">PROJECT README</p>
+                <p class="lead" style="color: #232b2b">PROJECT README</p>
                 <p class="card-text text-primary">
                     {{ readme | safe }}
                 </p>
@@ -28,7 +32,7 @@
             </div>
         </div>
         <br>
-        <div class="card poster card-no-border">
+        <!-- <div class="card poster card-no-border">
             <h3>Poster</h3>
             <div class="poster-thumbnail">
                 <a href='{{ current_project.poster_url }}'>
@@ -39,7 +43,7 @@
                         class="fas fa-chevron-circle-right"></i></a>
             </div>
         </div>
-        <br>
+        <br> -->
         <div class="card card-no-border">
             <h3>Comments</h3>
             <div class="form-group">

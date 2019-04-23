@@ -67,7 +67,8 @@ body {
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #919aa1;
+  /* color: #919aa1; */
+  color: 232b2b;
   text-align: left;
   background-color: #fff;
 }

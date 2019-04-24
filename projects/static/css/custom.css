@@ -28,10 +28,7 @@ body {
 
 .homepage-header {
   margin-top: 7em;
-  padding-top: 5em;
-  padding-left: 3em;
-  padding-right: 3em;
-  padding-bottom: 7em;
+  padding: 5em 3em 7em 3em;
   background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("SUTD_background.jpg");
   color: white;
   text-align: center;
@@ -363,10 +360,7 @@ a.edit-button:hover{
 }
 
 .project-card-sm p {
-  padding-top: 1px;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-bottom: 1rem;
+  padding: 1px 1rem 1rem 1rem;
 }
 
 .project-card-sm h4 {

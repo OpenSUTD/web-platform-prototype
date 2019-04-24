@@ -47,6 +47,30 @@ class BaseWebsiteTestCase(TestCase):
         response = self.client.get(url)
         self.assertGreater(len(response.content), LEN_BASE)
 
+class SecuredPageTestCase(TestCase):
+    def setUp(self):
+        super()
+
+    def test_auth_approval_view(self):
+        url = reverse('projects:approval')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 302)
+
+    def test_auth_submit_view(self):
+        url = reverse('projects:submit_new')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 302)
+
+    def test_auth_submit_reject(self):
+        url = reverse('projects:reject', args=("rand",))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 302)
+
+    def test_auth_submit_approve(self):
+        url = reverse('projects:approve', args=("rand",))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 302)
+
 class UserTestCase(TestCase):
     def setUp(self):
         um = OpenSUTDUserManager()
@@ -81,15 +105,22 @@ class UserTestCase(TestCase):
 
     # test user profile page contents
 
-    def test_user_page(self):
+    def test_user_page_load(self):
         url = reverse('projects:user', args=("tom",))
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-        self.assertGreater(len(response.content), LEN_BASE)
 
         url = reverse('projects:user', args=("jane",))
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
+
+    def test_user_page_not_empty(self):
+        url = reverse('projects:user', args=("tom",))
+        response = self.client.get(url)
+        self.assertGreater(len(response.content), LEN_BASE)
+
+        url = reverse('projects:user', args=("jane",))
+        response = self.client.get(url)
         self.assertGreater(len(response.content), LEN_BASE)
 
     def test_user_page_name(self):
@@ -218,10 +249,25 @@ class ProjectShowcaseTestCase(TestCase):
         response = str(self.client.get(url).content)
         print(response)
         # test top and bottom of contents
-        # somehow this doesn't actually pass on Travis..?
+        # this does not pass on Travis for Pull Request builds
+        # due to them disabling env variables for security reasons
         #self.assertEqual("Prototype for the Eventual OpenSUTD Web Platform" in response, True)
         #self.assertEqual("Data Model" in response, True)
         self.assertEqual(True, True)
+
+    def test_project_page_load(self):
+        pm = OpenSUTDProjectManager()
+        pm.set_project_status("ACAD_00001", "ACCEPT")
+        url = reverse('projects:project_page', args=("ACAD_00001",))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_project_page_not_empty(self):
+        pm = OpenSUTDProjectManager()
+        pm.set_project_status("ACAD_00001", "ACCEPT")
+        url = reverse('projects:project_page', args=("ACAD_00001",))
+        response = str(self.client.get(url).content)
+        self.assertGreater(len(response), LEN_BASE)
 
     def test_project_author_name(self):
         pm = OpenSUTDProjectManager()

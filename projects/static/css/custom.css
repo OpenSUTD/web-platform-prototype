@@ -213,64 +213,84 @@ body {
          flex: 1 1 auto;
 }
 
+.readme-card-body img {
+  max-width: 100%;
+  height: auto;
+}
+
+.readme-content a {
+  color: #182970;
+  font-weight: bold;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+/* .readme-content a:hover {
+  color: black;
+  text-decoration: underline;
+} */
+
 .project-created-by {
-background-color: darkred;
-display: inline;
-padding: 0.75rem 2rem;
-font-size: 0.5rem;
-margin-left: -10px;
+  background-color: darkred;
+  margin-top: 2rem;
+  padding: 0.5rem 2rem;
+  font-size: 1rem;
+  color: white;
+  text-align: center;
+  position: relative;
 }
 
 .project-member {
-background-color: transparent;
-padding: 10px;
-padding-left: 0px;
-display: inline-block;
+  padding: 10px;
+  padding-left: 0px;
+  display: inline-block;
 }
 
 .project-member img {
-max-width: 50px;
+  max-width: 50px;
 }
 
 .project-member-name {
-font-size: 1.2em;
-color: black;
+  font-size: 1.2em;
+  color: black;
 }
 
 .project-tags {
-display: inline;
+  display: inline;
 }
 
 .project-badge-tags {
-border: 1px solid rgba(189, 195, 199, 1);
-color: rgba(189, 195, 199, 1);
-margin: 2px 3px;
+  border: 1px solid rgba(189, 195, 199, 1);
+  color: rgba(189, 195, 199, 1);
+  margin: 2px 3px;
 }
 
 .project-badge-tags:hover {
-color: #fff;
-background-color: #1a1a1a;
-border: 1px solid black;
+  color: #fff;
+  background-color: #1a1a1a;
+  border: 1px solid black;
 }
 
+/*
 .poster-thumbnail img {
-box-shadow: 0 0 5px 1px rgba(232, 232, 232, 1);
-border-radius: 4px;
-padding: 5px;
-width: 200px;
+  box-shadow: 0 0 5px 1px rgba(232, 232, 232, 1);
+  border-radius: 4px;
+  padding: 5px;
+  width: 200px;
 }
 
 .poster-enlarge{
-padding: 0.5rem;
+  padding: 0.5rem;
 }
 
 .poster-enlarge:hover {
-color: black;
+  color: black;
 }
 
 .poster-thumbnail img:hover {
-box-shadow: 0 0 10px 1px rgba(189, 195, 199, 1);
-}
+  box-shadow: 0 0 10px 1px rgba(189, 195, 199, 1);
+} 
+*/
 
 /* 
 * User Profile Page 

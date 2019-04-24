@@ -15,6 +15,7 @@ RUN apt-get update && \
     libgraphviz-dev \
     pkg-config \
     curl \
+    git \
     && apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 

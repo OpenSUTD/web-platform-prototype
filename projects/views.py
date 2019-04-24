@@ -78,7 +78,7 @@ def projects_list_view(request):
                "tags": models.Project.tags.all()}
     return render(request, "projects/list.html", context)
 
-
+@login_required
 def submit_new_project(request):
     if request.method == "POST":
         # create a form instance and populate it with data from the request:
@@ -135,24 +135,3 @@ def reject(request, project_uid):
     project.save()
     return HttpResponseRedirect("/admin/approval")
 
-
-class UserRegistrationView(FormView):
-    form_class = RegistrationForm
-
-    def form_valid(self, form):
-        username = form.cleaned_data.get("username")
-        password = form.cleaned_data.get("password")
-        models.UserRegister.objects.create_user(
-            username=username, password=password)
-        res_data = {
-            "error": False,
-            "message": "Success, Please login"
-        }
-        return JsonResponse(res_data)
-
-    def form_invalid(self, form):
-        res_data = {
-            "error": True,
-            "errors": "error"
-        }
-        return JsonResponse(res_data)

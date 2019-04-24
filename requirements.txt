@@ -16,3 +16,5 @@ psycopg2-binary
 django-bootstrap-form
 pygithub
 markdown2
+coverage
+coveralls

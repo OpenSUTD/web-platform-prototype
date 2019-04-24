@@ -176,7 +176,9 @@ body {
   text-transform: uppercase;
 }
 
-/* Enlarged Project Page */
+/* 
+* Project Showcase - Individual
+*/
 .project-card-header {
   padding: 1.5rem 2rem;
   margin-bottom: 0;
@@ -268,7 +270,9 @@ color: black;
 box-shadow: 0 0 10px 1px rgba(189, 195, 199, 1);
 }
 
-/* Profile Page - Public */
+/* 
+* User Profile Page 
+*/
 .profile-cover-image img {
   width: 100%;
   height: 280px;
@@ -347,7 +351,9 @@ a.edit-button:hover{
   margin: 10px;
 }
 
-/* Admin Page */
+/* 
+* Admin Page 
+*/
 .admin-tab {
   margin-top: 3em;
 

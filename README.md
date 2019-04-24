@@ -1,12 +1,12 @@
 # web-platform-prototype
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8b8aa4074fe34ca5b8331b2a64f81de0)](https://app.codacy.com/app/tlkh/web-platform-prototype?utm_source=github.com&utm_medium=referral&utm_content=OpenSUTD/web-platform-prototype&utm_campaign=Badge_Grade_Settings) [![Build Status](https://travis-ci.org/OpenSUTD/web-platform-prototype.svg?branch=master)](https://travis-ci.org/OpenSUTD/web-platform-prototype) [![Coverage Status](https://coveralls.io/repos/github/OpenSUTD/web-platform-prototype/badge.svg)](https://coveralls.io/github/OpenSUTD/web-platform-prototype) ![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/opensutd/web-platform-prototype.svg) ![GitHub contributors](https://img.shields.io/github/contributors/opensutd/web-platform-prototype.svg) ![GitHub last commit](https://img.shields.io/github/last-commit/opensutd/web-platform-prototype.svg)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8b8aa4074fe34ca5b8331b2a64f81de0)](https://app.codacy.com/app/tlkh/web-platform-prototype?utm_source=github.com&utm_medium=referral&utm_content=OpenSUTD/web-platform-prototype&utm_campaign=Badge_Grade_Settings) [![Build Status](https://travis-ci.org/OpenSUTD/web-platform-prototype.svg?branch=master)](https://travis-ci.org/OpenSUTD/web-platform-prototype) [![Coverage Status](https://coveralls.io/repos/github/OpenSUTD/web-platform-prototype/badge.svg)](https://coveralls.io/github/OpenSUTD/web-platform-prototype) ![GitHub last commit](https://img.shields.io/github/last-commit/opensutd/web-platform-prototype.svg)
 
 Prototype for the Eventual OpenSUTD Web Platform
 
 ## Database setup
 
-Database will not be pushed to github (will be local on your computer). Use the following script to reset the database.
+Database will not be pushed to GitHub (will be local on your computer). Use the following script to reset the database.
 
 ```
 ./refresh_db.sh
@@ -69,9 +69,10 @@ docker run --rm \
 
 After every commit to the master branch (eg. made via pull request) the following automatic tests will run:
 
-* Travis CI (runs the Django unit test)
-* Snyk vulnerability analysis
-* Codacy code quality check
+* Travis CI (runs the Django unit test) - look at the `.travis.yml` file
+* Snyk vulnerability analysis for Python dependencies
+* Codacy code quality check and review
+* Coverage report reported via Coveralls.io
 
 ## Synchronizing your fork to upstream (OpenSUTD repo)
 
@@ -91,6 +92,6 @@ git push
 
 ## Acknowledgements
 
-![GitHub](https://img.shields.io/github/license/opensutd/web-platform-prototype.svg) [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
+![GitHub](https://img.shields.io/github/license/opensutd/web-platform-prototype.svg) [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/) ![GitHub contributors](https://img.shields.io/github/contributors/opensutd/web-platform-prototype.svg) ![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/opensutd/web-platform-prototype.svg)
  
 

@@ -9,23 +9,37 @@
     <input type="text" class="form-control" placeholder="project name" aria-label="Username"
         aria-describedby="basic-addon1">
 </div>
-{% if projects_list %}
-<!-- start iteration -->
-<div style="text-align: center;">
+<div class="row" style="padding: 1rem">
+    {% if projects_list %}
+    <!-- start iteration -->
     {% for project_item in projects_list.all %}
-    <div class="card" style="display:inline-table;width:20em;height:20em;margin:1em;padding-bottom:0px;">
-        <img src="{{ project_item.featured_image }}" class="card-img-top">
-        <div class="card-body">
-            <h5 class="card-title">{{ project_item.title }}</h5>
-            <p class="card-text">{{ project_item.caption }}</p>
-            <a href="{{ project_item.project_uid }}/" class="card-link">Find out more <i
-                    class="fas fa-chevron-circle-right"></i></a>
+    <div class="col-sm-4" style="margin-top: 2rem">
+            <div class="project-card-sm">
+                <!-- <img src="{{ project_item.featured_image }}" class="card-img-top"> -->
+                <div class="card-body">
+                    <h4 class="card-title">{{ project_item.title }}</h4>
+                    <p class="card-text">{{ project_item.caption }}</p>
+                    <div class="row" style="display: flex; justify-content: space-around">
+                        <a href="{{ project_item.project_uid }}/" class="card-link">
+                            View Project <i class="fas fa-chevron-circle-right"></i></a>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
     {% endfor %}
+    {% else %}
+    <p>Error! No projects are available.</p>
+    {% endif %}
 </div>
-{% else %}
-<p>Error! No projects are available.</p>
-{% endif %}
 
 {% endblock %}
+
+<!-- <div class="card" style="display:inline-table;width:20em;height:20em;margin:1em;padding-bottom:0px;">
+    <img src="{{ project_item.featured_image }}" class="card-img-top">
+    <div class="card-body">
+        <h5 class="card-title">{{ project_item.title }}</h5>
+        <p class="card-text">{{ project_item.caption }}</p>
+        <a href="{{ project_item.project_uid }}/" class="card-link">Find out more <i
+                class="fas fa-chevron-circle-right"></i></a>
+    </div>
+</div> -->

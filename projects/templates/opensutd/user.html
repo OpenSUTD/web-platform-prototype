@@ -4,10 +4,10 @@
 {% load static %}
 
 <div class="profile-cover-image">
-    <img src='{% static "images/cover_image_example.jpg" %}'' alt="Cover Image">
+    <img src='{% static "images/cover_image.png" %}' alt="Cover Image">
 </div>
 
-<div class="row">
+<div class="row" style="margin-bottom: 50px">
     <div class="col-sm-2">
         <img class="profile-picture" src="{{ current_user.display_picture }}" alt="Card image">
     </div>
@@ -22,25 +22,34 @@
         <div class="edit-profile">
             <!-- <a href="#" class="btn btn-md edit-button">Edit Profile <i class="far fa-edit" style="color:black"></i></a>
             <br> -->
-            <button type="button" class="btn btn-outline-primary">Contact  <i class="far fa-phone"></i></button>
+            <button type="button" class="btn btn-outline-primary">Contact  <i class="fas fa-phone"></i></button>
         </div>
     </div>
 </div>
 
 <div class="row">
-    <div class="col-sm-2">
     <h3>Projects</h3>
-    </div>
-    <div class="col-sm-10">
-        <ul class="list-group">
-        {% for project in user_projects %}
-            <li class="list-group-item">
-                <h5>{{ project.title }}</h5>
-                <p>{{ project.caption }}</p>
-            </li>
-        {% endfor %}
-        </ul>
-    </div>
 </div>
-
+<div class="row">
+    {% for project in user_projects %}
+        <!-- <li class="list-group-item">
+            <h5>{{ project.title }}</h5>
+            <p>{{ project.caption }}</p>
+        </li> -->
+        <div class="col-sm-4" style="margin-top: 1rem">
+                <div class="project-card-sm">
+                    <!-- <img src="{{ project_item.featured_image }}" class="card-img-top" > -->
+                    <img src="https://howtomechatronics.com/wp-content/uploads/2017/11/Arduino-Robot-Car-Project.jpg" class="card-img-top" style="height: 200px">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ project.title }}</h4>
+                        <p class="card-text">{{ project.caption }}</p>
+                        <div class="row" style="display: flex; justify-content: space-around">
+                            <a href="{{ project_item.project_uid }}/" class="card-link">
+                                View Project <i class="fas fa-chevron-circle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    {% endfor %}
+</div>
 {% endblock %}

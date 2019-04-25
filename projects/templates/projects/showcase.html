@@ -3,10 +3,10 @@
 
 {% load static %}
 
-<div class="card mb-3" style="margin: 0 auto; text-align: center; margin-top: 150px;">
+<div class="card mb-3" style="margin: 0 auto; text-align: center" >
     <div class="project-card-header row">
-        <div class="col-sm-8" >
-            <h1 style="vertical-align: middle">{{ current_project.title }}</h1>
+        <div class="col-sm-8" style="display: flex; align-items: center">
+            <h1 style="vertical-align: middle; font-size: 3rem">{{ current_project.title }}</h1>
         </div>
         <div class="col-sm-4">
             <button type="button" class="btn btn-outline-primary project-button-header">Share</button>
@@ -57,7 +57,7 @@
 
     <div class="col-sm-3">
         <div class="project-created-by">
-            <h4 style="color: white; vertical-align: middle; display: inline">Created by</h4>
+            <h5>Created by</h5>
         </div>
         <br>
         {% for user in current_project.users.all %}

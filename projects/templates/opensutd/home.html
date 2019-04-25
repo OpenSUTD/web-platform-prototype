@@ -3,67 +3,45 @@
 
 <div class="jumbotron jumbotron-fluid homepage-header">
     <h1>Welcome to OpenSUTD!</h1>
-    <p style="color:white">OpenSUTD is an open community owned by and dedicated to sharing the work done by the SUTD community</p>
-    
-    <div class="call-for-action" >
+    <p style="color:white">OpenSUTD is an open community owned by and dedicated to sharing the work done by the SUTD
+        community</p>
+
+    <div class="call-for-action">
         <div class="homepage-action">
-            <h4><strong>For Students</strong></h4>
-            <!-- <a class="btn action-title" style="background-color: blueviolet" href="#" role="button"><strong>For Students </strong><i class="fas fa-chevron-circle-right"></i></a> -->
+            <h4>For Students</h4>
             <br>
             <div class="action-details-container">
-                <div>
-                    <a class="action-details" href="#" role="button">Browse various student projects 
-                        <i class="fas fa-chevron-circle-right"></i></a>
-                </div>
-                <br>
-                <div>
-                    <a class="action-details" href="#" role="button">Learn from student-curated materials 
-                        <i class="fas fa-chevron-circle-right"></i></i></a>
-                </div>
-                <br>
-                <div>
-                    <a class="action-details" href="#" role="button">Share your projects and knowledge 
-                        <i class="fas fa-chevron-circle-right"></i></a>
-                </div>
-                <button type="button btn-block" class="btn btn-sm btn-secondary" style="margin-top: 25px">
-                    Get Involved</button>
+                <ul class="action-details list-inline">
+                    <li>Browse various student projects</li>
+                    <li>Learn from student-curated materials</li>
+                    <li>Share your projects and knowledge</li>
+                </ul>
+                <a class="btn btn-secondary" href="{% url 'projects:students' %}" role="button"
+                    style="margin-bottom:0px!important;">Get Involved <i class="fas fa-chevron-circle-right"></i></a>
             </div>
         </div>
         <div class="homepage-action">
-            <h4><strong>For Leaders</strong></h4>
-            <!-- <a class="btn action-title" href="#" role="button"><strong>For Educators </strong> <i class="fas fa-chevron-circle-right"></i></a> -->
+            <h4>For Educators</h4>
             <br>
             <div class="action-details-container">
-                <div>
-                    <a class="action-details" href="#" role="button">Promote knowledge with course materials 
-                        <i class="fas fa-chevron-circle-right"></i></a>
-                </div>
-                <br>
-                <div>
-                    <a class="action-details" href="#" role="button">Encourage academic discussion, 
-                        collaboration and contribution  <i class="fas fa-chevron-circle-right"></i></i></a>
-                </div>
-                <button type="button" class="btn btn-sm btn-secondary" style="margin-top: 25px">
-                    Get Involved</button>
+                <ul class="action-details list-inline">
+                    <li>Promote knowledge with course materials</li>
+                    <li>Encourage academic discussion, collaboration and contribution</li>
+                </ul>
+                <a class="btn btn-secondary" href="{% url 'projects:educators' %}" role="button"
+                    style="margin-bottom:0px!important;">Get Involved <i class="fas fa-chevron-circle-right"></i></a>
             </div>
         </div>
         <div class="homepage-action">
-            <h4><strong>For Curators</strong></h4>
-            <!-- <a class="btn action-title" href="#" role="button"><strong>For Leaders </strong> <i class="fas fa-chevron-circle-right"></i></a> -->
+            <h4>For Leaders</h4>
             <br>
             <div class="action-details-container">
-                <div>
-                    <a class="action-details" href="#" role="button">Learn about Open Organisations 
-                        <i class="fas fa-chevron-circle-right"></i></a>
-                </div>
-                <br>
-                <div>
-                    <a class="action-details" href="#" role="button">Manage policies with Open Source methodologies <i class="fas fa-chevron-circle-right"></i></i></a>
-                </div>
-                <br>
-                <button type="button" class="btn btn-sm btn-secondary" style="margin-top: 25px">
-                        Get Involved</button>
-                
+                <ul class="action-details list-inline">
+                    <li>Learn about Open Organisations</li>
+                    <li>Manage policies with Open Source methodologies</li>
+                </ul>
+                <a class="btn btn-secondary" href="{% url 'projects:leaders' %}" role="button"
+                    style="margin-bottom:0px!important;">Get Involved <i class="fas fa-chevron-circle-right"></i></a>
             </div>
         </div>
     </div>
@@ -78,19 +56,19 @@
                 <!-- start iteration -->
                 {% for project_item in top_projects_list %}
                 <div class="col-sm-6">
-                        <div class="project-card-sm">
-                            <!-- <img src="{{ project_item.featured_image }}" class="card-img-top"> -->
-                            <!-- <img src="https://howtomechatronics.com/wp-content/uploads/2017/11/Arduino-Robot-Car-Project.jpg" class="card-img-top" style="height: 200px"> -->
-                            <div class="card-body">
-                                <h4 class="card-title">{{ project_item.title }}</h4>
-                                <p class="card-text">{{ project_item.caption }}</p>
-                                <div class="row" style="text-align: end; padding-left: 200px">
-                                    <a href="{{ project_item.project_uid }}/" class="card-link">
-                                        View Project <i class="fas fa-chevron-circle-right"></i></a>
-                                </div>
+                    <div class="project-card-sm">
+                        <!-- <img src="{{ project_item.featured_image }}" class="card-img-top"> -->
+                        <!-- <img src="https://howtomechatronics.com/wp-content/uploads/2017/11/Arduino-Robot-Car-Project.jpg" class="card-img-top" style="height: 200px"> -->
+                        <div class="card-body">
+                            <h4 class="card-title">{{ project_item.title }}</h4>
+                            <p class="card-text">{{ project_item.caption }}</p>
+                            <div class="row" style="text-align: end; padding-left: 200px">
+                                <a href="{% url 'projects:project_page' project_item.project_uid %}" class="card-link">
+                                    View Project <i class="fas fa-chevron-circle-right"></i></a>
                             </div>
                         </div>
                     </div>
+                </div>
                 {% endfor %}
                 {% else %}
                 <p>Error! No projects are available.</p>
@@ -104,8 +82,8 @@
             <!-- start iteration -->
             <div class="list-group list-group-flush" style="width: 100%">
                 {% for project_item in recent_projects_list %}
-                <a href="projects/{{ project_item.project_uid }}/"
-                    class="list-group-item list-group-item-action" style="color: #424444">{{ project_item.title }}</a>
+                <a href="{% url 'projects:project_page' project_item.project_uid %}" class="list-group-item list-group-item-action"
+                    style="color: #424444">{{ project_item.title }}</a>
                 {% endfor %}
             </div>
             {% else %}

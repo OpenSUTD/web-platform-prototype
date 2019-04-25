@@ -1,19 +1,20 @@
 project_uid,title,caption,category,url,status,users,tags
-ACAD_00001,OpenSUTD Web Platform,Prototype for the eventual OpenSUTD Web Platform,ACAD,https://github.com/OpenSUTD/web-platform-prototype,ACCEPT,"tom,jane","50.003,OpenSUTD,random tag"
+ACAD_00001,OpenSUTD Web Platform,Prototype for the eventual OpenSUTD Web Platform,ACAD,https://github.com/OpenSUTD/web-platform-prototype,ACCEPT,"tom,jane","50.003,OpenSUTD,random tag,student"
 ACAD_00002,Random Project 1,A random project to better the world by design,ACAD,https://github.com/OpenSUTD/web-platform-prototype,ACCEPT,"tom,jane","50.003,random"
-SELF_00001,SUTD Timetable,.ics generator for SUTD Timetable,SELF,https://github.com/OpenSUTD/sutd-timetable,ACCEPT,shungit,"vue,js"
-ACAD_00003,ColourRun,50.002 Computational Structures Group 1-6 : Colour Run,ACAD,https://github.com/DoubleCapitals/CompStruct1D,ACCEPT,sikai,mojo
+SELF_00001,SUTD Timetable,.ics generator for SUTD Timetable,SELF,https://github.com/OpenSUTD/sutd-timetable,ACCEPT,shungit,"vue,js,student"
+ACAD_00003,ColourRun,50.002 Computational Structures Group 1-6 : Colour Run,ACAD,https://github.com/DoubleCapitals/CompStruct1D,ACCEPT,sikai,"mojo,student"
 SELF_00002,SUTDtoSimei_bot,Simple Telegram bot that checks bus timings to go to Simei from SUTD,SELF,https://github.com/benghaun/SUTDtoSimei_bot,ACCEPT,benghaun,telegram
-SELF_00003,momobot,A ROS enabled autonomous ground vehicle for service!,SELF,https://github.com/OpenSUTD/momobot,ACCEPT,brandon,robotics
-SELF_00004,machine-learning-starter-pack,Starter Pack: A collection of AI/ML courses and projects,SELF,https://github.com/OpenSUTD/machine-learning-starter-pack,ACCEPT,pengfei,machine learning
-SELF_00005,evenMoreDimension,Student-initiated Project: Make eDimension better.,SELF,https://github.com/OpenSUTD/evenMoreDimension,ACCEPT,yustynn,"tools,chrome"
+SELF_00003,momobot,A ROS enabled autonomous ground vehicle for service!,SELF,https://github.com/OpenSUTD/momobot,ACCEPT,brandon,"robotics,student"
+SELF_00004,machine-learning-starter-pack,Starter Pack: A collection of AI/ML courses and projects,SELF,https://github.com/OpenSUTD/machine-learning-starter-pack,ACCEPT,pengfei,"machine learning,student,education"
+SELF_00005,evenMoreDimension,Student-initiated Project: Make eDimension better.,SELF,https://github.com/OpenSUTD/evenMoreDimension,ACCEPT,yustynn,"tools,chrome,student"
 SELF_00006,fifth-row-guides,"A collection of knowledge on management and maintenance processes for SUTD Fifth Rows, or any student clubs that wish to become a fifth row.",SELF,https://github.com/OpenSUTD/fifth-row-guides,ACCEPT,guian,policy
 SELF_00007,discovery-week-working-title,Decentralised planning for the Freshmore experience,SELF,https://github.com/OpenSUTD/discovery-week-working-title,ACCEPT,qingze,policy
 SELF_00008,community,OpenSUTD's DNA,SELF,https://github.com/OpenSUTD/community,ACCEPT,joel-huang,policy
-SELF_00009,orientation2019,Source code for SUTD Freshmen Orientation 2019 Website and Telegram Bot @ https://orientation.sutd.edu.sg,SELF,https://github.com/OpenSUTD/orientation2019,ACCEPT,chester,orientation
+SELF_00009,orientation2019,Source code for SUTD Freshmen Orientation 2019 Website and Telegram Bot @ https://orientation.sutd.edu.sg,SELF,https://github.com/OpenSUTD/orientation2019,ACCEPT,chester,"orientation,student"
 SELF_00010,SAC-student-rules,A living policy document with regards to SUTD's Student Activity Centre. Contains user instructions and processes.,SELF,https://github.com/OpenSUTD/SAC-student-rules,ACCEPT,guian,policy
-SELF_00011,Deeplearning-workshop-2019,IAP Workshop: Deep Learning,SELF,https://github.com/OpenSUTD/deeplearning-workshop-2019,ACCEPT,tlkh,"workshop,machine learning"
+SELF_00011,deeplearning-workshop-2019,IAP Workshop: Deep Learning,SELF,https://github.com/OpenSUTD/deeplearning-workshop-2019,ACCEPT,tlkh,"workshop,machine learning,student,education"
 ACAD_00004,Random Project 3,A random project to better the world by design,ACAD,https://github.com/OpenSUTD/web-platform-prototype,PENDING,"tom,jane","51.003,random"
 ACAD_00006,Random Project 5,A random project to better the world by design,ACAD,https://github.com/OpenSUTD/web-platform-prototype,PENDING,"tom,jane","53.003,random"
 ACAD_00008,Random Project 7,A random project to better the world by design,ACAD,https://github.com/OpenSUTD/web-platform-prototype,PENDING,"tom,jane","55.003,random"
 ACAD_00010,Random Project 9,A random project to better the world by design,ACAD,https://github.com/OpenSUTD/web-platform-prototype,PENDING,"tom,jane","57.003,random"
+SELF_00012,course-notes,Unofficial student-curated course notes,SELF,https://github.com/OpenSUTD/course-notes,ACCEPT,"tlkh,yustynn","student,education"

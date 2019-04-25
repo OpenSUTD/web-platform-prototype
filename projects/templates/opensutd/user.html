@@ -22,9 +22,13 @@
         </div>
         <div class="col-sm-3">
             <div class="edit-profile">
-                <!-- <a href="#" class="btn btn-md edit-button">Edit Profile <i class="far fa-edit" style="color:black"></i></a>
-                <br> -->
-                <button type="button" class="btn btn-outline-primary">Contact <i class="fas fa-phone"></i></button>
+                {% if user.is_authenticated %}
+                    {% if user.username == current_user.username %}
+                    <a class="btn btn-outline-secondary btn-block" href="#" role="button"><i class="far fa-edit"></i> Edit Profile</a>
+                    <hr>
+                    {% endif %}
+                {% endif %}
+                <a class="btn btn-outline-secondary btn-block" href="mailto:{{ current_user.contact_email }}" role="button"><i class="fas fa-at"></i> Contact User</a>
             </div>
         </div>
     </div>

@@ -1,6 +1,6 @@
 # web-platform-prototype
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8b8aa4074fe34ca5b8331b2a64f81de0)](https://app.codacy.com/app/tlkh/web-platform-prototype?utm_source=github.com&utm_medium=referral&utm_content=OpenSUTD/web-platform-prototype&utm_campaign=Badge_Grade_Settings) [![Build Status](https://travis-ci.org/OpenSUTD/web-platform-prototype.svg?branch=master)](https://travis-ci.org/OpenSUTD/web-platform-prototype) [![Coverage Status](https://coveralls.io/repos/github/OpenSUTD/web-platform-prototype/badge.svg)](https://coveralls.io/github/OpenSUTD/web-platform-prototype) ![GitHub last commit](https://img.shields.io/github/last-commit/opensutd/web-platform-prototype.svg)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8b8aa4074fe34ca5b8331b2a64f81de0)](https://app.codacy.com/app/tlkh/web-platform-prototype?utm_source=github.com&utm_medium=referral&utm_content=OpenSUTD/web-platform-prototype&utm_campaign=Badge_Grade_Settings) [![Build Status](https://travis-ci.org/OpenSUTD/web-platform-prototype.svg?branch=master)](https://travis-ci.org/OpenSUTD/web-platform-prototype) [![Coverage Status](https://coveralls.io/repos/github/OpenSUTD/web-platform-prototype/badge.svg?branch=HEAD)](https://coveralls.io/github/OpenSUTD/web-platform-prototype?branch=HEAD) ![GitHub last commit](https://img.shields.io/github/last-commit/opensutd/web-platform-prototype.svg)
 
 Prototype for the Eventual OpenSUTD Web Platform
 
@@ -32,7 +32,7 @@ python3 manage.py runserver
 # running with docker
 # - map port 8000 to port 80
 # - mount local folder
-TAG=0.4-dev
+TAG=latest-dev
 docker run --rm \
  -p 80:8000 \
  --env GH_ACCESS_TOKEN=${GH_ACCESS_TOKEN} \
@@ -57,11 +57,11 @@ docker run --rm \
 # make this repo your current directory
 cd web-platform-prototype
 
-TAG=0.4-dev
+TAG=latest-dev
 docker run --rm \
  --env GH_ACCESS_TOKEN=${GH_ACCESS_TOKEN} \
  -v ${PWD}:/app \
- opensutd/web-platform:0.4-dev \
+ opensutd/web-platform:latest-dev \
  bash -c './refresh_db.sh &&  python3 manage.py test'
 ```
 

@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.test.utils import setup_test_environment
 
 from projects.models import *
+from projects.forms import *
 
 import time
 
@@ -11,12 +12,11 @@ client = Client()
 # length of base template, used to test for empty pages
 LEN_BASE = 2600
 
-# Create your tests here.
 
 class BaseWebsiteTestCase(TestCase):
     def setUp(self):
         super()
-    
+
     def test_homepage_load(self):
         url = reverse('projects:home')
         response = self.client.get(url)
@@ -47,6 +47,37 @@ class BaseWebsiteTestCase(TestCase):
         response = self.client.get(url)
         self.assertGreater(len(response.content), LEN_BASE)
 
+    def test_project_students_load(self):
+        url = reverse('projects:students')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_project_students_not_empty(self):
+        url = reverse('projects:students')
+        response = self.client.get(url)
+        self.assertGreater(len(response.content), LEN_BASE)
+
+    def test_project_educators_load(self):
+        url = reverse('projects:educators')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_project_educators_not_empty(self):
+        url = reverse('projects:educators')
+        response = self.client.get(url)
+        self.assertGreater(len(response.content), LEN_BASE)
+
+    def test_project_leaders_load(self):
+        url = reverse('projects:leaders')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_project_leaders_not_empty(self):
+        url = reverse('projects:leaders')
+        response = self.client.get(url)
+        self.assertGreater(len(response.content), LEN_BASE)
+
+
 class SecuredPageTestCase(TestCase):
     def setUp(self):
         super()
@@ -71,6 +102,32 @@ class SecuredPageTestCase(TestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, 302)
 
+
+class SubmissionFormTest(TestCase):
+    def setUp(self):
+        self.client = Client()
+        um = OpenSUTDUserManager()
+        um.create_user("tom", display_name="Tom Magnanti",
+                       display_picture="https://via.placeholder.com/150",
+                       graduation_year=2018, pillar="ISTD",
+                       password="tompassword")
+
+    def test_submission_form_entry(self):
+        self.client.login(username='tom', password='tompassword')
+
+        # test user can actually get to the page
+        response = self.client.get(reverse('projects:submit_new'))
+        self.assertEqual(response.status_code, 200)
+
+        # test submission mechanism
+        form = SubmissionForm({'project_name': "test",
+                               'caption': "test caption",
+                               'category': "ACAD",
+                               'featured_image': "",
+                               'github_url': "https://github.com/OpenSUTD/web-platform-prototype",
+                               'poster_url': ""})
+
+
 class LogintoSecuredPageTestCase(TestCase):
     def setUp(self):
         self.client = Client()
@@ -89,6 +146,7 @@ class LogintoSecuredPageTestCase(TestCase):
         self.client.login(username='tom', password='tompassword')
         response = self.client.get(reverse('projects:submit_new'))
         self.assertEqual(response.status_code, 200)
+
 
 class UserTestCase(TestCase):
     def setUp(self):
@@ -266,7 +324,7 @@ class ProjectShowcaseTestCase(TestCase):
         pm.set_project_status("ACAD_00001", "ACCEPT")
         url = reverse('projects:project_page', args=("ACAD_00001",))
         response = str(self.client.get(url).content)
-        #print(response)
+        # print(response)
         # test top and bottom of contents
         # this does not pass on Travis for Pull Request builds
         # due to them disabling env variables for security reasons

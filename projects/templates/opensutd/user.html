@@ -3,29 +3,30 @@
 
 {% load static %}
 
-<div class="profile-cover-image">
-    <img src='{% static "images/cover_image.png" %}' alt="Cover Image">
-</div>
+<div class="container">
+    <div class="profile-cover-image">
+        <img src='{% static "images/cover_image.png" %}' alt="Cover Image">
+    </div>
 
-<div class="row" style="margin-bottom: 50px">
-    <div class="col-sm-2">
-        <img class="profile-picture" src="{{ current_user.display_picture }}" alt="Card image">
-    </div>
-    <div class="col-sm-7 profile-description">
-        <h1 class="profile-name">{{ current_user.display_name }}</h1>
-        <p>{{ current_user.user_id }}</p>
-        <br>
-        <h5 class="profile-faculty text-primary">{{ current_user.pillar }} - Class of {{ current_user.graduation_year }}</h5>
-        <p class="profile-bio text-primary">{{ current_user.bio }}</p>
-    </div>
-    <div class="col-sm-3">
-        <div class="edit-profile">
-            <!-- <a href="#" class="btn btn-md edit-button">Edit Profile <i class="far fa-edit" style="color:black"></i></a>
-            <br> -->
-            <button type="button" class="btn btn-outline-primary">Contact  <i class="fas fa-phone"></i></button>
+    <div class="row" style="margin-bottom: 30px">
+        <div class="col-sm-2">
+            <img class="profile-picture" src="{{ current_user.display_picture }}" alt="Card image">
+        </div>
+        <div class="col-sm-7 profile-description">
+            <h1 class="profile-name">{{ current_user.display_name }}</h1>
+            <p>{{ current_user.user_id }}</p>
+            <br>
+            <h5 class="profile-faculty text-primary">{{ current_user.pillar }} - Class of {{ current_user.graduation_year }}</h5>
+            <p class="profile-bio text-primary">{{ current_user.bio }}</p>
+        </div>
+        <div class="col-sm-3">
+            <div class="edit-profile">
+                <!-- <a href="#" class="btn btn-md edit-button">Edit Profile <i class="far fa-edit" style="color:black"></i></a>
+                <br> -->
+                <button type="button" class="btn btn-outline-primary">Contact  <i class="fas fa-phone"></i></button>
+            </div>
         </div>
     </div>
-</div>
 
 <div class="row">
     <h3>Projects</h3>
@@ -45,7 +46,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}

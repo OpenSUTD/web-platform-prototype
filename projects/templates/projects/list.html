@@ -1,35 +1,36 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1 class="page-header">Projects List</h1>
-<div class="input-group mb-3">
-    <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon1">SEARCH</span>
+<div class="container">
+    <h1 class="page-header" style="padding: 1.5rem 0rem 0rem 0rem">Projects List</h1>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">SEARCH</span>
+        </div>
+        <input type="text" class="form-control" placeholder="project name" aria-label="Username"
+            aria-describedby="basic-addon1">
     </div>
-    <input type="text" class="form-control" placeholder="project name" aria-label="Username"
-        aria-describedby="basic-addon1">
-</div>
-<div class="row" style="padding: 1rem">
-    {% if projects_list %}
-    <!-- start iteration -->
-    {% for project_item in projects_list.all %}
-    <div class="col-sm-4" style="margin-top: 2rem">
-            <div class="project-card-sm">
-                <!-- <img src="{{ project_item.featured_image }}" class="card-img-top"> -->
-                <div class="card-body">
-                    <h4 class="card-title" style="color:darkred">{{ project_item.title }}</h4>
-                    <p class="card-text">{{ project_item.caption }}</p>
-                    <div class="row" style="display: flex; justify-content: space-around">
-                        <a href="{% url 'projects:project_page' project_item.project_uid %}" class="card-link">
-                            View Project <i class="fas fa-chevron-circle-right"></i></a>
+    <div class="row" style="padding: 1rem">
+        {% if projects_list %}
+        <!-- start iteration -->
+        {% for project_item in projects_list.all %}
+        <div class="col-sm-4" style="margin-top: 2rem">
+                <div class="project-card-sm">
+                    <!-- <img src="{{ project_item.featured_image }}" class="card-img-top"> -->
+                    <div class="card-body">
+                        <h4 class="card-title">{{ project_item.title }}</h4>
+                        <p class="card-text">{{ project_item.caption }}</p>
+                        <div class="row" style="display: flex; justify-content: space-around">
+                            <a href="{% url 'projects:project_page' project_item.project_uid %}" class="card-link">
+                                View Project <i class="fas fa-chevron-circle-right"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    {% endfor %}
-    {% else %}
-    <p>Error! No projects are available.</p>
-    {% endif %}
+        {% endfor %}
+        {% else %}
+        <p>Error! No projects are available.</p>
+        {% endif %}
+    </div>
 </div>
-
 {% endblock %}

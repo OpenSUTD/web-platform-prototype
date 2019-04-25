@@ -1,3 +1,7 @@
+.container {
+  padding-top: 100px;
+}
+
 /*
 * Homepage
 */
@@ -181,7 +185,9 @@ body {
 .project-card-header {
   padding: 1.5rem 2rem;
   margin-bottom: 0;
-  background-color: rgba(0, 0, 0, 0.03);
+  background-color: rgba(153, 151, 151, 0.151);
+  /* background-color: white; */
+  box-shadow: 0 -2px 5px 0 rgba(112, 112, 112, 0.2), 0 3px 20px 0 rgba(112, 112, 112, 0.11); 
   text-align: left;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
@@ -232,9 +238,14 @@ body {
   margin-top: 2rem;
   padding: 0.5rem 2rem;
   font-size: 1rem;
-  color: white;
-  text-align: center;
+  text-align: left;
   position: relative;
+}
+
+.project-created-by h5{
+  color: white;
+  vertical-align: middle;
+  display: inline;
 }
 
 .project-member {
@@ -342,7 +353,7 @@ a.edit-button:hover{
   min-height: 100%;
 }
 
-.project-card p {
+p.project-card {
   padding: 1rem;
 }
 
@@ -365,12 +376,4 @@ a.edit-button:hover{
 
 .project-card-sm h4 {
   margin: 10px;
-}
-
-/* 
-* Admin Page 
-*/
-.admin-tab {
-  margin-top: 3em;
-
 }

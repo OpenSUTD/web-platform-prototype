@@ -78,7 +78,7 @@
                 <p class="text-primary" style="margin:0; margin-top: 20px">Related Tags:</p>
                 {% for tag in current_project.tags.all %}
                 <div class="tag">
-                    <a href="{% url 'projects:projects_list_filter' %}?title=&category=&tags__name={{ tag }}"><span class="badge badge-pill badge-secondary project-badge-tags">{{ tag }}</span></a>
+                    <a href="{% url 'projects:projects_list' %}?title=&category=&tags__name={{ tag }}"><span class="badge badge-pill badge-secondary project-badge-tags">{{ tag }}</span></a>
                 </div>
                 {% endfor %}
             </div>

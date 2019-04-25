@@ -98,18 +98,10 @@ def project_view(request, project_uid):
         return HttpResponseNotFound("Project not approved!")
 
 
-def project_list_filter(request):
+def project_list_view(request):
     f = ProjectFilter(
-        request.GET, queryset=models.Project.objects.all().filter(status="ACCEPT"))
-    return render(request, "projects/listfilter.html", {"filter": f})
-
-
-def projects_list_view(request):
-    projects_list = models.Project.objects.order_by(
-        "-published_date").filter(status="ACCEPT")[:50]
-    context = {"projects_list": projects_list,
-               "tags": models.Project.tags.all()}
-    return render(request, "projects/list.html", context)
+        request.GET, queryset=models.Project.objects.order_by("-published_date").filter(status="ACCEPT"))
+    return render(request, "projects/list.html", {"filter": f})
 
 
 @login_required

@@ -153,7 +153,10 @@ def submit_new_project(request):
 def approval_view(request):
     projects_list = models.Project.objects.order_by(
         "-published_date").filter(status="PENDING")[:50]
-    context = {"projects_list": projects_list}
+    rejected_projects_list = models.Project.objects.order_by(
+        "-published_date").filter(status="REJECT")[:50]
+    context = {"projects_list": projects_list,
+               "rejected_projects_list": rejected_projects_list,}
     return render(request, "opensutd/admin_pending.html", context)
 
 

@@ -22,12 +22,12 @@
                         <div class="row">
                             <div class="col-sm-6" style="display: flex; justify-content: space-around">
                                 <form action='/actions/approve/{{ project_item.project_uid }}/' method='GET'>
-                                    <button type="submit" class="btn btn-success">Approve</button>
+                                    <button type="submit" class="btn btn-success button-accept-pending">Approve</button>
                                 </form>
                             </div>
                             <div class="col-sm-6" style="display: flex; justify-content: space-around">
                                 <form action='/actions/reject/{{ project_item.project_uid }}/' method='GET'>
-                                    <button type="submit" class="btn btn-danger">Reject</button>
+                                    <button type="submit" class="btn btn-danger button-reject-pending">Reject</button>
                                 </form>
                             </div>
                         </div>
@@ -73,12 +73,12 @@
                             <div class="row">
                                     <div class="col-sm-6" style="display: flex; justify-content: space-around">
                                         <form action='/actions/approve/{{ project_item.project_uid }}/' method='GET'>
-                                            <button type="submit" class="btn btn-success">Approve</button>
+                                            <button type="submit" class="btn btn-success button-accept-reject">Approve</button>
                                         </form>
                                     </div>
                                     <div class="col-sm-6" style="display: flex; justify-content: space-around">
                                         <form>
-                                            <button type="submit" disabled class="btn btn-danger disabled" role="button" aria-disabled="true">Reject</button>
+                                            <button type="submit" disabled class="btn btn-danger disabled button-reject-reject" role="button" aria-disabled="true">Reject</button>
                                         </form>
                                     </div>
                                 </div>
@@ -93,7 +93,11 @@
                 </div>
                 {% endfor %}
                 {% else %}
-                <p>Error! No projects are available.</p>
+                <div style="width: 100%">
+                        <div style="text-align:center; margin-top: 80px">
+                            <p>There are no previously rejected projects.</p>
+                        </div>
+                    </div>
                 {% endif %}
             </div>
     </div>

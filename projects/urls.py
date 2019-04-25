@@ -18,3 +18,5 @@ urlpatterns = [
     path('actions/reject/<project_uid>/', views.reject, name='reject'),
     path('actions/approve/<project_uid>/', views.approve, name='approve'),
 ]
+
+handler404 = 'projects.views.custom_404'

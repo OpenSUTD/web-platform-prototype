@@ -29,6 +29,9 @@ def index(request):
                "recent_projects_list": recent_projects_list}
     return render(request, "opensutd/home.html", context)
 
+def custom_404(request, exception=None):
+    context = {}
+    return render(request, "error404.html", context)
 
 def students_page_view(request):
     student_projects_list = models.Project.objects.order_by(
@@ -94,8 +97,7 @@ def project_view(request, project_uid):
                    "readme": readme}
         return render(request, "projects/showcase.html", context)
     else:
-        # TODO: replace with OpenSUTD 404 page
-        return HttpResponseNotFound("Project not approved!")
+        raise Http404("Project is not yet approved!")
 
 
 def project_view_bypass(request, project_uid):

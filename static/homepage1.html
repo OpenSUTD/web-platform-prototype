@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="jumbotron jumbotron-fluid full-width-header">
+    <h1>Welcome to OpenSUTD!</h1>
+    <p class="lead">OpenSUTD is an open community owned by and dedicated to sharing the work done by the SUTD community
+    </p>
+    <div class="d-flex justify-content-around">
+        <div class="col-sm">
+            <div class="card shadow bg-dark fix-height-card-homepage">
+                <div class="card-body pb-0">
+                    <h4 class="my-0 font-weight-normal" style="color:white;">For Students</h4>
+                    <ul class="list-unstyled mt-3 list-add-padding">
+                        <li>Browse various student projects</li>
+                        <li>Learn from student-curated materials</li>
+                        <li>Share your projects and knowledge</li>
+                    </ul>
+                </div>
+                <button type="button" class="btn btn-lg btn-block btn-secondary"
+                    style="margin-bottom:0px!important;">Get Involved <i
+                        class="fas fa-chevron-circle-right"></i></button>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="card shadow bg-dark fix-height-card-homepage">
+                <div class="card-body pb-0">
+                    <h4 class="my-0 font-weight-normal" style="color:white;">For Educators</h4>
+                    <ul class="list-unstyled mt-3 list-add-padding">
+                        <li>Promote knowledge through access to course material</li>
+                        <li>Encourage academic discussion, collaboration and contributions</li>
+                    </ul>
+                </div>
+                <button type="button" class="btn btn-lg btn-block btn-secondary"
+                    style="margin-bottom:0px!important;">Get Involved <i
+                        class="fas fa-chevron-circle-right"></i></button>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="card shadow bg-dark fix-height-card-homepage">
+                <div class="card-body pb-0">
+                    <h4 class="my-0 font-weight-normal" style="color:white;">For Curators and Open Governors</h4>
+                    <ul class="list-unstyled mt-3 list-add-padding">
+                        <li>Learn about Open Organisations</li>
+                        <li>Manage Policies with Open Source methodologies</li>
+                    </ul>
+                </div>
+                <button type="button" class="btn btn-lg btn-block btn-secondary"
+                    style="margin-bottom:0px!important;">Get Involved <i
+                        class="fas fa-chevron-circle-right"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-sm">
+        <h2><i class="fas fa-star"></i> Top Projects</h2>
+        {% if top_projects_list %}
+        <!-- start iteration -->
+        {% for project_item in top_projects_list %}
+        <div class="card" style="width: 100%">
+            <img src="{{ project_item.featured_image }}" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">{{ project_item.title }}</h5>
+                <p class="card-text">{{ project_item.caption }}</p>
+                <a href="projects/{{ project_item.project_uid }}/" class="btn btn-primary">Find out more about
+                    {{ project_item.title }} <i class="fas fa-chevron-circle-right"></i></a>
+            </div>
+        </div>
+        <br>
+        {% endfor %}
+        {% else %}
+        <p>Error! No projects are available.</p>
+        {% endif %}
+    </div>
+
+    <div class="col-sm">
+        <h2><i class="far fa-clock"></i> Recent Projects</h2>
+        {% if recent_projects_list %}
+        <!-- start iteration -->
+        <div class="list-group list-group-flush" style="width: 100%">
+            {% for project_item in recent_projects_list %}
+            <a href="projects/{{ project_item.project_uid }}/"
+                class="list-group-item list-group-item-action">{{ project_item.title }}</a>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p>Error! No projects are available.</p>
+        {% endif %}
+        <hr>
+        <p>Here are the working pages for test purposes:</p>
+        <ul>
+            <li><a href="{% url 'projects:approval' %}">Projects Page</a></li>
+        </ul>
+    </div>
+
+</div>
+{% endblock %}

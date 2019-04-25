@@ -2,54 +2,54 @@
 {% block content %}
 
 {% load static %}
-
-<div class="col-sm">
-    <h1>Pending Approval</h1>
-    <div class="row">
-        {% if projects_list %}
-        <!-- start iteration -->
-        {% for project_item in projects_list %}
-        <div class="col-sm-4" style="margin-top: 2rem">
-            <div class="project-card-sm">
-                <!-- <img src="{{ project_item.featured_image }}" class="card-img-top"> -->
-                <div class="card-body">
-                    <h4 class="card-title">{{ project_item.title }}</h4>
-                    <p class="card-text">{{ project_item.caption }}</p>
-                    <div class="row">
-                        <div class="col-sm-6" style="display: flex; justify-content: space-around">
-                            <form action='/actions/approve/{{ project_item.project_uid }}/' method='GET'>
-                                <button type="submit" class="btn btn-success">Approve</button>
-                            </form>
+<div class="container">
+    <div class="col-sm" style="padding: 3rem 0rem 0rem 0rem">
+        <h1>Pending Approval</h1>
+        <div class="row">
+            {% if projects_list %}
+            <!-- start iteration -->
+            {% for project_item in projects_list %}
+            <div class="col-sm-4" style="margin-top: 2rem">
+                <div class="project-card-sm">
+                    <!-- <img src="{{ project_item.featured_image }}" class="card-img-top"> -->
+                    <div class="card-body">
+                        <h4 class="card-title">{{ project_item.title }}</h4>
+                        <p class="card-text">{{ project_item.caption }}</p>
+                        <div class="row">
+                            <div class="col-sm-6" style="display: flex; justify-content: space-around">
+                                <form action='/actions/approve/{{ project_item.project_uid }}/' method='GET'>
+                                    <button type="submit" class="btn btn-success">Approve</button>
+                                </form>
+                            </div>
+                            <div class="col-sm-6" style="display: flex; justify-content: space-around">
+                                <form action='/actions/reject/{{ project_item.project_uid }}/' method='GET'>
+                                    <button type="submit" class="btn btn-danger">Reject</button>
+                                </form>
+                            </div>
                         </div>
-                        <div class="col-sm-6" style="display: flex; justify-content: space-around">
-                            <form action='/actions/reject/{{ project_item.project_uid }}/' method='GET'>
-                                <button type="submit" class="btn btn-danger">Reject</button>
-                            </form>
+                        <hr>
+                        <div class="row" style="display: flex; justify-content: flex-end">
+                            <a href="/projects/{{ project_item.project_uid }}/" class="btn btn-md edit-button">
+                                View Project <i class="fa fa-angle-right" style="color:black"></i></a>
                         </div>
-                    </div>
-                    <hr>
-                    <div class="row" style="display: flex; justify-content: flex-end">
-                        <a href="/projects/{{ project_item.project_uid }}/" class="btn btn-md edit-button">
-                            View Project <i class="fa fa-angle-right" style="color:black"></i></a>
                     </div>
                 </div>
             </div>
-        </div>
-        {% endfor %}
-        {% else %}
-        
-        <div style="width: 100%">
-            <div style="text-align:center">
-                <p>Yay! No more pending projects to review.</p>
-                <br>
-                <img src='{% static "images/yay.gif" %}' style="height: 200px">
-                
+            {% endfor %}
+            {% else %}
+            
+            <div style="width: 100%">
+                <div style="text-align:center; margin-top: 80px">
+                    <p>Yay! No more pending projects to review.</p>
+                    <br>
+                    <img src='{% static "images/yay.gif" %}' style="height: 200px">
+                    
+                </div>
             </div>
+            
+            {% endif %}
         </div>
-        
-        {% endif %}
+    
     </div>
-
 </div>
-
 {% endblock %}

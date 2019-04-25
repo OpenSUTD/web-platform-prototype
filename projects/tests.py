@@ -92,12 +92,12 @@ class SubmissionFormTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
         # test submission mechanism
-        form = SubmissionForm({'project_name':"test",
-                               'caption':"test caption",
-                               'category':"ACAD",
-                               'featured_image':"",
-                               'github_url':"https://github.com/OpenSUTD/web-platform-prototype",
-                               'poster_url':""})
+        form = SubmissionForm({'project_name': "test",
+                               'caption': "test caption",
+                               'category': "ACAD",
+                               'featured_image': "",
+                               'github_url': "https://github.com/OpenSUTD/web-platform-prototype",
+                               'poster_url': ""})
 
 
 class LogintoSecuredPageTestCase(TestCase):

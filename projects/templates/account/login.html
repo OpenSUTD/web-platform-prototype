@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="jumbotron jumbotron-fluid homepage-header">
+    <h1>Welcome to OpenSUTD!</h1>
+    <p style="color:white">OpenSUTD is an open community owned by and dedicated to sharing the work done by the SUTD
+        community</p>
+</div>
+
+{% load i18n %}
+{% load account socialaccount %}
+{% get_providers as socialaccount_providers %}
+
+<div class="container">
+    <div class="row">
+        <h1>Sign in to OpenSUTD</h1>
+    </div>
+    <br>
+    <hr>
+    <br>
+    <div class="row">
+        <p><big><b>Please sign in with your existing GitHub account</b></big></p>
+    </div>
+    <div class="row">
+        {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+        {% include "socialaccount/snippets/login_extra.html" %}
+    </div>
+    <br>
+    <hr>
+    <br>
+    <div class="row">
+        <p>If you have an OpenSUTD account for development use, please log in below:</p>
+    </div>
+    <div class="row">
+        <form class="login" method="POST" action="{% url 'account_login' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
+            <a class="button secondaryAction"
+                href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+            <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

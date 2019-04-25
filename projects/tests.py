@@ -99,17 +99,22 @@ class TraverseLinksTest(TestCase):
                           poster_url="https://via.placeholder.com/150",
                           featured_image="https://via.placeholder.com/150")
 
+        um.create_user("dick", display_name="Dick Tan",
+                       display_picture="https://via.placeholder.com/150",
+                       graduation_year=2019, pillar="ISTD")
+
         um.create_user("jane", display_name="Jane Tan",
                        display_picture="https://via.placeholder.com/150",
                        graduation_year=2021, pillar="ESD")
 
         pm.set_project_status("ACAD_00001", "ACCEPT")
+        pm.add_user_to_project("ACAD_00001", "dick")
         pm.add_user_to_project("ACAD_00001", "jane")
-        pm.add_tag_to_project("ACAD_00001", "rand1,rand2")
+        pm.add_tag_to_project("ACAD_00001", "rand1,rand2,education,student,policy")
 
     def test_traverse_urls(self):
         # Fill these lists as needed with your site specific URLs to check and to avoid
-        to_traverse_list = ["/", "/projects/"]
+        to_traverse_list = ["/", "/projects/", "/students/", "/educators/", "/leaders/"]
         to_avoid_list = ["javascript:history\.back()", "https://*",
                          "javascript:history\.go\(-1\)", "^mailto:.*"]
 

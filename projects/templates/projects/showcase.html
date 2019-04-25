@@ -47,7 +47,7 @@
             <div class="card">
                 <h3>Comments</h3>
                 <div class="form-group">
-                    <form action="/action_page.php" id="comment-form">
+                    <form action="#" id="comment-form">
                         <input type="text" class="form-control" placeholder="Write a comment" id="inputDefault">
                         <input type="submit" class="btn btn-sm btn-primary" style="margin-top: 5px; float: right">
                     </form>
@@ -67,7 +67,7 @@
                         <img src='{% static "images/usericon.png" %}' alt="Card image">
                     </div>
                     <div class="col-sm-8" style="margin: auto">
-                        <a href="../../users/{{ user.username }}/"
+                        <a href="{% url 'projects:user' user.username %}"
                             class="card-text project-member-name">{{ user.display_name}}, {{ user.pillar}}</a>
                     </div>
                 </div>
@@ -78,7 +78,7 @@
                 <p class="text-primary" style="margin:0; margin-top: 20px">Related Tags:</p>
                 {% for tag in current_project.tags.all %}
                 <div class="tag">
-                    <a href="../../projects/search?title=&category=&tags__name={{ tag}}"><span class="badge badge-pill badge-secondary project-badge-tags">{{ tag}}</span></a>
+                    <a href="{% url 'projects:projects_list_filter' %}?title=&category=&tags__name={{ tag }}"><span class="badge badge-pill badge-secondary project-badge-tags">{{ tag }}</span></a>
                 </div>
                 {% endfor %}
             </div>

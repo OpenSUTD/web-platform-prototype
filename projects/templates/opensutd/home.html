@@ -57,12 +57,16 @@
                 {% for project_item in top_projects_list %}
                 <div class="col-sm-6">
                     <div class="project-card-sm">
-                        <!-- <img src="{{ project_item.featured_image }}" class="card-img-top"> -->
-                        <!-- <img src="https://howtomechatronics.com/wp-content/uploads/2017/11/Arduino-Robot-Car-Project.jpg" class="card-img-top" style="height: 200px"> -->
+                        {% if project_item.featured_image == "" %}
+                        <img
+                            src="https://howtomechatronics.com/wp-content/uploads/2017/11/Arduino-Robot-Car-Project.jpg">
+                        {% else %}
+                        <img src="{{ project_item.featured_image }}">
+                        {% endif %}
                         <div class="card-body">
                             <h4 class="card-title">{{ project_item.title }}</h4>
                             <p class="card-text">{{ project_item.caption }}</p>
-                            <div class="row" style="text-align: end; padding-left: 200px">
+                            <div class="row" style="display: flex; justify-content: space-around">
                                 <a href="{% url 'projects:project_page' project_item.project_uid %}" class="card-link">
                                     View Project <i class="fas fa-chevron-circle-right"></i></a>
                             </div>
@@ -82,8 +86,8 @@
             <!-- start iteration -->
             <div class="list-group list-group-flush" style="width: 100%">
                 {% for project_item in recent_projects_list %}
-                <a href="{% url 'projects:project_page' project_item.project_uid %}" class="list-group-item list-group-item-action"
-                    style="color: #424444">{{ project_item.title }}</a>
+                <a href="{% url 'projects:project_page' project_item.project_uid %}"
+                    class="list-group-item list-group-item-action" style="color: #424444">{{ project_item.title }}</a>
                 {% endfor %}
             </div>
             {% else %}

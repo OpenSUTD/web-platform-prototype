@@ -5,7 +5,7 @@ from . import models
 class SubmissionForm(forms.Form):
     project_name = forms.CharField(label="Project Name", max_length=100)
     caption = forms.CharField(label="Caption", max_length=200)
-    category = forms.MultipleChoiceField(
+    category = forms.ChoiceField(
         label="Category",
         widget=forms.RadioSelect,
         choices=models.CATEGORY_CHOICES,

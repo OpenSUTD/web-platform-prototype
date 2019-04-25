@@ -22,7 +22,7 @@ gh = Github(ACCESS_TOKEN)
 
 def index(request):
     top_projects_list = models.Project.objects.order_by(
-        "-published_date").filter(status="ACCEPT")[:2]
+        "-published_date").filter(status="ACCEPT")[:4]
     recent_projects_list = models.Project.objects.order_by(
         "-published_date").filter(status="ACCEPT")[:9]
     context = {"top_projects_list": top_projects_list,

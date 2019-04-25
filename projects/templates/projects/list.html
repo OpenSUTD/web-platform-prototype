@@ -17,11 +17,10 @@
             {% for project_item in filter.qs %}
             <div class="col-sm-4" style="margin-top: 2rem">
                     <div class="project-card-sm">
-                        <!-- <img src="{{ project_item.featured_image }}" class="card-img-top"> -->
                         {% if project_item.featured_image == "" %}
-                        <img src="https://howtomechatronics.com/wp-content/uploads/2017/11/Arduino-Robot-Car-Project.jpg" class="generic-img" alt="Generic Image" style="height: 200px">
+                        <img src="https://howtomechatronics.com/wp-content/uploads/2017/11/Arduino-Robot-Car-Project.jpg">
                         {% else %}
-                        <img src={{ project_item.featured_image }} class="generic-img" alt="Project Image" style="height: 200px">
+                        <img src="{{ project_item.featured_image }}">
                         {% endif %}
                         <div class="card-body">
                             <h4 class="card-title">{{ project_item.title }}</h4>

@@ -7,13 +7,13 @@
 
 <h1 class="page-header">Projects</h1>
 
-<div class = "container">
-    
+<div class="container">
+
     <form method="GET">
         {{ filter.form|bootstrap }}
         <button type="submit" class=btn btn-primary style="background-color: #eceeef">Search</button>
     </form>
-    
+
     <ul>
         {% for project in filter.qs %}
         <div class="card" style="display:inline-table;width:20em;height:20em;margin:1em;padding-bottom:0px;">
@@ -21,7 +21,7 @@
             <div class="card-body">
                 <h5 class="card-title">{{ project.title }}</h5>
                 <p class="card-text">{{ project.caption }}</p>
-                <a href="{{ project.project_uid }}/" class="card-link">Find out more <i
+                <a href="{% url 'projects:project_page' project.project_uid %}" class="card-link">Find out more <i
                         class="fas fa-chevron-circle-right"></i></a>
             </div>
         </div>

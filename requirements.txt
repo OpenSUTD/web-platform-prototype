@@ -18,3 +18,4 @@ pygithub
 markdown2
 coverage
 coveralls
+beautifulsoup4

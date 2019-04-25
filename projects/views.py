@@ -53,28 +53,34 @@ def user_view(request, user_id):
     return render(request, "opensutd/user.html", context)
 
 
+def get_readme(current_project_url):
+    repo_url = current_project_url.split("/")
+    repo_name = repo_url[-2] + "/" + repo_url[-1]
+    repo = gh.get_repo(repo_name)
+    readme = str(base64.b64decode(
+        repo.get_contents("README.md").content))
+    readme = readme.replace("\\n", "\n")
+    readme = readme[2:-1]  # get rid of b' and '
+    readme = markdown2.markdown(readme, extras=["fenced-code-blocks"])
+
+    # fix image paths
+    # ignore fully defined paths with http
+    readme = readme.replace('src="http', '<|SPECIAL_TOKEN|>')
+    readme = readme.replace(
+        'src="', 'src="https://raw.githubusercontent.com/' + repo_name + '/master/')
+    readme = readme.replace('<|SPECIAL_TOKEN|>', 'src="http')
+
+    return readme
+
+
 def project_view(request, project_uid):
     current_project = models.Project.objects.get(project_uid=project_uid)
     if current_project.is_accepted():
         try:
-            repo_url = current_project.url.split("/")
-            repo_name = repo_url[-2] + "/" + repo_url[-1]
-            repo = gh.get_repo(repo_name)
-            readme = str(base64.b64decode(
-                repo.get_contents("README.md").content))
-            readme = readme.replace("\\n", "\n")
-            readme = readme[2:-1]  # get rid of b' and '
-            readme = markdown2.markdown(readme, extras=["fenced-code-blocks"])
-
-            # fix image paths
-            # ignore fully defined paths with http
-            readme = readme.replace('src="http', '<|SPECIAL_TOKEN|>')
-            readme = readme.replace(
-                'src="', 'src="https://raw.githubusercontent.com/' + repo_name + '/master/')
-            readme = readme.replace('<|SPECIAL_TOKEN|>', 'src="http')
-
+            readme = get_readme(current_project.url)
         except Exception as e:
             readme = "Unable to retrieve README:\n"+str(e)
+
         context = {"current_project": current_project,
                    "readme": readme}
         return render(request, "projects/showcase.html", context)

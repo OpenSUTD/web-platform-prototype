@@ -29,7 +29,7 @@
                         </div>
                         <hr>
                         <div class="row" style="display: flex; justify-content: flex-end">
-                            <a href="/projects/{{ project_item.project_uid }}/" class="btn btn-md edit-button">
+                            <a href="{% url 'projects:project_page_bypass' project_item.project_uid %}" class="btn btn-md edit-button">
                                 View Project <i class="fa fa-angle-right" style="color:black"></i></a>
                         </div>
                     </div>

@@ -33,7 +33,7 @@ def index(request):
 def students_page_view(request):
     student_projects_list = models.Project.objects.order_by(
         "-published_date").filter(status="ACCEPT").filter(tags__name__in=["student"])[:9]
-    
+
     context = {"student_projects_list": student_projects_list}
     return render(request, "opensutd/students.html", context)
 
@@ -41,7 +41,7 @@ def students_page_view(request):
 def educators_page_view(request):
     educators_projects_list = models.Project.objects.order_by(
         "-published_date").filter(status="ACCEPT").filter(tags__name__in=["education"])[:9]
-    
+
     context = {"educators_projects_list": educators_projects_list}
     return render(request, "opensutd/educators.html", context)
 
@@ -49,7 +49,7 @@ def educators_page_view(request):
 def leaders_page_view(request):
     policy_projects_list = models.Project.objects.order_by(
         "-published_date").filter(status="ACCEPT").filter(tags__name__in=["policy"])[:9]
-    
+
     context = {"policy_projects_list": policy_projects_list}
     return render(request, "opensutd/leaders.html", context)
 
@@ -96,6 +96,18 @@ def project_view(request, project_uid):
     else:
         # TODO: replace with OpenSUTD 404 page
         return HttpResponseNotFound("Project not approved!")
+
+
+def project_view_bypass(request, project_uid):
+    current_project = models.Project.objects.get(project_uid=project_uid)
+    try:
+        readme = get_readme(current_project.url)
+    except Exception as e:
+        readme = "Unable to retrieve README:\n"+str(e)
+
+    context = {"current_project": current_project,
+               "readme": readme}
+    return render(request, "projects/showcase.html", context)
 
 
 def project_list_view(request):

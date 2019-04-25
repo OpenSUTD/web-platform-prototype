@@ -6,3 +6,6 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('', include('projects.urls')),
 ]
+
+handler404 = 'projects.views.custom_404'
+

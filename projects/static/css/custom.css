@@ -34,10 +34,10 @@ body {
 }
 
 .homepage-header {
-  margin: 4em 0 0 0;
+  margin: 3em 0 0 0;
   padding: 5em 0em 7em 0em;
   background: linear-gradient( rgba(0, 0, 0, 0.616), rgba(0, 0, 0, 0.5) ), url("/static/images/SUTD_background.jpg");
-  background-position: 60% 50%;
+  background-position: 20% 15%;
   text-align: center;
 }
 
@@ -48,12 +48,12 @@ body {
 
 .call-for-action { 
   display: inline-flex;
-  margin-top: 3rem;
+  margin-top: 2.5rem;
 }
 
 .homepage-action {
-  margin-right: 1rem;
-  margin-left: 1rem;
+  margin-right: 2rem;
+  margin-left: 2rem;
   width: 330px;
   height: 220px;
 }
@@ -385,9 +385,11 @@ p.project-card {
 }
 
 .project-card-sm p {
-  padding: 1px 1rem 1rem 1rem;
+  padding: 1rem;
+  padding-top: 1px;
 }
 
 .project-card-sm h4 {
-  margin: 10px;
+  margin: 1rem;
+  margin-top: 1px;
 }

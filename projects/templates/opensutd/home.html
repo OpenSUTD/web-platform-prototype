@@ -73,17 +73,18 @@
     <div class="row">
         <div class="col-sm-8">
             <h2><i class="fas fa-star"></i> Top Projects</h2>
-            <div class="row" style="padding: 1rem">
+            <div class="row">
                 {% if top_projects_list %}
                 <!-- start iteration -->
                 {% for project_item in top_projects_list %}
-                <div class="col-sm-5">
+                <div class="col-sm-6">
                         <div class="project-card-sm">
                             <!-- <img src="{{ project_item.featured_image }}" class="card-img-top"> -->
+                            <!-- <img src="https://howtomechatronics.com/wp-content/uploads/2017/11/Arduino-Robot-Car-Project.jpg" class="card-img-top" style="height: 200px"> -->
                             <div class="card-body">
                                 <h4 class="card-title">{{ project_item.title }}</h4>
                                 <p class="card-text">{{ project_item.caption }}</p>
-                                <div class="row" style="display: flex; justify-content: flex-end">
+                                <div class="row" style="text-align: end; padding-left: 200px">
                                     <a href="{{ project_item.project_uid }}/" class="card-link">
                                         View Project <i class="fas fa-chevron-circle-right"></i></a>
                                 </div>
@@ -95,26 +96,6 @@
                 <p>Error! No projects are available.</p>
                 {% endif %}
             </div>
-            <!-- <div class="row">
-                {% if top_projects_list %}
-                {% for project_item in top_projects_list %}
-                <div class="col-sm-4" style="margin-top:10px">
-                    <div class="project-card-sm">
-                       <img src="{{ project_item.featured_image }}" class="card-img-top">
-                        <div class="card-body">
-                            <h4 class="card-title">{{ project_item.title }}</h4>
-                            <p class="card-text">{{ project_item.caption }}</p>
-                            <a href="projects/{{ project_item.project_uid }}/" class="card-link" 
-                                style="position: absolute; right: 30px; bottom: 10px">
-                                Find out more <i class="fas fa-chevron-circle-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-            {% else %}
-            <p>Error! No projects are available.</p>
-            {% endif %} -->
         </div>
 
         <div class="col-sm">
@@ -124,7 +105,7 @@
             <div class="list-group list-group-flush" style="width: 100%">
                 {% for project_item in recent_projects_list %}
                 <a href="projects/{{ project_item.project_uid }}/"
-                    class="list-group-item list-group-item-action">{{ project_item.title }}</a>
+                    class="list-group-item list-group-item-action" style="color: #424444">{{ project_item.title }}</a>
                 {% endfor %}
             </div>
             {% else %}

@@ -16,36 +16,39 @@
             <h1 class="profile-name">{{ current_user.display_name }}</h1>
             <p>{{ current_user.user_id }}</p>
             <br>
-            <h5 class="profile-faculty text-primary">{{ current_user.pillar }} - Class of {{ current_user.graduation_year }}</h5>
+            <h5 class="profile-faculty text-primary">{{ current_user.pillar }} - Class of
+                {{ current_user.graduation_year }}</h5>
             <p class="profile-bio text-primary">{{ current_user.bio }}</p>
         </div>
         <div class="col-sm-3">
             <div class="edit-profile">
                 <!-- <a href="#" class="btn btn-md edit-button">Edit Profile <i class="far fa-edit" style="color:black"></i></a>
                 <br> -->
-                <button type="button" class="btn btn-outline-primary">Contact  <i class="fas fa-phone"></i></button>
+                <button type="button" class="btn btn-outline-primary">Contact <i class="fas fa-phone"></i></button>
             </div>
         </div>
     </div>
 
-<div class="row">
-    <h3>Projects</h3>
-</div>
-<div class="row">
-    {% for project in user_projects %}
+    <div class="row">
+        <h3>Projects</h3>
+    </div>
+    <div class="row">
+        {% for project in user_projects %}
         <div class="col-sm-4" style="margin-top: 1rem">
-                <div class="project-card-sm">
-                    <!-- <img src="{{ project_item.featured_image }}" class="card-img-top" > -->
-                    <img src="https://howtomechatronics.com/wp-content/uploads/2017/11/Arduino-Robot-Car-Project.jpg" class="card-img-top" style="height: 200px">
-                    <div class="card-body">
-                        <h4 class="card-title">{{ project.title }}</h4>
-                        <p class="card-text">{{ project.caption }}</p>
-                        <div class="row" style="display: flex; justify-content: space-around">
-                            <a href="{% url 'projects:project_page' project.project_uid %}" class="card-link">
-                                View Project <i class="fas fa-chevron-circle-right"></i></a>
-                        </div>
+            <div class="project-card-sm">
+                <!-- <img src="{{ project_item.featured_image }}" class="card-img-top" > -->
+                <img src="https://howtomechatronics.com/wp-content/uploads/2017/11/Arduino-Robot-Car-Project.jpg"
+                    class="card-img-top" style="height: 200px">
+                <div class="card-body">
+                    <h4 class="card-title">{{ project.title }}</h4>
+                    <p class="card-text">{{ project.caption }}</p>
+                    <div class="row" style="display: flex; justify-content: space-around">
+                        <a href="{% url 'projects:project_page' project.project_uid %}" class="card-link">
+                            View Project <i class="fas fa-chevron-circle-right"></i></a>
                     </div>
                 </div>
+            </div>
+        </div>
         {% endfor %}
     </div>
 </div>

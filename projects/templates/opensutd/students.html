@@ -41,7 +41,7 @@
                     <h4 class="card-title">{{ project_item.title }}</h4>
                     <p class="card-text">{{ project_item.caption }}</p>
                     <div class="row" style="display: flex; justify-content: space-around">
-                        <a href="{% url 'projects:project_page' project.project_uid %}" class="card-link">
+                        <a href="{% url 'projects:project_page' project_item.project_uid %}" class="card-link">
                             View Project <i class="fas fa-chevron-circle-right"></i></a>
                     </div>
                 </div>

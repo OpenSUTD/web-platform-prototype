@@ -32,7 +32,7 @@ python3 manage.py runserver
 # running with docker
 # - map port 8000 to port 80
 # - mount local folder
-TAG=0.4-dev
+TAG=latest-dev
 docker run --rm \
  -p 80:8000 \
  --env GH_ACCESS_TOKEN=${GH_ACCESS_TOKEN} \
@@ -57,11 +57,11 @@ docker run --rm \
 # make this repo your current directory
 cd web-platform-prototype
 
-TAG=0.4-dev
+TAG=latest-dev
 docker run --rm \
  --env GH_ACCESS_TOKEN=${GH_ACCESS_TOKEN} \
  -v ${PWD}:/app \
- opensutd/web-platform:0.4-dev \
+ opensutd/web-platform:latest-dev \
  bash -c './refresh_db.sh &&  python3 manage.py test'
 ```
 

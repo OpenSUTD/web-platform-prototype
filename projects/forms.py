@@ -13,3 +13,5 @@ class SubmissionForm(forms.Form):
     featured_image = forms.URLField(label="Featured Image", max_length=200)
     github_url = forms.URLField(label="GitHub URL", max_length=200)
     poster_url = forms.URLField(label="Poster URL", max_length=200)
+
+    

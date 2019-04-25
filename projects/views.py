@@ -19,13 +19,30 @@ import os
 ACCESS_TOKEN = os.environ["GH_ACCESS_TOKEN"]
 gh = Github(ACCESS_TOKEN)
 
+
 def index(request):
-    top_projects_list = models.Project.objects.order_by("-published_date").filter(status="ACCEPT")[:2]
+    top_projects_list = models.Project.objects.order_by(
+        "-published_date").filter(status="ACCEPT")[:2]
     recent_projects_list = models.Project.objects.order_by(
         "-published_date").filter(status="ACCEPT")[:9]
     context = {"top_projects_list": top_projects_list,
                "recent_projects_list": recent_projects_list}
     return render(request, "opensutd/home.html", context)
+
+
+def students_page_view(request):
+    context = {}
+    return render(request, "opensutd/students.html", context)
+
+
+def educators_page_view(request):
+    context = {}
+    return render(request, "opensutd/educators.html", context)
+
+
+def leaders_page_view(request):
+    context = {}
+    return render(request, "opensutd/leaders.html", context)
 
 
 def user_view(request, user_id):
@@ -52,7 +69,8 @@ def project_view(request, project_uid):
             # fix image paths
             # ignore fully defined paths with http
             readme = readme.replace('src="http', '<|SPECIAL_TOKEN|>')
-            readme = readme.replace('src="', 'src="https://raw.githubusercontent.com/' + repo_name + '/master/')
+            readme = readme.replace(
+                'src="', 'src="https://raw.githubusercontent.com/' + repo_name + '/master/')
             readme = readme.replace('<|SPECIAL_TOKEN|>', 'src="http')
 
         except Exception as e:
@@ -77,6 +95,7 @@ def projects_list_view(request):
     context = {"projects_list": projects_list,
                "tags": models.Project.tags.all()}
     return render(request, "projects/list.html", context)
+
 
 @login_required
 def submit_new_project(request):
@@ -134,4 +153,3 @@ def reject(request, project_uid):
     project.status = "REJECT"
     project.save()
     return HttpResponseRedirect("/admin/approval")
-

@@ -126,7 +126,8 @@ def submit_new_project(request):
                               title=data["project_name"],
                               caption=data["caption"],
                               category=data["category"],
-                              url=data["github_url"])
+                              url=data["github_url"],
+                              featured_image=data["featured_image"])
 
             # redirect to a new URL:
             return HttpResponseRedirect("/admin/approval")

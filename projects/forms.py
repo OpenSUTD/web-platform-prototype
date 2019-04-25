@@ -14,4 +14,9 @@ class SubmissionForm(forms.Form):
     github_url = forms.URLField(label="GitHub URL", max_length=200)
     poster_url = forms.URLField(label="Poster URL", max_length=200)
 
+    def clean(self):
+        data = self.cleaned_data
+        if "github.com/" not in data['github_url']:
+            raise forms.ValidationError("You must provide a link to a GitHub repository!")
+
     

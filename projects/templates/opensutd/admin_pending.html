@@ -17,7 +17,7 @@
                     <img src="{{ project_item.featured_image }}">
                     {% endif %}
                     <div class="card-body">
-                        <h4 class="card-title">{{ project_item.title }}</h4>
+                        <h4 class="card-title pending-project-title">{{ project_item.title }}</h4>
                         <p class="card-text">(Pending approval) {{ project_item.caption }}</p>
                         <div class="row">
                             <div class="col-sm-6" style="display: flex; justify-content: space-around">
@@ -34,7 +34,7 @@
                         <hr>
                         <div class="row" style="display: flex; justify-content: flex-end">
                             <a href="{% url 'projects:project_page_bypass' project_item.project_uid %}"
-                                class="btn btn-md edit-button">
+                                class="btn btn-md edit-button pending-project-link">
                                 View Project <i class="fa fa-angle-right" style="color:black"></i></a>
                         </div>
                     </div>
@@ -47,7 +47,6 @@
                     <p>Yay! No more pending projects to review.</p>
                     <br>
                     <img src='{% static "images/yay.gif" %}' style="height: 200px">
-
                 </div>
             </div>
             {% endif %}
@@ -69,12 +68,26 @@
                         <img src="{{ project_item.featured_image }}">
                         {% endif %}
                         <div class="card-body">
-                            <h4 class="card-title">{{ project_item.title }}</h4>
+                            <h4 class="card-title rejected-project-title">{{ project_item.title }}</h4>
                             <p class="card-text">(Rejected) {{ project_item.caption }}</p>
-                            <div class="row" style="display: flex; justify-content: space-around">
-                                <a href="{% url 'projects:project_page' project_item.project_uid %}" class="card-link">
-                                    View Project <i class="fas fa-chevron-circle-right"></i></a>
-                            </div>
+                            <div class="row">
+                                    <div class="col-sm-6" style="display: flex; justify-content: space-around">
+                                        <form action='/actions/approve/{{ project_item.project_uid }}/' method='GET'>
+                                            <button type="submit" class="btn btn-success">Approve</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-sm-6" style="display: flex; justify-content: space-around">
+                                        <form>
+                                            <button type="submit" disabled class="btn btn-danger disabled" role="button" aria-disabled="true">Reject</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row" style="display: flex; justify-content: flex-end">
+                                    <a href="{% url 'projects:project_page_bypass' project_item.project_uid %}"
+                                        class="btn btn-md edit-button rejected-project-link">
+                                        View Project <i class="fa fa-angle-right" style="color:black"></i></a>
+                                </div>
                         </div>
                     </div>
                 </div>

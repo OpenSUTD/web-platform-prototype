@@ -71,6 +71,25 @@ class SecuredPageTestCase(TestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, 302)
 
+class LogintoSecuredPageTestCase(TestCase):
+    def setUp(self):
+        self.client = Client()
+        um = OpenSUTDUserManager()
+        um.create_user("tom", display_name="Tom Magnanti",
+                       display_picture="https://via.placeholder.com/150",
+                       graduation_year=2018, pillar="ISTD",
+                       password="tompassword")
+
+    def test_login_approval_view(self):
+        self.client.login(username='tom', password='tompassword')
+        response = self.client.get(reverse('projects:approval'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_login_submission_view(self):
+        self.client.login(username='tom', password='tompassword')
+        response = self.client.get(reverse('projects:submit_new'))
+        self.assertEqual(response.status_code, 200)
+
 class UserTestCase(TestCase):
     def setUp(self):
         um = OpenSUTDUserManager()
@@ -247,13 +266,13 @@ class ProjectShowcaseTestCase(TestCase):
         pm.set_project_status("ACAD_00001", "ACCEPT")
         url = reverse('projects:project_page', args=("ACAD_00001",))
         response = str(self.client.get(url).content)
-        print(response)
+        #print(response)
         # test top and bottom of contents
         # this does not pass on Travis for Pull Request builds
         # due to them disabling env variables for security reasons
         #self.assertEqual("Prototype for the Eventual OpenSUTD Web Platform" in response, True)
         #self.assertEqual("Data Model" in response, True)
-        self.assertEqual(True, True)
+        self.assertGreater(len(response), LEN_BASE)
 
     def test_project_page_load(self):
         pm = OpenSUTDProjectManager()
@@ -296,9 +315,9 @@ class ProjectShowcaseTestCase(TestCase):
     def test_project_page_performance(self):
         start = time.time()
 
-        for i in range(10):
+        for _ in range(10):
             url = reverse('projects:project_page', args=("ACAD_00001",))
-        response = self.client.get(url)
+            response = self.client.get(url)
 
         duration = time.time() - start
         self.assertLess(duration, 1.5)

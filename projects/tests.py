@@ -47,6 +47,36 @@ class BaseWebsiteTestCase(TestCase):
         response = self.client.get(url)
         self.assertGreater(len(response.content), LEN_BASE)
 
+    def test_project_students_load(self):
+        url = reverse('projects:students')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_project_students_not_empty(self):
+        url = reverse('projects:students')
+        response = self.client.get(url)
+        self.assertGreater(len(response.content), LEN_BASE)
+
+    def test_project_educators_load(self):
+        url = reverse('projects:educators')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_project_educators_not_empty(self):
+        url = reverse('projects:educators')
+        response = self.client.get(url)
+        self.assertGreater(len(response.content), LEN_BASE)
+
+    def test_project_leaders_load(self):
+        url = reverse('projects:leaders')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_project_leaders_not_empty(self):
+        url = reverse('projects:leaders')
+        response = self.client.get(url)
+        self.assertGreater(len(response.content), LEN_BASE)
+
 
 class SecuredPageTestCase(TestCase):
     def setUp(self):

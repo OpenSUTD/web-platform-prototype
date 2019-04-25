@@ -19,11 +19,16 @@ class SubmissionForm(forms.Form):
         if "github.com/" not in data['github_url']:
             raise forms.ValidationError("You must provide a link to a GitHub repository!")
 
-"""
 class UserProfileForm(forms.ModelForm):
     class Meta:
-        model = models.Profile
-        fields = ('city', 'country') #Note that we didn't mention user field here.
+        model = models.User
+        fields = ["display_name",
+                  "display_picture",
+                  "graduation_year",
+                  "pillar",
+                  "bio",
+                  "contact_email",
+                  "personal_links"]
 
     def save(self, user=None):
         user_profile = super(UserProfileForm, self).save(commit=False)
@@ -31,4 +36,4 @@ class UserProfileForm(forms.ModelForm):
             user_profile.user = user
         user_profile.save()
         return user_profile
-"""
+

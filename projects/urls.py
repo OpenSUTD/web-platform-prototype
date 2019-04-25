@@ -10,6 +10,7 @@ urlpatterns = [
     path('educators/', views.educators_page_view, name="educators"),
     path('leaders/', views.leaders_page_view, name="leaders"),
     path('users/<user_id>/', views.user_view, name="user"),
+    path('users/edit/<user_id>/', views.user_edit_view.as_view(), name="user_edit"),
     path('projects/', views.project_list_view, name="projects_list"),
     path('projects/<project_uid>/', views.project_view, name="project_page"),
     path('projects/bypass/<project_uid>/', views.project_view_bypass, name="project_page_bypass"),

@@ -19,3 +19,4 @@ markdown2
 coverage
 coveralls
 beautifulsoup4
+whitenoise

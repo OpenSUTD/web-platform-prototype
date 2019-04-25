@@ -1,20 +1,20 @@
-import markdown2
+import os
 import base64
-from django.shortcuts import render
-from django.views import generic
 
-from django.views.generic import FormView
+from django.shortcuts import render, get_object_or_404
+from django.views import generic
+from django.views.generic import FormView, UpdateView
 from django.http import *
+from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+
 from .forms import *
 from .filters import ProjectFilter
-
-from django.contrib.auth.decorators import login_required
-
 from . import models
 
 from github import Github
-
-import os
+import markdown2
 
 ACCESS_TOKEN = os.environ["GH_ACCESS_TOKEN"]
 gh = Github(ACCESS_TOKEN)
@@ -29,9 +29,11 @@ def index(request):
                "recent_projects_list": recent_projects_list}
     return render(request, "opensutd/home.html", context)
 
+
 def custom_404(request, exception=None):
     context = {}
     return render(request, "error404.html", context)
+
 
 def students_page_view(request):
     student_projects_list = models.Project.objects.order_by(
@@ -63,6 +65,20 @@ def user_view(request, user_id):
     context = {"current_user": current_user,
                "user_projects": user_projects}
     return render(request, "opensutd/user.html", context)
+
+
+@method_decorator(login_required, name="dispatch")
+class user_edit_view(UpdateView):
+    model = models.User
+    form_class = UserProfileForm
+    template_name = "opensutd/user_edit.html"
+
+    def get_object(self, *args, **kwargs):
+        user = get_object_or_404(models.User, username=self.kwargs["user_id"])
+        return user
+
+    def get_success_url(self, *args, **kwargs):
+        return reverse("projects:user", kwargs={'user_id': self.kwargs["user_id"]})
 
 
 def get_readme(current_project_url):
@@ -158,7 +174,7 @@ def approval_view(request):
     rejected_projects_list = models.Project.objects.order_by(
         "-published_date").filter(status="REJECT")[:50]
     context = {"projects_list": projects_list,
-               "rejected_projects_list": rejected_projects_list,}
+               "rejected_projects_list": rejected_projects_list, }
     return render(request, "opensutd/admin_pending.html", context)
 
 

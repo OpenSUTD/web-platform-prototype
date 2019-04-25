@@ -85,6 +85,13 @@ class SubmissionFormTest(TestCase):
                        password="tompassword")
 
     def test_submission_form_entry(self):
+        self.client.login(username='tom', password='tompassword')
+
+        # test user can actually get to the page
+        response = self.client.get(reverse('projects:submit_new'))
+        self.assertEqual(response.status_code, 200)
+
+        # test submission mechanism
         form = SubmissionForm({'project_name':"test",
                                'caption':"test caption",
                                'category':"ACAD",

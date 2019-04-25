@@ -7,7 +7,7 @@ class ProjectFilter(django_filters.FilterSet):
         ("UROP", "UROP Projects"),
         ("UTOP", "UTOP Projects"),
         ("ACAD", "Academic Projects"),
-        ("SELF", "Self-initiated Projects"),
+        ("SELF", "Self-Initiated Projects"),
         ("NONE", "Other Projects")
     )
 

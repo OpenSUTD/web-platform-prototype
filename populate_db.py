@@ -85,14 +85,15 @@ with open("demo_data.csv") as csvfile:
     reader = csv.reader(csvfile)
     next(reader, None)
     for row in reader:
-        [project_uid, title, caption, category, url, status, users, tags] = row
+        [project_uid, title, caption, category, url, status, users, tags, featured_image] = row
         print(row)
 
         pm.create_project(project_uid=project_uid,
                           title=title,
                           caption=caption,
                           category=category,
-                          url=url)
+                          url=url,
+                          featured_image=featured_image)
 
         for user in users.split(","):
             print(user)
@@ -101,6 +102,8 @@ with open("demo_data.csv") as csvfile:
         pm.add_tag_to_project(project_uid, tags)
 
         pm.set_project_status(project_uid, status)
+
+        pm.set_featured_image(project_uid, featured_image)
 
 
 print(User.objects.all())

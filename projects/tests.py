@@ -39,16 +39,6 @@ class BaseWebsiteTestCase(TestCase):
         response = self.client.get(url)
         self.assertGreater(len(response.content), LEN_BASE)
 
-    def test_project_search_load(self):
-        url = reverse("projects:projects_list_filter")
-        response = self.client.get(url)
-        self.assertEqual(response.status_code, 200)
-
-    def test_project_search_not_empty(self):
-        url = reverse("projects:projects_list_filter")
-        response = self.client.get(url)
-        self.assertGreater(len(response.content), LEN_BASE)
-
     def test_project_students_load(self):
         url = reverse("projects:students")
         response = self.client.get(url)

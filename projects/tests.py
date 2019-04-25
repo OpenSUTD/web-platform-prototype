@@ -12,8 +12,6 @@ client = Client()
 # length of base template, used to test for empty pages
 LEN_BASE = 2600
 
-# Create your tests here.
-
 
 class BaseWebsiteTestCase(TestCase):
     def setUp(self):

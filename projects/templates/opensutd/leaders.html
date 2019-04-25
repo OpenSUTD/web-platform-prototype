@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="jumbotron jumbotron-fluid full-width-header">
+    <h1>Welcome to OpenSUTD!</h1>
+    <p class="lead">OpenSUTD is an open community owned by and dedicated to sharing the work done by the SUTD community
+    </p>
+</div>
+
+<div class="row">
+
+    <div class="col-sm">
+        <h2><i class="fas fa-star"></i> For Leaders</h2>
+        <h3>Open Organisation</h3>
+        <p>Some placeholder text</p>
+        <p>Note about Red Hat Open Organisation</p>
+        <a class="btn btn-outline-danger" href="https://opensource.com/open-organization/resources/open-org-definition"
+            role="button"><i class="fas fa-external-link-alt"></i> Definition of an Open Organisation</a>
+        <a class="btn btn-outline-danger" href="https://www.redhat.com/en/explore/the-open-organization-book"
+            role="button"><i class="fas fa-external-link-alt"></i> The Open Organisation @ Red Hat</a>
+    </div>
+
+    <div class="col-sm">
+        <h2><i class="far fa-clock"></i> Recent Open Policy Projects</h2>
+        {% if recent_projects_list %}
+        <!-- start iteration -->
+        <div class="list-group list-group-flush" style="width: 100%">
+            {% for project_item in recent_projects_list %}
+            <a href="projects/{{ project_item.project_uid }}/"
+                class="list-group-item list-group-item-action">{{ project_item.title }}</a>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p>Error! No projects are available.</p>
+        {% endif %}
+        <hr>
+        <p>Here are the working pages for test purposes:</p>
+        <ul>
+            <li><a href="{% url 'projects:approval' %}">Projects Page</a></li>
+        </ul>
+    </div>
+
+</div>
+{% endblock %}

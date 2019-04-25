@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="jumbotron jumbotron-fluid full-width-header">
+    <h1>Welcome to OpenSUTD!</h1>
+    <p class="lead">OpenSUTD is an open community owned by and dedicated to sharing the work done by the SUTD community
+    </p>
+</div>
+
+<div class="row">
+
+    <div class="col-sm">
+        <h2><i class="fas fa-star"></i> For Educators</h2>
+        <h3>Promote knowledge through access to course material</h3>
+        <p>Some placeholder text</p>
+        <h3>Encourage academic discussion, collaboration and contributions</h3>
+        <p>Some placeholder text</p>
+    </div>
+
+    <div class="col-sm">
+        <h2><i class="far fa-clock"></i> Recent Education Projects</h2>
+        {% if recent_projects_list %}
+        <!-- start iteration -->
+        <div class="list-group list-group-flush" style="width: 100%">
+            {% for project_item in recent_projects_list %}
+            <a href="projects/{{ project_item.project_uid }}/"
+                class="list-group-item list-group-item-action">{{ project_item.title }}</a>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p>Error! No projects are available.</p>
+        {% endif %}
+        <hr>
+        <p>Here are the working pages for test purposes:</p>
+        <ul>
+            <li><a href="{% url 'projects:approval' %}">Projects Page</a></li>
+        </ul>
+    </div>
+
+</div>
+{% endblock %}

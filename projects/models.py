@@ -152,6 +152,12 @@ class OpenSUTDProjectManager(object):
         project.status = status
 
         project.save()
+    
+    def set_featured_image(self, project_uid, featured_image):
+        project = Project.objects.get(project_uid=project_uid)
+        project.featured_image = featured_image
+
+        project.save()
 
 
 class OpenSUTDUserManager(BaseUserManager):

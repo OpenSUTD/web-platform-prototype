@@ -98,7 +98,7 @@ def project_view(request, project_uid):
         return HttpResponseNotFound("Project not approved!")
 
 
-def project_listfilter(request):
+def project_list_filter(request):
     f = ProjectFilter(
         request.GET, queryset=models.Project.objects.all().filter(status="ACCEPT"))
     return render(request, "projects/listfilter.html", {"filter": f})

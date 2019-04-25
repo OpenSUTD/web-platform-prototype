@@ -126,12 +126,8 @@ def submit_new_project(request):
         print(form.is_valid())
         if form.is_valid():
             # process the data in form.cleaned_data as required
-
             data = form.cleaned_data
             pm = models.OpenSUTDProjectManager()
-
-            print(data)
-
             project_uid = data["project_name"].upper().replace(" ", "_")
 
             pm.create_project(project_uid=project_uid,
@@ -140,6 +136,8 @@ def submit_new_project(request):
                               category=data["category"],
                               url=data["github_url"],
                               featured_image=data["featured_image"])
+
+            pm.add_user_to_project(project_uid, request.user.username)
 
             # redirect to a new URL:
             return HttpResponseRedirect("/admin/approval")

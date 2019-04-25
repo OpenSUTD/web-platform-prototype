@@ -44,10 +44,17 @@ body {
   color: whitesmoke;
   font-weight: lighter;
   font-size: 3em;
+  text-shadow: 2px 2px 8px darkslategray;
+}
+
+.homepage-action h4 {
+  color: whitesmoke;
+  text-shadow: 2px 2px 8px darkslategray;
 }
 
 .homepage-header p {
   color: whitesmoke;
+  text-shadow: 2px 2px 8px darkslategray;
 }
 
 .call-for-action {
@@ -60,10 +67,6 @@ body {
   margin-left: 2rem;
   width: 330px;
   height: 220px;
-}
-
-.homepage-action h4 {
-  color: whitesmoke;
 }
 
 .action-title {

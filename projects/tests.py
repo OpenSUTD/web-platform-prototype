@@ -442,7 +442,7 @@ class ProjectShowcaseTestCase(TestCase):
         url = reverse("projects:project_page", args=("ACAD_00001",))
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual("Error 404: Page Not Found!" in str(response.content).lower(), True)
+        self.assertEqual("Error 404: Page Not Found!" in str(response.content), True)
         self.assertGreater(len(response.content), LEN_BASE)
 
     def test_project_page_approved(self):

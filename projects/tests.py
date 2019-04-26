@@ -69,7 +69,10 @@ class BaseWebsiteTestCase(TestCase):
         response = self.client.get(url)
         self.assertGreater(len(response.content), LEN_BASE)
 
+
 VERBOSE = False
+
+
 class TraverseLinksTest(TestCase):
 
     def setUp(self):
@@ -116,14 +119,17 @@ class TraverseLinksTest(TestCase):
         pm.set_project_status("ACAD_00001", "ACCEPT")
         pm.add_user_to_project("ACAD_00001", "dick")
         pm.add_user_to_project("ACAD_00001", "jane")
-        pm.add_tag_to_project("ACAD_00001", "rand1,rand2,education,student,policy")
+        pm.add_tag_to_project(
+            "ACAD_00001", "rand1,rand2,education,student,policy")
 
         pm.add_user_to_project("ACAD_00002", "jane")
-        pm.add_tag_to_project("ACAD_00002", "rand1,rand2,education,student,policy")
+        pm.add_tag_to_project(
+            "ACAD_00002", "rand1,rand2,education,student,policy")
 
     def test_traverse_urls(self):
         # Fill these lists as needed with your site specific URLs to check and to avoid
-        to_traverse_list = ["/", "/projects/", "/students/", "/educators/", "/leaders/"]
+        to_traverse_list = ["/", "/projects/",
+                            "/students/", "/educators/", "/leaders/"]
         to_avoid_list = ["javascript:history\.back()", "https://*",
                          "javascript:history\.go\(-1\)", "^mailto:.*"]
 
@@ -227,7 +233,19 @@ def match_any(my_string, regexp_list):
 
 class SecuredPageTestCase(TestCase):
     def setUp(self):
-        super()
+        pm = OpenSUTDProjectManager()
+        pm.create_project(project_uid="ACAD_00001",
+                          title="OpenSUTD Web Platform",
+                          caption="Sample project 1",
+                          category="ACAD",
+                          url="https://github.com/OpenSUTD/web-platform-prototype",
+                          poster_url="https://via.placeholder.com/150",
+                          featured_image="https://via.placeholder.com/150")
+
+        um = OpenSUTDUserManager()
+        um.create_user("tom", display_name="Tom Magnanti",
+                       display_picture="https://via.placeholder.com/150",
+                       graduation_year=2018, pillar="ISTD")
 
     def test_auth_approval_view(self):
         url = reverse("projects:approval")
@@ -240,14 +258,30 @@ class SecuredPageTestCase(TestCase):
         self.assertEqual(response.status_code, 302)
 
     def test_auth_submit_reject(self):
-        url = reverse("projects:reject", args=("rand",))
+        url = reverse("projects:reject", args=("ACAD_00001",))
         response = self.client.get(url)
         self.assertEqual(response.status_code, 302)
 
     def test_auth_submit_approve(self):
-        url = reverse("projects:approve", args=("rand",))
+        url = reverse("projects:approve", args=("ACAD_00001",))
         response = self.client.get(url)
         self.assertEqual(response.status_code, 302)
+
+    def test_auth_user_edit(self):
+        url = reverse("projects:user_edit", args=("tom",))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 302)
+
+    def test_auth_project_edit(self):
+        url = reverse("projects:project_edit", args=("ACAD_00001",))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 302)
+
+    def test_auth_project_bypass(self):
+        url = reverse("projects:project_page_bypass", args=("ACAD_00001",))
+        response = self.client.get(url)
+        # actually a custom 404 page
+        self.assertEqual(response.status_code, 200)
 
 
 class SubmissionFormTest(TestCase):
@@ -259,10 +293,9 @@ class SubmissionFormTest(TestCase):
                        graduation_year=2018, pillar="ISTD",
                        password="tompassword")
 
-    def test_submission_form_entry(self):
         self.client.login(username="tom", password="tompassword")
 
-        # test user can actually get to the page
+    def test_submission_form_entry(self):
         response = self.client.get(reverse("projects:submit_new"))
         self.assertEqual(response.status_code, 200)
 
@@ -270,9 +303,135 @@ class SubmissionFormTest(TestCase):
         form = SubmissionForm({"project_name": "test",
                                "caption": "test caption",
                                "category": "ACAD",
-                               "featured_image": "",
+                               "featured_image": "http://pluspng.com/img-png/user-png-icon-male-user-icon-512.png",
                                "github_url": "https://github.com/OpenSUTD/web-platform-prototype",
+                               "poster_url": "http://pluspng.com/img-png/user-png-icon-male-user-icon-512.png"})
+
+        self.assertEqual(form.is_valid(), True)
+
+    def test_submission_form_entry_invalid(self):
+        response = self.client.get(reverse("projects:submit_new"))
+        self.assertEqual(response.status_code, 200)
+
+        # test submission mechanism
+        form = SubmissionForm({"project_name": "",
+                               "caption": "",
+                               "category": "",
+                               "featured_image": "",
+                               "github_url": "",
                                "poster_url": ""})
+
+        self.assertEqual(form.is_valid(), False)
+
+    def test_submission_form_entry_not_github(self):
+        response = self.client.get(reverse("projects:submit_new"))
+        self.assertEqual(response.status_code, 200)
+
+        # test submission mechanism
+        form = SubmissionForm({"project_name": "test",
+                               "caption": "test caption",
+                               "category": "ACAD",
+                               "featured_image": "http://pluspng.com/img-png/user-png-icon-male-user-icon-512.png",
+                               "github_url": "https://lolcats.com/OpenSUTD/web-platform-prototype",
+                               "poster_url": "http://pluspng.com/img-png/user-png-icon-male-user-icon-512.png"})
+
+        self.assertEqual(form.is_valid(), False)
+
+
+class UserProfileFormTest(TestCase):
+    def setUp(self):
+        self.client = Client()
+        um = OpenSUTDUserManager()
+        um.create_user("tom", display_name="Tom Magnanti",
+                       display_picture="https://via.placeholder.com/150",
+                       graduation_year=2018, pillar="ISTD",
+                       password="tompassword")
+        self.client.login(username="tom", password="tompassword")
+
+    def test_submission_form_entry(self):
+        # test user can actually get to the page
+        response = self.client.get(
+            reverse("projects:user_edit", args=("tom",)))
+        self.assertEqual(response.status_code, 200)
+
+        # test submission mechanism
+        form = UserProfileForm({"display_name": "tom2",
+                                "display_picture": "http://pluspng.com/img-png/user-png-icon-male-user-icon-512.png",
+                                "graduation_year": 2019,
+                                "pillar": "ISTD",
+                                "bio": "Hi I am Tom",
+                                "contact_email": "tlkh.xms@gmail.com",
+                                "personal_links": "tlkh.design"})
+
+        self.assertEqual(form.is_valid(), True)
+
+    def test_submission_form_entry_invalid(self):
+        # test user can actually get to the page
+        response = self.client.get(
+            reverse("projects:user_edit", args=("tom",)))
+        self.assertEqual(response.status_code, 200)
+
+        # test submission mechanism
+        form = UserProfileForm({"display_name": "",
+                                "display_picture": "",
+                                "graduation_year": 2019,
+                                "pillar": "",
+                                "bio": "",
+                                "contact_email": "",
+                                "personal_links": ""})
+
+        self.assertEqual(form.is_valid(), False)
+
+
+class ProjectEditFormTest(TestCase):
+    def setUp(self):
+        self.client = Client()
+        um = OpenSUTDUserManager()
+        um.create_user("tom", display_name="Tom Magnanti",
+                       display_picture="https://via.placeholder.com/150",
+                       graduation_year=2018, pillar="ISTD",
+                       password="tompassword")
+        pm = OpenSUTDProjectManager()
+        pm.create_project(project_uid="ACAD_00001",
+                          title="OpenSUTD Web Platform",
+                          caption="Sample project 1",
+                          category="ACAD",
+                          url="https://github.com/OpenSUTD/web-platform-prototype",
+                          poster_url="https://via.placeholder.com/150",
+                          featured_image="https://via.placeholder.com/150")
+        pm.set_project_status("ACAD_00001", "ACCEPT")
+
+        self.client.login(username="tom", password="tompassword")
+
+    def test_submission_form_entry_invalid(self):
+        # test user can actually get to the page
+        response = self.client.get(
+            reverse("projects:project_edit", args=("ACAD_00001",)))
+        self.assertEqual(response.status_code, 200)
+
+        # test submission mechanism
+        form = ProjectEditForm({"title": "",
+                                "caption": "",
+                                "featured_image": "",
+                                "url": "",
+                                "poster_url": ""})
+
+        self.assertEqual(form.is_valid(), False)
+
+    def test_submission_form_entry(self):
+        # test user can actually get to the page
+        response = self.client.get(
+            reverse("projects:project_edit", args=("ACAD_00001",)))
+        self.assertEqual(response.status_code, 200)
+
+        # test submission mechanism
+        form = ProjectEditForm({"title": "lalalal",
+                                "caption": "lalalal",
+                                "featured_image": "lalalal.com",
+                                "url": "https://github.com/OpenSUTD/web-platform-prototype",
+                                "poster_url": "lalalal.com"})
+
+        self.assertEqual(form.is_valid(), True)
 
 
 class LogintoSecuredPageTestCase(TestCase):
@@ -283,15 +442,35 @@ class LogintoSecuredPageTestCase(TestCase):
                        display_picture="https://via.placeholder.com/150",
                        graduation_year=2018, pillar="ISTD",
                        password="tompassword")
+        pm = OpenSUTDProjectManager()
+        pm.create_project(project_uid="ACAD_00001",
+                          title="OpenSUTD Web Platform",
+                          caption="Sample project 1",
+                          category="ACAD",
+                          url="https://github.com/OpenSUTD/web-platform-prototype",
+                          poster_url="https://via.placeholder.com/150",
+                          featured_image="https://via.placeholder.com/150")
+
+        self.client.login(username="tom", password="tompassword")
 
     def test_login_approval_view(self):
-        self.client.login(username="tom", password="tompassword")
         response = self.client.get(reverse("projects:approval"))
         self.assertEqual(response.status_code, 200)
 
     def test_login_submission_view(self):
-        self.client.login(username="tom", password="tompassword")
         response = self.client.get(reverse("projects:submit_new"))
+        self.assertEqual(response.status_code, 200)
+
+    def test_login_user_edit(self):
+        url = reverse("projects:user_edit", args=("tom",))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_login_project_edit(self):
+        pm = OpenSUTDProjectManager()
+        pm.set_project_status("ACAD_00001", "ACCEPT")
+        url = reverse("projects:project_edit", args=("ACAD_00001",))
+        response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
 
@@ -442,7 +621,8 @@ class ProjectShowcaseTestCase(TestCase):
         url = reverse("projects:project_page", args=("ACAD_00001",))
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual("Error 404: Page Not Found!" in str(response.content), True)
+        self.assertEqual("Error 404: Page Not Found!" in str(
+            response.content), True)
         self.assertGreater(len(response.content), LEN_BASE)
 
     def test_project_page_approved(self):

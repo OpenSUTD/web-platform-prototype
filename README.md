@@ -65,6 +65,9 @@ docker run --rm \
  -v ${PWD}:/app \
  opensutd/web-platform:latest-dev \
  bash -c './refresh_db.sh &&  python3 manage.py test'
+
+ # to test coverage
+ coverage run --source=. manage.py test && coverage report -m 
 ```
 
 ### CI Tests

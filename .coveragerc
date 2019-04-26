@@ -2,3 +2,5 @@
 omit = 
     */migrations/*
     populate_db.py
+    opensutd/wsgi.py
+    manage.py

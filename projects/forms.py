@@ -16,7 +16,10 @@ class SubmissionForm(forms.Form):
 
     def clean(self):
         data = self.cleaned_data
-        if "github.com/" not in data['github_url']:
+        try:
+            if "github.com/" not in data['github_url']:
+                raise forms.ValidationError("You must provide a link to a GitHub repository!")
+        except:
             raise forms.ValidationError("You must provide a link to a GitHub repository!")
 
 class UserProfileForm(forms.ModelForm):

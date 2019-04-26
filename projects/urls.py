@@ -13,6 +13,7 @@ urlpatterns = [
     path('users/edit/<user_id>/', views.user_edit_view.as_view(), name="user_edit"),
     path('projects/', views.project_list_view, name="projects_list"),
     path('projects/<project_uid>/', views.project_view, name="project_page"),
+    path('projects/edit/<project_uid>/', views.project_edit_view.as_view(), name="project_edit"),
     path('projects/bypass/<project_uid>/', views.project_view_bypass, name="project_page_bypass"),
     path('admin/approval', views.approval_view, name='approval'),
     path('admin/submit', views.submit_new_project, name='submit_new'),

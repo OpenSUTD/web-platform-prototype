@@ -291,7 +291,7 @@ body {
   border: 1px solid black;
 }
 
-/*
+
 .poster-thumbnail img {
   box-shadow: 0 0 5px 1px rgba(232, 232, 232, 1);
   border-radius: 4px;
@@ -310,7 +310,7 @@ body {
 .poster-thumbnail img:hover {
   box-shadow: 0 0 10px 1px rgba(189, 195, 199, 1);
 } 
-*/
+
 
 /* 
 * User Profile Page 

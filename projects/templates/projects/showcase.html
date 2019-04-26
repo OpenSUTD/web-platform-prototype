@@ -3,14 +3,19 @@
 
 {% load static %}
 <div class="container">
-    <div class="card mb-3" style="margin: 0 auto; text-align: center; padding: 1.5rem 0rem 0rem 0rem" >
+    <div class="card mb-3" style="margin: 0 auto; text-align: center; padding: 1.5rem 0rem 0rem 0rem">
         <div class="project-card-header row">
             <div class="col-sm-8" style="display: flex; align-items: center">
                 <h1 style="vertical-align: middle; font-size: 2.5rem">{{ current_project.title }}</h1>
             </div>
-            <div class="col-sm-4">
-                <button type="button" class="btn btn-outline-primary project-button-header">Share</button>
-                <button type="button" class="btn btn-outline-primary project-button-header">Upvote</button>
+            <div class="col-sm-4" style="text-align: center !important;">
+                {% if user.is_authenticated %}
+                <a class="btn btn-outline-primary project-button-header btn-block"
+                    href="{% url 'projects:project_edit' current_project.project_uid %}" role="button">
+                    <i class="far fa-edit"></i> Edit Project</a>
+                {% endif %}
+                <a class="btn btn-outline-primary project-button-header btn-block" href="#" role="button">
+                    <i class="fas fa-share-alt-square"></i> Share Project</a>
             </div>
         </div>
     </div>
@@ -19,7 +24,6 @@
         <div class="col-sm-9" style="flex-grow: 5">
             <div class="card readme">
                 <div class="readme-card-body">
-                    <!-- <h3 style="color: #232b2b">PROJECT README </h3> -->
                     <p class="card-text text-primary readme-content">
                         {{ readme | safe }}
                     </p>
@@ -29,18 +33,24 @@
                 </div>
             </div>
             <br>
-            <!-- <div class="card poster">
+            {% if current_project.poster_url == "" %}
+            <!-- No Poster URL -->
+            {% else %}
+            <div class="card poster">
                 <h3>Poster</h3>
-                <div class="poster-thumbnail">
-                    <a href='{{ current_project.poster_url }}'>
-                        <img src='{{ current_project.poster_url }}' alt="Poster">
-                    </a>
-                    <br>
-                    <a href='{{ current_project.poster_url }}' class="btn btn-sm poster-enlarge">Enlarge Poster <i
-                            class="fas fa-chevron-circle-right"></i></a>
+                <div class="project-card-sm">
+                    <img src="{{ current_project.poster_url }}">
+                    <div class="card-body">
+                        <div class="row" style="display: flex; justify-content: space-around">
+                            <a href="{{ current_project.poster_url }}" class="card-link">
+                                Enlarge Poster <i class="fas fa-chevron-circle-right"></i></a>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <br> -->
+            <br>
+            {% endif %}
+            <!--
             <div class="card">
                 <h3>Comments</h3>
                 <div class="form-group">
@@ -49,11 +59,12 @@
                         <input type="submit" class="btn btn-sm btn-primary" style="margin-top: 5px; float: right">
                     </form>
                 </div>
-            </div>
+            </div>-->
         </div>
 
         <div class="col-sm-3">
             <div class="project-created-by">
+                <h5> <i class="fas fa-star"></i> {{ stars }} </h5>
                 <h5>Created by</h5>
             </div>
             <br>
@@ -75,7 +86,8 @@
                 <p class="text-primary" style="margin:0; margin-top: 20px">Related Tags:</p>
                 {% for tag in current_project.tags.all %}
                 <div class="tag">
-                    <a href="{% url 'projects:projects_list' %}?title=&category=&tags__name={{ tag }}"><span class="badge badge-pill badge-secondary project-badge-tags">{{ tag }}</span></a>
+                    <a href="{% url 'projects:projects_list' %}?title=&category=&tags__name={{ tag }}"><span
+                            class="badge badge-pill badge-secondary project-badge-tags">{{ tag }}</span></a>
                 </div>
                 {% endfor %}
             </div>

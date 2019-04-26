@@ -69,11 +69,9 @@ class BaseWebsiteTestCase(TestCase):
         response = self.client.get(url)
         self.assertGreater(len(response.content), LEN_BASE)
 
-
-VERBOSE = True
-
-
+VERBOSE = False
 class TraverseLinksTest(TestCase):
+
     def setUp(self):
         # By default, login as superuser
         um = OpenSUTDUserManager()
@@ -107,10 +105,21 @@ class TraverseLinksTest(TestCase):
                        display_picture="https://via.placeholder.com/150",
                        graduation_year=2021, pillar="ESD")
 
+        pm.create_project(project_uid="ACAD_00002",
+                          title="RandomZZZZZ",
+                          caption="Sample project 2",
+                          category="ACAD",
+                          url="https://github.com/OpenSUTD/web-platform-prototype",
+                          poster_url="https://via.placeholder.com/150",
+                          featured_image="https://via.placeholder.com/150")
+
         pm.set_project_status("ACAD_00001", "ACCEPT")
         pm.add_user_to_project("ACAD_00001", "dick")
         pm.add_user_to_project("ACAD_00001", "jane")
         pm.add_tag_to_project("ACAD_00001", "rand1,rand2,education,student,policy")
+
+        pm.add_user_to_project("ACAD_00002", "jane")
+        pm.add_tag_to_project("ACAD_00002", "rand1,rand2,education,student,policy")
 
     def test_traverse_urls(self):
         # Fill these lists as needed with your site specific URLs to check and to avoid
@@ -160,7 +169,7 @@ class TraverseLinksTest(TestCase):
             url = to_traverse_list.pop()
 
             if not match_any(url, to_avoid_list):
-                print("Surfing to " + str(url) +
+                print("\nSurfing to " + str(url) +
                       ", discovered in " + str(source_of_link[url]))
                 response = self.client.get(url, follow=True)
 
@@ -428,10 +437,13 @@ class ProjectShowcaseTestCase(TestCase):
         self.assertEqual(len(proj.users.all()), 1)
 
     def test_project_page_not_approved(self):
+        pm = OpenSUTDProjectManager()
+        pm.set_project_status("ACAD_00001", "REJECT")
         url = reverse("projects:project_page", args=("ACAD_00001",))
         response = self.client.get(url)
-        self.assertEqual(response.status_code, 404)
-        #self.assertGreater(len(response.content), LEN_BASE)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual("Error 404: Page Not Found!" in str(response.content), True)
+        self.assertGreater(len(response.content), LEN_BASE)
 
     def test_project_page_approved(self):
         pm = OpenSUTDProjectManager()

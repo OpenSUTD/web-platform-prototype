@@ -81,7 +81,22 @@ class user_edit_view(UpdateView):
         return reverse("projects:user", kwargs={'user_id': self.kwargs["user_id"]})
 
 
-def get_readme(current_project_url):
+@method_decorator(login_required, name="dispatch")
+class project_edit_view(UpdateView):
+    model = models.Project
+    form_class = ProjectEditForm
+    template_name = "opensutd/project_edit.html"
+
+    def get_object(self, *args, **kwargs):
+        project = get_object_or_404(
+            models.Project, project_uid=self.kwargs["project_uid"])
+        return project
+
+    def get_success_url(self, *args, **kwargs):
+        return reverse("projects:project_page", kwargs={'project_uid': self.kwargs["project_uid"]})
+
+
+def get_readme_and_stars(current_project_url):
     repo_url = current_project_url.split("/")
     repo_name = repo_url[-2] + "/" + repo_url[-1]
     repo = gh.get_repo(repo_name)
@@ -98,19 +113,22 @@ def get_readme(current_project_url):
         'src="', 'src="https://raw.githubusercontent.com/' + repo_name + '/master/')
     readme = readme.replace('<|SPECIAL_TOKEN|>', 'src="http')
 
-    return readme
+    return readme, str(int(repo.stargazers_count))
 
 
 def project_view(request, project_uid):
     current_project = models.Project.objects.get(project_uid=project_uid)
     if current_project.is_accepted():
         try:
-            readme = get_readme(current_project.url)
+            readme, stars = get_readme_and_stars(current_project.url)
         except Exception as e:
             readme = "Unable to retrieve README:\n"+str(e)
+            stars = "0"
 
         context = {"current_project": current_project,
+                   "stars": stars,
                    "readme": readme}
+        
         return render(request, "projects/showcase.html", context)
     else:
         raise Http404("Project is not yet approved!")
@@ -119,12 +137,15 @@ def project_view(request, project_uid):
 def project_view_bypass(request, project_uid):
     current_project = models.Project.objects.get(project_uid=project_uid)
     try:
-        readme = get_readme(current_project.url)
+        readme, stars = get_readme_and_stars(current_project.url)
     except Exception as e:
         readme = "Unable to retrieve README:\n"+str(e)
+        stars = "0"
 
     context = {"current_project": current_project,
+               "stars": stars,
                "readme": readme}
+
     return render(request, "projects/showcase.html", context)
 
 

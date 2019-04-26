@@ -43,8 +43,6 @@ RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && \
     pip install --upgrade --no-cache-dir -r requirements.txt && \
     rm -rf get-pip.py ~/.cache
 
-RUN chmod -R 777 /app
-
-USER opensutd
+USER root
 
 EXPOSE 8000

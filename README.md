@@ -38,9 +38,10 @@ docker run --rm \
  --env GH_ACCESS_TOKEN=${GH_ACCESS_TOKEN} \
  -v ${PWD}:/app \
  opensutd/web-platform:${TAG} \
+ bash -c " \
   ./refresh_db.sh && \
   python3 manage.py collectstatic --noinput && \
-  python3 manage.py runserver 0:8000
+  python3 manage.py runserver 0:8000 "
 ```
 
 ## Getting GitHub login working

@@ -37,3 +37,18 @@ class UserProfileForm(forms.ModelForm):
         user_profile.save()
         return user_profile
 
+class ProjectEditForm(forms.ModelForm):
+    class Meta:
+        model = models.Project
+        fields = ["title",
+                  "caption",
+                  "featured_image",
+                  "url",
+                  "poster_url"]
+
+    def save(self, project=None):
+        project_edit = super(ProjectEditForm, self).save(commit=False)
+        if project:
+            project_edit.project = project
+        project_edit.save()
+        return project_edit

@@ -80,6 +80,19 @@ class user_edit_view(UpdateView):
     def get_success_url(self, *args, **kwargs):
         return reverse("projects:user", kwargs={'user_id': self.kwargs["user_id"]})
 
+@method_decorator(login_required, name="dispatch")
+class project_edit_view(UpdateView):
+    model = models.Project
+    form_class = ProjectEditForm
+    template_name = "opensutd/project_edit.html"
+
+    def get_object(self, *args, **kwargs):
+        project = get_object_or_404(models.Project, project_uid=self.kwargs["project_uid"])
+        return project
+
+    def get_success_url(self, *args, **kwargs):
+        return reverse("projects:project", kwargs={'project_uid': self.kwargs["project_uid"]})
+
 
 def get_readme(current_project_url):
     repo_url = current_project_url.split("/")
